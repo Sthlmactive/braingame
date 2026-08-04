@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Raw upstream word sources. Re-fetch with `npm run data:fetch`; saldom.xml
+# alone is 254 MB and is never committed. The built data in public/data is.
+/scripts/.cache/

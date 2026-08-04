@@ -1,0 +1,97 @@
+{
+  "lang": "en",
+  "generated": "2026-08-04",
+  "dictWords": 113893,
+  "dictNodes": 45378,
+  "dictEdges": 100270,
+  "answerWords": 25748,
+  "minAnswerLength": 3,
+  "maxAnswerLength": 9,
+  "maxWordLength": 15,
+  "bandNames": [
+    "top1k",
+    "top2k",
+    "top3k",
+    "top5k",
+    "top10k",
+    "top20k",
+    "top40k",
+    "full"
+  ],
+  "counts": {
+    "3": {
+      "top1k": 127,
+      "top2k": 176,
+      "top3k": 217,
+      "top5k": 299,
+      "top10k": 449,
+      "top20k": 626,
+      "top40k": 694,
+      "full": 694
+    },
+    "4": {
+      "top1k": 290,
+      "top2k": 456,
+      "top3k": 608,
+      "top5k": 855,
+      "top10k": 1324,
+      "top20k": 1988,
+      "top40k": 2265,
+      "full": 2265
+    },
+    "5": {
+      "top1k": 251,
+      "top2k": 472,
+      "top3k": 676,
+      "top5k": 1027,
+      "top10k": 1802,
+      "top20k": 3051,
+      "top40k": 3653,
+      "full": 3653
+    },
+    "6": {
+      "top1k": 139,
+      "top2k": 364,
+      "top3k": 562,
+      "top5k": 988,
+      "top10k": 2003,
+      "top20k": 3872,
+      "top40k": 4899,
+      "full": 4899
+    },
+    "7": {
+      "top1k": 116,
+      "top2k": 298,
+      "top3k": 490,
+      "top5k": 873,
+      "top10k": 1909,
+      "top20k": 4121,
+      "top40k": 5391,
+      "full": 5391
+    },
+    "8": {
+      "top1k": 49,
+      "top2k": 148,
+      "top3k": 289,
+      "top5k": 608,
+      "top10k": 1506,
+      "top20k": 3569,
+      "top40k": 4874,
+      "full": 4874
+    },
+    "9": {
+      "top1k": 28,
+      "top2k": 86,
+      "top3k": 158,
+      "top5k": 350,
+      "top10k": 1007,
+      "top20k": 2773,
+      "top40k": 3972,
+      "full": 3972
+    }
+  },
+  "sources": [
+    "SCOWL by Kevin Atkinson, via wordlist-english (permissive SCOWL licence)",
+    "OpenSubtitles 2018 frequencies, hermitdave/FrequencyWords (MIT)"
+  ]
+}
