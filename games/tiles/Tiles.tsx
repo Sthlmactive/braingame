@@ -73,16 +73,19 @@ export function Tiles({ lang, level, onFinish, setStatus, onGiveUp }: GameProps)
 
   const hintsLeft = cfg.hints - hintsUsed;
 
-  // Opening draw for both sides.
+  // Opening draw for both sides. Everything is computed before any setState,
+  // because a state updater must be pure: React calls it twice in development
+  // and a rack built inside one would be dealt twice.
   useEffect(() => {
-    setBag((current) => {
-      const mine = current.slice(0, RACK_SIZE);
-      const theirs = current.slice(RACK_SIZE, RACK_SIZE * 2);
-      setRack(mine.map((letter) => ({ id: nextId.current++, letter })));
-      setAiRack(theirs);
-      return current.slice(RACK_SIZE * 2);
-    });
-  }, []);
+    const opening = shuffle(buildBag(lang), rng.current);
+    setBag(opening.slice(RACK_SIZE * 2));
+    setRack(
+      opening
+        .slice(0, RACK_SIZE)
+        .map((letter) => ({ id: nextId.current++, letter })),
+    );
+    setAiRack(opening.slice(RACK_SIZE, RACK_SIZE * 2));
+  }, [lang]);
 
   const flash = useCallback((msg: string) => {
     setMessage(msg);
@@ -144,23 +147,19 @@ export function Tiles({ lang, level, onFinish, setStatus, onGiveUp }: GameProps)
     setPasses(0);
     flash(t("ordlekPlayed", { w: move.word.toUpperCase(), n: move.score }));
 
-    // Spend the tiles it used and refill from the bag.
-    setAiRack((current) => {
-      const left = [...current];
-      for (const tile of move.tiles) {
-        const want = tile.blank ? BLANK : tile.letter;
-        const at = left.indexOf(want);
-        if (at >= 0) left.splice(at, 1);
-      }
-      setBag((b) => {
-        const need = RACK_SIZE - left.length;
-        left.push(...b.slice(0, need));
-        return b.slice(need);
-      });
-      return left;
-    });
+    // Spend the tiles it used and refill from the bag, all worked out before
+    // any setState so the updaters stay pure.
+    const left = [...aiRack];
+    for (const tile of move.tiles) {
+      const want = tile.blank ? BLANK : tile.letter;
+      const at = left.indexOf(want);
+      if (at >= 0) left.splice(at, 1);
+    }
+    const need = RACK_SIZE - left.length;
+    setAiRack([...left, ...bag.slice(0, need)]);
+    setBag(bag.slice(need));
     setTurn("you");
-  }, [board, blanks, aiRack, lang, dawg, cfg, flash, t]);
+  }, [board, blanks, aiRack, bag, lang, dawg, cfg, flash, t]);
 
   useEffect(() => {
     if (turn !== "ai" || finishedRef.current) return;
@@ -294,16 +293,14 @@ export function Tiles({ lang, level, onFinish, setStatus, onGiveUp }: GameProps)
     setPasses(0);
     play("good");
 
-    setBag((b) => {
-      const need = RACK_SIZE - rack.length;
-      setRack((r) => [
-        ...r,
-        ...b.slice(0, need).map((letter) => ({ id: nextId.current++, letter })),
-      ]);
-      return b.slice(need);
-    });
+    const need = RACK_SIZE - rack.length;
+    setRack([
+      ...rack,
+      ...bag.slice(0, need).map((letter) => ({ id: nextId.current++, letter })),
+    ]);
+    setBag(bag.slice(need));
     setTurn("ai");
-  }, [pending, board, blanks, lang, dawg, rack.length, flash, t]);
+  }, [pending, board, blanks, lang, dawg, rack, bag, flash, t]);
 
   const useHint = useCallback(() => {
     if (hintsLeft <= 0 || turn !== "you") return;

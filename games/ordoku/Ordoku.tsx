@@ -98,46 +98,53 @@ export function Ordoku({ lang, level, onFinish, setStatus, onGiveUp }: GameProps
     (symbol: number) => {
       if (!puzzle || selected === null || given[selected]) return;
       lastProgress.current = Date.now();
-      setCells((prev) => {
-        const next = Int8Array.from(prev);
-        next[selected] = next[selected] === symbol ? -1 : symbol;
-        const wrong =
-          next[selected]! >= 0 && next[selected] !== puzzle.solution[selected];
-        if (wrong) setMistakes((m) => m + 1);
-        play(wrong ? "bad" : "place");
 
-        if (isComplete(next, puzzle.size)) {
-          const timeMs = Date.now() - startedAt.current;
-          window.setTimeout(
-            () =>
-              onFinish({
-                cleared: true,
-                score: scoreOrdoku({
-                  solved: true,
-                  size: puzzle.size,
-                  timeMs,
-                  mistakes,
-                  hintsUsed: wordShown && !cfg.hideWordUntilSolved ? 1 : 0,
-                }),
+      // Everything is decided before any setState. A state updater has to be
+      // pure: React runs it twice in development, which would double count
+      // mistakes and play the sound twice.
+      const next = Int8Array.from(cells);
+      next[selected] = next[selected] === symbol ? -1 : symbol;
+      const wrong =
+        next[selected]! >= 0 && next[selected] !== puzzle.solution[selected];
+
+      setCells(next);
+      if (wrong) setMistakes((m) => m + 1);
+      play(wrong ? "bad" : "place");
+
+      if (isComplete(next, puzzle.size)) {
+        const timeMs = Date.now() - startedAt.current;
+        window.setTimeout(
+          () =>
+            onFinish({
+              cleared: true,
+              score: scoreOrdoku({
+                solved: true,
+                size: puzzle.size,
                 timeMs,
-                reason: "solved",
-                revealWord: puzzle.word,
+                mistakes: mistakes + (wrong ? 1 : 0),
+                hintsUsed: wordShown && !cfg.hideWordUntilSolved ? 1 : 0,
               }),
-            340,
-          );
-        }
-        return next;
-      });
+              timeMs,
+              reason: "solved",
+              revealWord: puzzle.word,
+            }),
+          340,
+        );
+      }
     },
-    [puzzle, selected, given, mistakes, wordShown, cfg.hideWordUntilSolved, onFinish],
+    [puzzle, selected, cells, given, mistakes, wordShown, cfg.hideWordUntilSolved, onFinish],
   );
 
   if (!puzzle) return <PuzzleError onRetry={() => window.location.reload()} />;
 
   const size = puzzle.size as Size;
   const box = BOX[size];
-  // Fit the board to an iPhone SE width without pinch zoom.
-  const cell = Math.floor(Math.min(52, (340 - (size + 1) * 2) / size));
+  // Fit the board to an iPhone SE without pinch zoom. Budget for the cell
+  // gaps, the outer padding and the heavier gutters between boxes.
+  const boxGutters = (size / box.cols - 1) * 3;
+  const cell = Math.floor(
+    Math.min(52, (330 - (size - 1) * 2 - 6 - boxGutters) / size),
+  );
   const solved = isComplete(cells, size);
 
   return (

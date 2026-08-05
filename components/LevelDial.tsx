@@ -80,7 +80,9 @@ export function LevelDial({
         style={{
           scrollSnapType: "y mandatory",
           // Half the strip in padding either end so 1 and 10 can reach centre.
-          paddingBlock: "38vh",
+          // dvh, never vh: vh is measured against the iOS toolbars being
+          // hidden, so it overshoots and the dial cannot centre level 10.
+          paddingBlock: "38dvh",
           maskImage:
             "linear-gradient(to bottom, transparent, black 18%, black 82%, transparent)",
           WebkitMaskImage:

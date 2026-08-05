@@ -37,7 +37,7 @@ const KEY_FG: Record<KeyState, string> = {
   unknown: "var(--text)",
   correct: "var(--ink)",
   present: "var(--ink)",
-  absent: "var(--muted)",
+  absent: "var(--on-absent)",
 };
 
 export interface KeyboardProps {

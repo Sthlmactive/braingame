@@ -42,7 +42,7 @@ const PALETTES: Record<TileState, Palette> = {
   filled: { bg: "var(--surface)", fg: "var(--text)", border: "var(--muted)" },
   correct: { bg: "var(--correct)", fg: "var(--ink)", border: "var(--correct)" },
   present: { bg: "var(--present)", fg: "var(--ink)", border: "var(--present)" },
-  absent: { bg: "var(--absent)", fg: "var(--muted)", border: "var(--absent)" },
+  absent: { bg: "var(--absent)", fg: "var(--on-absent)", border: "var(--absent)" },
   accent: { bg: "var(--accent)", fg: "var(--ink)", border: "var(--accent)" },
   locked: { bg: "var(--surface)", fg: "var(--muted)", border: "var(--line)" },
   muted: { bg: "transparent", fg: "var(--muted)", border: "var(--line)" },

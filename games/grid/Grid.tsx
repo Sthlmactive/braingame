@@ -10,6 +10,7 @@ import { isValidWord, randomWord } from "@/lib/dictionary";
 import { loadGridSquares } from "@/lib/puzzles";
 import { gridConfig } from "@/lib/levels";
 import { mulberry32, randomSeed } from "@/lib/rng";
+import { useBoardFit } from "@/lib/useBoardFit";
 import { play } from "@/lib/sound";
 import {
   GRID_SIZE,
@@ -103,6 +104,14 @@ export function Grid({ lang, level, onFinish, setStatus, onGiveUp }: GameProps) 
     window.setTimeout(() => setMessage((m) => (m === msg ? null : m)), 1500);
   }, []);
 
+  // The hint column sits beside the grid, so its width comes out of the tiles'
+  // budget. One extra row is reserved for the row of tiles being typed.
+  const HINT_COL = 44;
+  const [boardRef, tilePx] = useBoardFit(GRID_SIZE, GRID_SIZE + 1, {
+    max: 52,
+    reserveWidth: HINT_COL + 4,
+  });
+
   const onEnter = useCallback(() => {
     if (!state) return;
     if (current.length < GRID_SIZE) {
@@ -149,11 +158,12 @@ export function Grid({ lang, level, onFinish, setStatus, onGiveUp }: GameProps) 
   if (failed) return <PuzzleError onRetry={() => window.location.reload()} />;
   if (!state) return <Loading />;
 
-  const tilePx = Math.min(56, Math.floor((330 - 4 * 6) / GRID_SIZE));
-
   return (
     <div className="flex min-h-0 flex-1 flex-col">
-      <div className="relative flex flex-1 flex-col items-center justify-center gap-2">
+      <div
+        ref={boardRef}
+        className="relative flex min-h-0 flex-1 flex-col items-center justify-center gap-2"
+      >
         {message ? (
           <div
             className="fade-enter absolute top-0 z-10 rounded-lg px-3 py-1.5 text-xs font-semibold"
@@ -182,8 +192,8 @@ export function Grid({ lang, level, onFinish, setStatus, onGiveUp }: GameProps) 
                 );
               })}
               <span
-                className="ml-1 w-[54px] text-[0.62rem] leading-tight tracking-wide uppercase"
-                style={{ color: "var(--present)" }}
+                className="ml-1 text-[0.62rem] leading-tight tracking-wide uppercase"
+                style={{ color: "var(--present)", width: HINT_COL }}
                 aria-label={t("useTheClues")}
               >
                 {[...state.rowHints[r]!].join(" ")}

@@ -16,6 +16,9 @@
   --correct: #37b98a;
   --present: #e2a93e;
   --absent: #2a313d;
+  /* --muted on --absent lands at 4.44:1, just under AA. This is the same
+     grey nudged up so a spent letter still passes. */
+  --on-absent: #9aa4b4;
 
   /* Per game accents. Each game lights exactly one of these and nothing else. */
   --accent-five: #5b7cff;

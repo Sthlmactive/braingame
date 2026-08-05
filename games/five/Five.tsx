@@ -9,6 +9,7 @@ import { useApp } from "@/components/AppProvider";
 import { isValidWord, randomWord } from "@/lib/dictionary";
 import { fiveConfig } from "@/lib/levels";
 import { mulberry32, randomSeed } from "@/lib/rng";
+import { useBoardFit } from "@/lib/useBoardFit";
 import { play } from "@/lib/sound";
 import {
   hardModeViolation,
@@ -42,21 +43,6 @@ export function Five({ lang, level, onFinish, setStatus, onGiveUp }: GameProps) 
   const [lastSubmitted, setLastSubmitted] = useState(-1);
 
   const hintsLeft = cfg.hints - hintsUsed;
-
-  // A hint pre-fills its letter, so the row the player is typing starts from
-  // whatever has already been revealed.
-  const prefill = useCallback(
-    (typed: string) => {
-      if (revealed.size === 0 || !answer) return typed;
-      const out = typed.split("");
-      for (const pos of revealed) {
-        while (out.length < pos) out.push("");
-        if (out[pos] === undefined || out[pos] === "") out[pos] = answer[pos]!;
-      }
-      return out.join("");
-    },
-    [revealed, answer],
-  );
 
   useEffect(() => {
     setStatus(
@@ -164,11 +150,17 @@ export function Five({ lang, level, onFinish, setStatus, onGiveUp }: GameProps) 
     if (!answer || hintsLeft <= 0) return;
     const pos = hintPosition(answer, guesses, revealed);
     if (pos === null) return;
+    // The letter is shown greyed in its own column and stays there until the
+    // player types past it. Splicing it into the typed string instead would
+    // put it in the wrong column, since the columns before it are still empty.
     setRevealed((r) => new Set(r).add(pos));
     setHintsUsed((n) => n + 1);
-    setCurrent((c) => prefill(c));
     play("good");
-  }, [answer, hintsLeft, guesses, revealed, prefill]);
+  }, [answer, hintsLeft, guesses, revealed]);
+
+  // Sized from the real board area, so eight short rows fit an SE and a Pro
+  // Max gets bigger tiles instead of more padding.
+  const [boardRef, tilePx] = useBoardFit(cfg.length, cfg.guesses, { max: 58 });
 
   const keyStates = useMemo(() => {
     if (!answer || !cfg.keyboardColours) return {};
@@ -178,13 +170,13 @@ export function Five({ lang, level, onFinish, setStatus, onGiveUp }: GameProps) 
   if (!answer) return <PuzzleError onRetry={() => window.location.reload()} />;
 
   const rows = Array.from({ length: cfg.guesses }, (_, r) => r);
-  // The board must fit an iPhone SE without scrolling, so the tile size falls
-  // out of the available width rather than being fixed.
-  const tilePx = Math.min(58, Math.floor((340 - (cfg.length - 1) * 6) / cfg.length));
 
   return (
     <div className="flex min-h-0 flex-1 flex-col">
-      <div className="relative flex flex-1 flex-col items-center justify-center gap-[6px] py-2">
+      <div
+        ref={boardRef}
+        className="relative flex min-h-0 flex-1 flex-col items-center justify-center gap-[6px] py-2"
+      >
         {message ? (
           <div
             className="fade-enter absolute top-0 z-10 rounded-lg px-3 py-1.5 text-xs font-semibold"

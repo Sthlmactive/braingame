@@ -8,6 +8,7 @@ import { isValidWord } from "@/lib/dictionary";
 import { loadLoopBoards } from "@/lib/puzzles";
 import { loopConfig } from "@/lib/levels";
 import { mulberry32, randomSeed, shuffle } from "@/lib/rng";
+import { useBoardFit } from "@/lib/useBoardFit";
 import { play } from "@/lib/sound";
 import { key, layout, type LoopBoard } from "./board";
 
@@ -53,6 +54,14 @@ export function Loop({ lang, level, onFinish, setStatus, onGiveUp }: GameProps) 
     [board],
   );
   const hintsLeft = cfg.hints - hintsUsed;
+
+  // The crossword shares the screen with the wheel, so it is sized from the
+  // area actually left over rather than from the viewport width.
+  const [boardRef, cellPx] = useBoardFit(board?.width ?? 1, board?.height ?? 1, {
+    gap: 2,
+    max: 30,
+    min: 14,
+  });
 
   useEffect(() => {
     if (!board) return;
@@ -219,13 +228,13 @@ export function Loop({ lang, level, onFinish, setStatus, onGiveUp }: GameProps) 
 
   const cells = layout(board.words);
   const solvedCells = layout(board.words.filter((w) => solved.includes(w.word)));
-  const cellPx = Math.floor(
-    Math.min(30, (340 - board.width * 2) / Math.max(board.width, 1)),
-  );
 
   return (
     <div className="game-surface flex min-h-0 flex-1 flex-col">
-      <div className="relative flex flex-1 items-center justify-center">
+      <div
+        ref={boardRef}
+        className="relative flex min-h-0 flex-1 items-center justify-center"
+      >
         {message ? (
           <div
             className="fade-enter absolute top-1 z-10 rounded-lg px-3 py-1.5 text-xs font-semibold"

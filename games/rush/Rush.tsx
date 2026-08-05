@@ -201,12 +201,14 @@ export function Rush({ lang, level, onFinish, setStatus, onGiveUp }: GameProps) 
       );
       play("place");
     };
+    const cancel = () => setDrag(null);
     window.addEventListener("pointermove", move, { passive: false });
     window.addEventListener("pointerup", up);
-    window.addEventListener("pointercancel", () => setDrag(null), { once: true });
+    window.addEventListener("pointercancel", cancel);
     return () => {
       window.removeEventListener("pointermove", move);
       window.removeEventListener("pointerup", up);
+      window.removeEventListener("pointercancel", cancel);
     };
   }, [drag, tiles]);
 
