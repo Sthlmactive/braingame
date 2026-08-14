@@ -1,8 +1,9 @@
 import { Dawg, type SearchOptions } from "./dawg";
 import { ALPHABETS, normalise } from "./alphabet";
 import { BAND_NAMES, type Band } from "./bands";
+import { DIFFICULTIES, type Difficulty } from "./difficulty";
 import type { Lang } from "./i18n";
-import { mulberry32, randomSeed, type Rng } from "./rng";
+import { hashSeed, mulberry32, randomSeed, type Rng } from "./rng";
 
 /**
  * The single door to the word data. Nothing else in the app reads
@@ -27,12 +28,16 @@ export interface LangMeta {
 export interface LanguageData {
   lang: Lang;
   dawg: Dawg;
-  /** Alphabetical. Position matches `bands`. */
+  /** Alphabetical. Position matches `bands` and `difficulty`. */
   answers: string[];
   bands: Uint8Array;
+  /** One bucket byte per answer. 255 means the word has no bucket. */
+  difficulty: Uint8Array;
   meta: LangMeta;
   /** answers positions grouped by length, built once at load. */
   byLength: Map<number, number[]>;
+  /** The four Five pools, in answers order, built once at load. */
+  byDifficulty: Map<Difficulty, string[]>;
 }
 
 // ---------------------------------------------------------------------------
@@ -79,21 +84,30 @@ export async function loadLanguage(lang: Lang): Promise<LanguageData> {
 
   const task = (async (): Promise<LanguageData> => {
     const base = `/data/${lang}`;
-    const [dictBuf, answersBuf, bandsBuf, metaBuf] = await Promise.all([
-      fetcher(`${base}/dict.bin`),
-      fetcher(`${base}/answers.txt`),
-      fetcher(`${base}/answer-bands.bin`),
-      fetcher(`${base}/meta.json`),
-    ]);
+    const [dictBuf, answersBuf, bandsBuf, difficultyBuf, metaBuf] =
+      await Promise.all([
+        fetcher(`${base}/dict.bin`),
+        fetcher(`${base}/answers.txt`),
+        fetcher(`${base}/answer-bands.bin`),
+        fetcher(`${base}/answer-difficulty.bin`),
+        fetcher(`${base}/meta.json`),
+      ]);
 
     const dawg = Dawg.fromBuffer(dictBuf);
     const answers = decodeFrontCoded(new TextDecoder().decode(answersBuf));
     const bands = new Uint8Array(bandsBuf);
+    const difficulty = new Uint8Array(difficultyBuf);
     const meta = JSON.parse(new TextDecoder().decode(metaBuf)) as LangMeta;
 
     if (answers.length !== bands.length) {
       throw new Error(
         `dictionary: ${lang} has ${answers.length} answers but ${bands.length} band bytes`,
+      );
+    }
+    if (answers.length !== difficulty.length) {
+      throw new Error(
+        `dictionary: ${lang} has ${answers.length} answers but ` +
+          `${difficulty.length} difficulty bytes`,
       );
     }
 
@@ -104,7 +118,27 @@ export async function loadLanguage(lang: Lang): Promise<LanguageData> {
       else byLength.set(w.length, [i]);
     });
 
-    const data: LanguageData = { lang, dawg, answers, bands, meta, byLength };
+    // The four Five pools. A byte of 255 means "no bucket" and is skipped, so
+    // a wrong length answer can never leak into a difficulty.
+    const byDifficulty = new Map<Difficulty, string[]>(
+      DIFFICULTIES.map((d) => [d, [] as string[]]),
+    );
+    answers.forEach((w, i) => {
+      const b = difficulty[i]!;
+      const name = DIFFICULTIES[b];
+      if (name !== undefined) byDifficulty.get(name)!.push(w);
+    });
+
+    const data: LanguageData = {
+      lang,
+      dawg,
+      answers,
+      bands,
+      difficulty,
+      meta,
+      byLength,
+      byDifficulty,
+    };
     cache.set(lang, data);
     inflight.delete(lang);
     return data;
@@ -134,6 +168,8 @@ export function isLoaded(lang: Lang): boolean {
 export function clearCache(): void {
   cache.clear();
   inflight.clear();
+  // Fingerprints describe a loaded pool, so they die with it.
+  fingerprints.clear();
 }
 
 // ---------------------------------------------------------------------------
@@ -229,6 +265,37 @@ export function hasPrefix(prefix: string, lang: Lang): boolean {
   const data = cache.get(lang);
   if (!data) return false;
   return data.dawg.hasPrefix(normalise(prefix));
+}
+
+/**
+ * Five's answer pool for one difficulty, in the shipped answers order.
+ *
+ * The order is what the bag's cursor indexes into, so it must stay stable for a
+ * given build. `poolFingerprint` is how a saved cursor detects that it did not.
+ */
+export function difficultyPool(lang: Lang, level: Difficulty): string[] {
+  const data = cache.get(lang);
+  if (!data) return [];
+  return data.byDifficulty.get(level) ?? [];
+}
+
+const fingerprints = new Map<string, string>();
+
+/**
+ * A short hash of one difficulty pool: its length and its contents in order.
+ *
+ * Stored beside a bag's seed and cursor. If a rebuild changes the pool, the
+ * hash changes, the saved cursor is thrown away and the bag starts over. A
+ * silent reset is fine; a cursor silently pointing at a different word is not.
+ */
+export function poolFingerprint(lang: Lang, level: Difficulty): string {
+  const key = `${lang}:${level}`;
+  const cached = fingerprints.get(key);
+  if (cached !== undefined) return cached;
+  const pool = difficultyPool(lang, level);
+  const hash = hashSeed(`${pool.length}:${pool.join(" ")}`).toString(36);
+  fingerprints.set(key, hash);
+  return hash;
 }
 
 export function alphabet(lang: Lang): readonly string[] {
