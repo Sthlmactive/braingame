@@ -38,7 +38,6 @@ export function Screen({
   backHref?: string;
   padded?: boolean;
 }) {
-  const router = useRouter();
   const { t } = useApp();
 
   const style = game
