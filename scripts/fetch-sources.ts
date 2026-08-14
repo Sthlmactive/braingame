@@ -11,7 +11,10 @@ import { join } from "node:path";
  *   saldom.xml   SALDO morphology, Språkbanken, Göteborgs universitet.
  *                CC BY 4.0. ~254 MB. Full Swedish inflection with POS tags.
  *   *_50k.txt    OpenSubtitles 2018 frequency counts, hermitdave/FrequencyWords.
- *                MIT. Used only to rank words into difficulty bands.
+ *                The repo is MIT for code, CC BY-SA 4.0 for the word list data.
+ *                Used only to rank words into difficulty bands.
+ *   ldnoobw-*    LDNOOBW, CC BY 4.0. Per language obscenity lists, used only to
+ *                keep words out of the ANSWER pool. Guessing is unaffected.
  *
  * The English word list comes from the `wordlist-english` npm package (SCOWL,
  * Kevin Atkinson's permissive licence) and needs no download.
@@ -35,7 +38,20 @@ const SOURCES: Array<{ name: string; url: string; minBytes: number }> = [
     url: "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/sv/sv_50k.txt",
     minBytes: 400_000,
   },
+  // LDNOOBW, CC BY 4.0. Per language lists of words that should never be the
+  // hidden word. Small files: 43 lines for Swedish, 403 for English.
+  {
+    name: "ldnoobw-sv.txt",
+    url: "https://raw.githubusercontent.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/sv",
+    minBytes: 200,
+  },
+  {
+    name: "ldnoobw-en.txt",
+    url: "https://raw.githubusercontent.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/master/en",
+    minBytes: 2_000,
+  },
 ];
+
 
 async function fetchOne(name: string, url: string, minBytes: number): Promise<void> {
   const dest = join(CACHE, name);

@@ -1,6 +1,7 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import { useLanguage } from "./helpers";
 import {
+  alphabet,
   answerPool,
   decodeFrontCoded,
   isValidWord,
@@ -10,6 +11,7 @@ import {
   wordsFromLetters,
   wordsMatching,
 } from "@/lib/dictionary";
+import { NOT_WORDS, SEED_WORDS } from "./seed-words";
 import { BAND_NAMES } from "@/lib/bands";
 import { compareWords, isAlphabetic, normalise } from "@/lib/alphabet";
 import { mulberry32 } from "@/lib/rng";
@@ -241,6 +243,36 @@ describe("wordsMatching", () => {
     const found = wordsMatching(".....", "sv");
     expect(found.length).toBeGreaterThan(2000);
     for (const w of found) expect(w.length).toBe(5);
+  });
+});
+
+describe("seed word regression", () => {
+  // The list that proved the dictionary was healthy. It stays green forever.
+  it.each(["sv", "en"] as const)("accepts every %s seed word", (lang) => {
+    const missing = SEED_WORDS[lang].filter((w) => !isValidWord(w, lang));
+    expect(missing, `${lang} rejected: ${missing.join(" ")}`).toEqual([]);
+  });
+
+  it.each(["sv", "en"] as const)("still refuses %s non words", (lang) => {
+    const wrong = NOT_WORDS[lang].filter((w) => isValidWord(w, lang));
+    expect(wrong, `${lang} wrongly accepted: ${wrong.join(" ")}`).toEqual([]);
+  });
+
+  it("resolves NFD input, which is what a composing keyboard can send", () => {
+    // Identical on screen, different bytes. Lookup has to fold before it walks.
+    for (const w of ["kväll", "måste", "höger", "björn"]) {
+      const nfd = w.normalize("NFD");
+      expect(nfd).not.toBe(w.normalize("NFC"));
+      expect(isValidWord(nfd, "sv"), `NFD ${w}`).toBe(true);
+    }
+  });
+
+  it("ships answers and an alphabet that are already NFC", () => {
+    // If the build ever writes NFD, lookup still works but the data doubles in
+    // size and every byte level comparison silently stops matching.
+    const pool = answerPool("sv", 5, "full");
+    expect(pool.filter((w) => w !== w.normalize("NFC"))).toEqual([]);
+    expect(alphabet("sv").join("")).toBe(alphabet("sv").join("").normalize("NFC"));
   });
 });
 

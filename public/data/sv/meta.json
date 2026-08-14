@@ -1,10 +1,9 @@
 {
   "lang": "sv",
-  "generated": "2026-08-04",
   "dictWords": 226052,
   "dictNodes": 32635,
   "dictEdges": 89745,
-  "answerWords": 26990,
+  "answerWords": 25149,
   "minAnswerLength": 3,
   "maxAnswerLength": 9,
   "maxWordLength": 9,
@@ -20,78 +19,79 @@
   ],
   "counts": {
     "3": {
-      "top1k": 156,
-      "top2k": 217,
-      "top3k": 257,
-      "top5k": 333,
-      "top10k": 476,
-      "top20k": 689,
-      "top40k": 784,
-      "full": 784
+      "top1k": 135,
+      "top2k": 191,
+      "top3k": 227,
+      "top5k": 289,
+      "top10k": 424,
+      "top20k": 610,
+      "top40k": 670,
+      "full": 670
     },
     "4": {
-      "top1k": 220,
-      "top2k": 379,
-      "top3k": 533,
-      "top5k": 749,
-      "top10k": 1181,
-      "top20k": 1801,
-      "top40k": 2125,
-      "full": 2125
+      "top1k": 214,
+      "top2k": 359,
+      "top3k": 496,
+      "top5k": 699,
+      "top10k": 1098,
+      "top20k": 1636,
+      "top40k": 1858,
+      "full": 1858
     },
     "5": {
-      "top1k": 233,
-      "top2k": 458,
-      "top3k": 700,
-      "top5k": 1064,
-      "top10k": 1862,
-      "top20k": 3155,
-      "top40k": 3922,
-      "full": 3922
+      "top1k": 230,
+      "top2k": 461,
+      "top3k": 673,
+      "top5k": 1040,
+      "top10k": 1799,
+      "top20k": 3023,
+      "top40k": 3556,
+      "full": 3556
     },
     "6": {
-      "top1k": 213,
-      "top2k": 462,
-      "top3k": 688,
-      "top5k": 1188,
-      "top10k": 2298,
-      "top20k": 4273,
-      "top40k": 5540,
-      "full": 5540
+      "top1k": 224,
+      "top2k": 478,
+      "top3k": 705,
+      "top5k": 1203,
+      "top10k": 2310,
+      "top20k": 4250,
+      "top40k": 5179,
+      "full": 5179
     },
     "7": {
-      "top1k": 106,
-      "top2k": 255,
-      "top3k": 433,
-      "top5k": 817,
-      "top10k": 1826,
-      "top20k": 3880,
-      "top40k": 5415,
-      "full": 5415
+      "top1k": 112,
+      "top2k": 272,
+      "top3k": 470,
+      "top5k": 851,
+      "top10k": 1875,
+      "top20k": 3994,
+      "top40k": 5092,
+      "full": 5092
     },
     "8": {
-      "top1k": 51,
-      "top2k": 153,
-      "top3k": 247,
-      "top5k": 516,
-      "top10k": 1363,
-      "top20k": 3435,
-      "top40k": 4986,
-      "full": 4986
+      "top1k": 62,
+      "top2k": 159,
+      "top3k": 268,
+      "top5k": 552,
+      "top10k": 1440,
+      "top20k": 3569,
+      "top40k": 4729,
+      "full": 4729
     },
     "9": {
-      "top1k": 21,
-      "top2k": 76,
-      "top3k": 142,
-      "top5k": 333,
-      "top10k": 994,
-      "top20k": 2767,
-      "top40k": 4218,
-      "full": 4218
+      "top1k": 23,
+      "top2k": 80,
+      "top3k": 161,
+      "top5k": 366,
+      "top10k": 1054,
+      "top20k": 2918,
+      "top40k": 4065,
+      "full": 4065
     }
   },
   "sources": [
     "SALDO morphology, Språkbanken, Göteborgs universitet (CC BY 4.0)",
-    "OpenSubtitles 2018 frequencies, hermitdave/FrequencyWords (MIT)"
+    "OpenSubtitles 2018 frequencies, hermitdave/FrequencyWords (CC BY-SA 4.0)",
+    "Answer filtering: LDNOOBW (CC BY 4.0)"
   ]
 }

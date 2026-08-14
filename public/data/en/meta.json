@@ -1,10 +1,9 @@
 {
   "lang": "en",
-  "generated": "2026-08-04",
   "dictWords": 113893,
   "dictNodes": 45378,
   "dictEdges": 100270,
-  "answerWords": 25748,
+  "answerWords": 24487,
   "minAnswerLength": 3,
   "maxAnswerLength": 9,
   "maxWordLength": 15,
@@ -20,78 +19,79 @@
   ],
   "counts": {
     "3": {
-      "top1k": 127,
-      "top2k": 176,
-      "top3k": 217,
-      "top5k": 299,
-      "top10k": 449,
-      "top20k": 626,
-      "top40k": 694,
-      "full": 694
+      "top1k": 125,
+      "top2k": 174,
+      "top3k": 216,
+      "top5k": 298,
+      "top10k": 434,
+      "top20k": 564,
+      "top40k": 599,
+      "full": 599
     },
     "4": {
       "top1k": 290,
-      "top2k": 456,
-      "top3k": 608,
-      "top5k": 855,
-      "top10k": 1324,
-      "top20k": 1988,
-      "top40k": 2265,
-      "full": 2265
+      "top2k": 458,
+      "top3k": 604,
+      "top5k": 836,
+      "top10k": 1288,
+      "top20k": 1877,
+      "top40k": 2056,
+      "full": 2056
     },
     "5": {
       "top1k": 251,
-      "top2k": 472,
-      "top3k": 676,
-      "top5k": 1027,
-      "top10k": 1802,
-      "top20k": 3051,
-      "top40k": 3653,
-      "full": 3653
+      "top2k": 463,
+      "top3k": 662,
+      "top5k": 1009,
+      "top10k": 1755,
+      "top20k": 2955,
+      "top40k": 3376,
+      "full": 3376
     },
     "6": {
-      "top1k": 139,
-      "top2k": 364,
-      "top3k": 562,
-      "top5k": 988,
-      "top10k": 2003,
-      "top20k": 3872,
-      "top40k": 4899,
-      "full": 4899
+      "top1k": 141,
+      "top2k": 367,
+      "top3k": 561,
+      "top5k": 983,
+      "top10k": 1987,
+      "top20k": 3848,
+      "top40k": 4647,
+      "full": 4647
     },
     "7": {
-      "top1k": 116,
-      "top2k": 298,
-      "top3k": 490,
-      "top5k": 873,
-      "top10k": 1909,
-      "top20k": 4121,
-      "top40k": 5391,
-      "full": 5391
+      "top1k": 115,
+      "top2k": 299,
+      "top3k": 497,
+      "top5k": 889,
+      "top10k": 1939,
+      "top20k": 4192,
+      "top40k": 5204,
+      "full": 5204
     },
     "8": {
-      "top1k": 49,
-      "top2k": 148,
-      "top3k": 289,
-      "top5k": 608,
-      "top10k": 1506,
-      "top20k": 3569,
-      "top40k": 4874,
-      "full": 4874
+      "top1k": 50,
+      "top2k": 151,
+      "top3k": 299,
+      "top5k": 623,
+      "top10k": 1551,
+      "top20k": 3663,
+      "top40k": 4734,
+      "full": 4734
     },
     "9": {
       "top1k": 28,
-      "top2k": 86,
-      "top3k": 158,
-      "top5k": 350,
-      "top10k": 1007,
-      "top20k": 2773,
-      "top40k": 3972,
-      "full": 3972
+      "top2k": 88,
+      "top3k": 161,
+      "top5k": 362,
+      "top10k": 1046,
+      "top20k": 2901,
+      "top40k": 3871,
+      "full": 3871
     }
   },
   "sources": [
     "SCOWL by Kevin Atkinson, via wordlist-english (permissive SCOWL licence)",
-    "OpenSubtitles 2018 frequencies, hermitdave/FrequencyWords (MIT)"
+    "OpenSubtitles 2018 frequencies, hermitdave/FrequencyWords (CC BY-SA 4.0)",
+    "Answer filtering: LDNOOBW (CC BY 4.0)"
   ]
 }
