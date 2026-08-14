@@ -1,20 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Bricolage_Grotesque } from "next/font/google";
+import { Familjen_Grotesk } from "next/font/google";
 import "./globals.css";
 import { AppProvider } from "@/components/AppProvider";
 
-// Self hosted by next/font. No CDN request at runtime.
-// latin-ext is included so Å Ä Ö render from the same file as the rest.
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
-  subsets: ["latin", "latin-ext"],
-  weight: ["600", "700", "800"],
-  display: "swap",
-});
-
-const archivo = Archivo({
-  variable: "--font-archivo",
-  subsets: ["latin", "latin-ext"],
+/**
+ * One typeface for the whole app, behind one token, so swapping it is one line.
+ *
+ * Familjen Grotesk is a Stockholm grotesque and draws Å Ä Ö as designed rather
+ * than as accented borrowings. Three weights only: 400 body, 600 everything
+ * structural, 700 for the wordmark and the result word. The `latin` subset
+ * already carries å, ä and ö (U+00E5, U+00E4, U+00F6).
+ */
+const familjen = Familjen_Grotesk({
+  variable: "--font-familjen",
+  subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
@@ -42,7 +41,12 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false,
   viewportFit: "cover",
-  themeColor: "#0D1016",
+  // The only place --paper's value is duplicated: browser chrome metadata
+  // cannot read a CSS custom property. Keep in step with globals.css.
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#EDEBE4" },
+    { media: "(prefers-color-scheme: dark)", color: "#16181C" },
+  ],
 };
 
 export default function RootLayout({
@@ -51,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="sv" className={`${bricolage.variable} ${archivo.variable}`}>
+    <html lang="sv" className={familjen.variable}>
       <body>
         <AppProvider>{children}</AppProvider>
       </body>

@@ -2,25 +2,115 @@
 
 /* ---------------------------------------------------------------------------
    Ordlek design tokens.
-   Quiet ink interface, one loud element per screen, the letter tile as the
-   signature object. Every colour in the app comes from here.
+
+   One rule governs the whole palette: COLOUR ONLY EVER MEANS GAME STATE.
+   Nothing in navigation, chrome, headers or icons is coloured. The only
+   saturated pixels in the app are tiles and keyboard keys reporting a result,
+   and the one bar on the result sheet that reports the round just played.
+
+   The state pair is Wordle-conventional green and yellow, by choice. See
+   docs/design.md for what that costs and what was there before.
 --------------------------------------------------------------------------- */
 
 :root {
-  --ink: #0d1016;
-  --surface: #161b24;
-  --line: #232a36;
-  --text: #f4f6f9;
-  --muted: #8d97a8;
+  color-scheme: light dark;
 
-  --correct: #37b98a;
-  --present: #e2a93e;
-  --absent: #2a313d;
-  /* --muted on --absent lands at 4.44:1, just under AA. This is the same
-     grey nudged up so a spent letter still passes. */
-  --on-absent: #9aa4b4;
+  --paper: #edebe4;
+  --ink: #16181c;
+  --raised: #e3e0d6;
+  --line: #c6c2b6;
+  --muted: #636057;
 
-  /* Per game accents. Each game lights exactly one of these and nothing else. */
+  --hit: #63ac5b;
+  --near: #e0b93f;
+  --miss: #8e8a80;
+  /* Deliberately NOT var(--ink): that inverts to near-white in dark mode, and
+     near-white on a mid green is 2.8:1. A fixed dark ink is 6.4:1 in light and
+     5.3:1 in dark, so the tile letter is the same colour in both themes. */
+  --on-state: #16181c;
+  /* `miss` is a light neutral by design, so white on it is 3.4:1. Ink on it is
+     5.2:1 and still reads as spent. See docs/design.md. */
+  --on-miss: var(--ink);
+
+  /* Shape. Nothing outside these three is rounded. */
+  --radius-tile: 3px;
+  --radius-card: 8px;
+  --radius-page: 22px;
+
+  --gap-tile: 4px;
+
+  /* Reveal cascade. Mirrored in lib/reveal.ts, which is the source of truth
+     for the JavaScript side; these exist so CSS can match it. */
+  --dur-flip: 220ms;
+  --dur-fade: 120ms;
+  --dur-settle: 320ms;
+  --dur-press: 40ms;
+  --dur-page: 220ms;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-soft: var(--ease-out);
+
+  /* Cap-height compensation for the tile letter. Derived, not eyeballed:
+     Familjen Grotesk 600 has unitsPerEm 1200, typo ascender 1230,
+     descender -270, sCapHeight 780, and sets USE_TYPO_METRICS, so a browser
+     builds the line box from those numbers.
+
+       A = 1230/1200 = 1.025em   D = 270/1200 = 0.225em   C = 780/1200 = 0.65em
+       half-leading  = (1 - (A + D)) / 2 = -0.125em
+       baseline      = half-leading + A  =  0.900em from the top of the line box
+       cap centre    = baseline - C/2    =  0.575em
+       box centre    =                      0.500em
+       shift         = 0.500 - 0.575     = -0.075em
+
+     Centring the em box instead would drop Å and Ä below A in the same row,
+     because the ring and the umlaut eat the space above the cap. */
+  --tile-cap-shift: -0.075em;
+
+  --safe-t: env(safe-area-inset-top, 0px);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-l: env(safe-area-inset-left, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #16181c;
+    --ink: #edebe4;
+    --raised: #212429;
+    --line: #3a3e44;
+    --muted: #93908a;
+
+    --hit: #5b9b52;
+    --near: #c9a63a;
+    --miss: #55585e;
+    /* --on-state is intentionally not overridden here. */
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Legacy aliases.
+
+   Hive, Grid, Loop, Ordoku, Rush and Tiles are out of scope for this pass and
+   still write the old names. They are mapped here so those six compile and
+   stay coherent, and so they can be migrated one at a time later.
+
+   `--ink` is deliberately absent from this list: it used to mean "the page
+   ground, and the colour of text sitting on a saturated surface", and now
+   means primary text. That one could not be aliased without inverting it, so
+   those call sites were renamed to `--on-state` and `--paper` by hand.
+--------------------------------------------------------------------------- */
+
+:root {
+  --text: var(--ink);
+  --surface: var(--raised);
+  --correct: var(--hit);
+  --present: var(--near);
+  --absent: var(--miss);
+  --on-absent: var(--on-miss);
+
+  --radius-sheet: var(--radius-card);
+
+  /* Per game identity colours, still used by the six unmigrated games for
+     their own chrome. Home and Five reference none of these. */
   --accent-five: #5b7cff;
   --accent-hive: #e2a93e;
   --accent-grid: #37b98a;
@@ -29,41 +119,38 @@
   --accent-rush: #f2664b;
   --accent-tiles: #7c8ca0;
 
-  /* The active game accent. Set per screen; defaults to Five's blue. */
-  --accent: var(--accent-five);
+  /* Redesigned screens set no accent, so it resolves to ink and stays quiet. */
+  --accent: var(--ink);
 
-  --radius-tile: 10px;
-  --radius-card: 18px;
-  --radius-sheet: 24px;
-
-  --dur-press: 40ms;
-  --dur-flip: 320ms;
-  --dur-page: 220ms;
-  --ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
-
-  --safe-t: env(safe-area-inset-top, 0px);
-  --safe-b: env(safe-area-inset-bottom, 0px);
-  --safe-l: env(safe-area-inset-left, 0px);
-  --safe-r: env(safe-area-inset-right, 0px);
+  /* A destructive confirm is not game state, so it sits outside the colour
+     rule rather than inside it. Used only by the settings reset. */
+  --danger: #f2664b;
 }
 
 @theme inline {
+  --color-paper: var(--paper);
   --color-ink: var(--ink);
-  --color-surface: var(--surface);
+  --color-raised: var(--raised);
   --color-line: var(--line);
-  --color-text: var(--text);
   --color-muted: var(--muted);
-  --color-correct: var(--correct);
-  --color-present: var(--present);
-  --color-absent: var(--absent);
+  --color-hit: var(--hit);
+  --color-near: var(--near);
+  --color-miss: var(--miss);
+  --color-on-state: var(--on-state);
+  --color-on-miss: var(--on-miss);
+
+  --color-text: var(--ink);
+  --color-surface: var(--raised);
+  --color-correct: var(--hit);
+  --color-present: var(--near);
+  --color-absent: var(--miss);
   --color-accent: var(--accent);
 
-  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
-  --font-ui: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-familjen), ui-sans-serif, system-ui, sans-serif;
+  --font-ui: var(--font-familjen), ui-sans-serif, system-ui, sans-serif;
 
   --radius-tile: var(--radius-tile);
   --radius-card: var(--radius-card);
-  --radius-sheet: var(--radius-sheet);
 }
 
 /* --------------------------------------------------------------------------
@@ -75,17 +162,16 @@
 }
 
 html {
-  background: var(--ink);
-  color-scheme: dark;
-  /* iOS: stop the rubber band that makes a fixed game surface feel broken. */
+  background: var(--paper);
   overscroll-behavior: none;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--ink);
-  color: var(--text);
-  font-family: var(--font-ui);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 400;
   overscroll-behavior: none;
   touch-action: manipulation;
   margin: 0;
@@ -93,15 +179,61 @@ body {
   min-height: 100dvh;
 }
 
-h1,
-h2,
-h3,
-.font-display {
-  font-family: var(--font-display);
+/* --------------------------------------------------------------------------
+   Type scale. Every size in the app is one of these.
+-------------------------------------------------------------------------- */
+
+.t-wordmark {
+  font-size: 30px;
+  font-weight: 700;
   letter-spacing: -0.02em;
+  line-height: 1.05;
 }
 
-/* Game surfaces must not select text or fire the iOS callout menu. */
+.t-result {
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.t-title {
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.t-row {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.t-body {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.35;
+}
+
+.t-caption {
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+/* Numerals line up in any column they appear in. */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  margin: 0;
+}
+
 .game-surface {
   user-select: none;
   -webkit-user-select: none;
@@ -118,76 +250,62 @@ button {
   touch-action: manipulation;
 }
 
-/* Every interactive control clears the 44pt iOS minimum. */
 .tap {
   min-width: 44px;
   min-height: 44px;
 }
-
-/* --------------------------------------------------------------------------
-   Focus. Visible for keyboard users, invisible for touch.
--------------------------------------------------------------------------- */
 
 :focus {
   outline: none;
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--ink);
   outline-offset: 2px;
-  border-radius: 6px;
+  border-radius: 3px;
 }
 
 /* --------------------------------------------------------------------------
-   Tile. The signature object, shared by all seven games.
+   Tile. The only atom: board, difficulty picker and home glyphs all use it.
 -------------------------------------------------------------------------- */
 
 .tile {
   position: relative;
-  display: grid;
-  place-items: center;
-  font-family: var(--font-ui);
-  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 600;
   text-transform: uppercase;
   border-radius: var(--radius-tile);
   transform-origin: center;
+  /* Never clip: a tile that hides overflow can clip the ring on Å. */
+  overflow: visible;
   will-change: transform;
   transition:
-    transform var(--dur-press) var(--ease-soft),
-    background-color 120ms linear,
-    border-color 120ms linear,
-    color 120ms linear;
+    transform var(--dur-press) var(--ease-out),
+    background-color var(--dur-fade) linear,
+    border-color var(--dur-fade) linear,
+    color var(--dur-fade) linear;
 }
 
-/* Optical centring: uppercase glyphs sit low in the em box, so lift them. */
+/* Centred on cap height rather than on the em box. See --tile-cap-shift. */
 .tile > .tile-glyph {
-  transform: translateY(-0.045em);
-  line-height: 1;
   display: block;
+  line-height: 1;
+  transform: translateY(var(--tile-cap-shift));
 }
 
 .tile[data-pressed="true"] {
   transform: scale(0.96);
 }
 
-.tile[data-settle="true"] {
-  animation: tile-settle 260ms var(--ease-soft);
-}
-
 .tile[data-flip="true"] {
-  animation: tile-flip var(--dur-flip) var(--ease-soft);
+  animation: tile-flip var(--dur-flip) var(--ease-out);
 }
 
-@keyframes tile-settle {
-  0% {
-    transform: translateY(-14%) scale(1.04);
-  }
-  55% {
-    transform: translateY(6%) scale(0.98);
-  }
-  100% {
-    transform: translateY(0) scale(1);
-  }
+.tile[data-settle="true"] {
+  animation: tile-settle var(--dur-settle) var(--ease-out);
 }
 
 @keyframes tile-flip {
@@ -202,8 +320,23 @@ button {
   }
 }
 
+@keyframes tile-settle {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  35% {
+    transform: translateY(-11%) scale(1.03);
+  }
+  70% {
+    transform: translateY(3%) scale(0.99);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* --------------------------------------------------------------------------
-   Page transitions. 220ms slide, and nothing else moves unless tapped.
+   Motion
 -------------------------------------------------------------------------- */
 
 @keyframes page-in {
@@ -218,7 +351,7 @@ button {
 }
 
 .page-enter {
-  animation: page-in var(--dur-page) var(--ease-soft);
+  animation: page-in var(--dur-page) var(--ease-out);
 }
 
 @keyframes sheet-in {
@@ -231,7 +364,7 @@ button {
 }
 
 .sheet-enter {
-  animation: sheet-in var(--dur-page) var(--ease-soft);
+  animation: sheet-in var(--dur-page) var(--ease-out);
 }
 
 @keyframes fade-in {
@@ -244,7 +377,121 @@ button {
 }
 
 .fade-enter {
-  animation: fade-in var(--dur-page) var(--ease-soft);
+  animation: fade-in var(--dur-page) var(--ease-out);
+}
+
+@keyframes toast-inout {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 4px, 0);
+  }
+  14% {
+    opacity: 1;
+    transform: none;
+  }
+  78% {
+    opacity: 1;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(0, -3px, 0);
+  }
+}
+
+.toast-enter {
+  animation: toast-inout 1200ms var(--ease-out) forwards;
+}
+
+@keyframes caret-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.caret {
+  animation: caret-blink 1s steps(1, end) infinite;
+}
+
+@keyframes trail-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  16% {
+    transform: translateX(-8px);
+  }
+  33% {
+    transform: translateX(8px);
+  }
+  50% {
+    transform: translateX(-6px);
+  }
+  66% {
+    transform: translateX(6px);
+  }
+  83% {
+    transform: translateX(-3px);
+  }
+}
+
+.trail-shake {
+  animation: trail-shake 240ms linear forwards;
+}
+
+@keyframes trail-pulse {
+  0% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.trail-pulse {
+  animation: trail-pulse 320ms var(--ease-out) forwards;
+}
+
+@keyframes trail-flash {
+  0% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.trail-flash {
+  animation: trail-flash 320ms var(--ease-out) forwards;
+}
+
+@keyframes grid-demo {
+  0%,
+  18% {
+    background-color: var(--miss);
+    color: transparent;
+  }
+  30%,
+  78% {
+    background-color: var(--hit);
+    color: var(--on-state);
+  }
+  92%,
+  100% {
+    background-color: var(--miss);
+    color: transparent;
+  }
 }
 
 @keyframes shake {
@@ -267,16 +514,15 @@ button {
 }
 
 .shake {
-  animation: shake 260ms var(--ease-soft);
+  animation: shake 260ms var(--ease-out);
 }
 
 /* --------------------------------------------------------------------------
-   Reduced motion. Honoured both by the OS setting and by the in app override,
-   which sets data-reduce-motion="true" on <html>.
+   Reduced motion. Honoured both by the OS setting and by the in-app override,
+   which stamps data-reduce-motion on <html>. lib/reveal.ts reads the same two
+   signals so the JavaScript stagger disappears alongside the CSS animation.
 -------------------------------------------------------------------------- */
 
-/* The OS setting wins unless the player has explicitly chosen full motion in
-   the settings sheet, which stamps data-reduce-motion="false" on <html>. */
 @media (prefers-reduced-motion: reduce) {
   html:not([data-reduce-motion="false"]) *,
   html:not([data-reduce-motion="false"]) *::before,
@@ -285,15 +531,22 @@ button {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  /* The colour still has to arrive, just without the flip. */
+  html:not([data-reduce-motion="false"]) .tile {
+    transition-duration: var(--dur-fade) !important;
+  }
 }
 
-/* Choosing reduced in the app applies it whatever the OS says. */
 html[data-reduce-motion="true"] *,
 html[data-reduce-motion="true"] *::before,
 html[data-reduce-motion="true"] *::after {
   animation-duration: 0.01ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 0.01ms !important;
+}
+
+html[data-reduce-motion="true"] .tile {
+  transition-duration: var(--dur-fade) !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -323,4 +576,8 @@ html[data-reduce-motion="true"] *::after {
 
 .hairline {
   border: 1px solid var(--line);
+}
+
+.rule {
+  border-top: 1px solid var(--line);
 }

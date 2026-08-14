@@ -13,7 +13,7 @@ export function NotFound() {
       <Link
         href="/"
         className="tap mt-2 rounded-xl px-5 py-3 text-sm font-semibold"
-        style={{ background: "var(--accent)", color: "var(--ink)" }}
+        style={{ background: "var(--accent)", color: "var(--on-state)" }}
       >
         {t("home")}
       </Link>
@@ -33,7 +33,7 @@ export function DataError({ onRetry }: { onRetry: () => void }) {
           type="button"
           onClick={onRetry}
           className="tap rounded-xl px-5 py-3 text-sm font-semibold"
-          style={{ background: "var(--accent)", color: "var(--ink)" }}
+          style={{ background: "var(--accent)", color: "var(--on-state)" }}
         >
           {t("retry")}
         </button>
@@ -60,7 +60,7 @@ export function PuzzleError({ onRetry }: { onRetry: () => void }) {
         type="button"
         onClick={onRetry}
         className="tap mt-1 rounded-xl px-5 py-3 text-sm font-semibold"
-        style={{ background: "var(--accent)", color: "var(--ink)" }}
+        style={{ background: "var(--accent)", color: "var(--on-state)" }}
       >
         {t("retry")}
       </button>

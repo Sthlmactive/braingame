@@ -69,6 +69,8 @@ export default function SettingsPage() {
             {t("wordDataEn")}
             <br />
             {t("wordDataFreq")}
+            <br />
+            {t("wordDataFilter")}
           </p>
           {done ? (
             <p className="pb-2 text-center text-sm" style={{ color: "var(--correct)" }}>
@@ -140,7 +142,7 @@ function Segmented<V extends string>({
             className="tap flex-1 rounded-lg px-3 py-2 text-sm font-semibold"
             style={{
               background: on ? "var(--accent)" : "transparent",
-              color: on ? "var(--ink)" : "var(--muted)",
+              color: on ? "var(--on-state)" : "var(--muted)",
             }}
             aria-pressed={on}
             onClick={() => onChange(o.value)}

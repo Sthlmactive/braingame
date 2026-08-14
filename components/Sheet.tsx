@@ -31,7 +31,7 @@ export function Sheet({
     <div className="fixed inset-0 z-50 flex items-end justify-center">
       <div
         className="fade-enter absolute inset-0"
-        style={{ background: "rgba(5, 7, 11, 0.72)" }}
+        style={{ background: "color-mix(in srgb, var(--ink) 55%, transparent)" }}
         onClick={dismissable ? onClose : undefined}
         aria-hidden
       />
@@ -41,7 +41,7 @@ export function Sheet({
         aria-label={title}
         className="sheet-enter relative w-full max-w-[560px]"
         style={{
-          background: "var(--surface)",
+          background: "var(--paper)",
           borderTopLeftRadius: "var(--radius-sheet)",
           borderTopRightRadius: "var(--radius-sheet)",
           borderTop: "1px solid var(--line)",
@@ -57,7 +57,7 @@ export function Sheet({
           />
         </div>
         {title ? (
-          <h2 className="font-display pt-2 pb-3 text-xl font-bold">{title}</h2>
+          <h2 className="t-title pt-2 pb-3">{title}</h2>
         ) : (
           <div className="pt-1" />
         )}
@@ -80,7 +80,7 @@ export function SheetButton({
   disabled?: boolean;
 }) {
   const styles: Record<string, React.CSSProperties> = {
-    loud: { background: "var(--accent)", color: "var(--ink)" },
+    loud: { background: "var(--accent)", color: "var(--on-state)" },
     quiet: {
       background: "transparent",
       color: "var(--text)",
@@ -88,8 +88,8 @@ export function SheetButton({
     },
     danger: {
       background: "transparent",
-      color: "#F2664B",
-      border: "1px solid #F2664B",
+      color: "var(--danger)",
+      border: "1px solid var(--danger)",
     },
   };
   return (

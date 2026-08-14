@@ -27,17 +27,18 @@ const LAYOUTS: Record<Lang, string[][]> = {
 };
 
 const KEY_BG: Record<KeyState, string> = {
-  unknown: "var(--surface)",
-  correct: "var(--correct)",
-  present: "var(--present)",
-  absent: "var(--absent)",
+  unknown: "var(--raised)",
+  correct: "var(--hit)",
+  present: "var(--near)",
+  absent: "var(--miss)",
 };
 
 const KEY_FG: Record<KeyState, string> = {
-  unknown: "var(--text)",
-  correct: "var(--ink)",
-  present: "var(--ink)",
-  absent: "var(--on-absent)",
+  unknown: "var(--ink)",
+  correct: "var(--on-state)",
+  present: "var(--on-state)",
+  // White on the miss grey is only 3.4:1; ink is 5.2:1 and still reads spent.
+  absent: "var(--on-miss)",
 };
 
 export interface KeyboardProps {
@@ -110,7 +111,7 @@ export function Keyboard({
 
   return (
     <div
-      className="game-surface w-full select-none px-1"
+      className="game-surface mx-auto w-full max-w-[420px] shrink-0 select-none px-1"
       style={{ paddingBottom: "max(var(--safe-b), 6px)" }}
       role="group"
       aria-label={t("submit")}
@@ -118,7 +119,7 @@ export function Keyboard({
       {rows.map((row, i) => {
         const isLast = i === rows.length - 1;
         return (
-          <div key={i} className="mb-[6px] flex w-full justify-center gap-[5px]">
+          <div key={i} className="mb-[6px] flex w-full flex-nowrap justify-center gap-[4px]">
             {isLast && onDelete ? (
               <ActionKey
                 label={t("del")}
@@ -136,8 +137,8 @@ export function Keyboard({
                   type="button"
                   className="tile min-w-0 flex-1 text-[1.05rem] font-semibold"
                   style={{
-                    height: 50,
-                    maxWidth: 46,
+                    height: 48,
+                    maxWidth: 44,
                     backgroundColor: off ? "transparent" : KEY_BG[st],
                     color: off ? "var(--line)" : KEY_FG[st],
                     borderRadius: 8,
@@ -196,8 +197,8 @@ function ActionKey({
       type="button"
       className="tile shrink-0 px-2 font-semibold"
       style={{
-        height: 50,
-        minWidth: wide ? 62 : 50,
+        height: 48,
+        minWidth: wide ? 58 : 46,
         fontSize: wide ? "0.78rem" : "1.05rem",
         backgroundColor: "var(--surface)",
         color: "var(--text)",

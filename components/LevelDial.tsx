@@ -127,7 +127,7 @@ export function LevelDial({
                     : isFocused
                       ? "var(--surface)"
                       : "transparent",
-                  color: rec.completed ? "var(--ink)" : "var(--text)",
+                  color: rec.completed ? "var(--on-state)" : "var(--text)",
                   border: `2px solid ${
                     isFocused
                       ? "var(--accent)"
@@ -174,7 +174,7 @@ export function LevelDial({
               {isFocused ? (
                 <span
                   className="shrink-0 rounded-full px-3.5 py-2 text-xs font-semibold tracking-wide uppercase"
-                  style={{ backgroundColor: "var(--accent)", color: "var(--ink)" }}
+                  style={{ backgroundColor: "var(--accent)", color: "var(--on-state)" }}
                 >
                   {t("play")}
                 </span>

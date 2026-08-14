@@ -10,16 +10,27 @@ import {
   type PointerEvent as ReactPointerEvent,
   type ReactNode,
 } from "react";
+import { FLIP_MS, SETTLE_MS } from "@/lib/reveal";
 
+/**
+ * The five variants the redesigned screens use, plus the legacy names the six
+ * unmigrated games still pass. `filled`/`correct`/`present`/`absent` are the
+ * old spellings of `typed`/`hit`/`near`/`miss` and render identically.
+ */
 export type TileState =
   | "empty" // no letter yet
-  | "filled" // letter typed, not judged
-  | "correct" // right letter, right place
-  | "present" // right letter, wrong place
-  | "absent" // not in the word
-  | "accent" // lit with the game's accent
-  | "locked" // fixed by the puzzle, not editable
-  | "muted"; // present but de-emphasised
+  | "typed" // letter typed, not judged
+  | "hit" // right letter, right place
+  | "near" // in the word, wrong place
+  | "miss" // not in the word
+  // Legacy, still used by Hive, Grid, Loop, Ordoku, Rush and Tiles.
+  | "filled"
+  | "correct"
+  | "present"
+  | "absent"
+  | "accent"
+  | "locked"
+  | "muted";
 
 export type TileSize = "xs" | "sm" | "md" | "lg";
 
@@ -37,14 +48,46 @@ interface Palette {
   border: string;
 }
 
+const EMPTY: Palette = {
+  bg: "transparent",
+  fg: "var(--ink)",
+  border: "var(--line)",
+};
+const TYPED: Palette = {
+  bg: "var(--paper)",
+  fg: "var(--ink)",
+  border: "var(--ink)",
+};
+const HIT: Palette = {
+  bg: "var(--hit)",
+  fg: "var(--on-state)",
+  border: "var(--hit)",
+};
+const NEAR: Palette = {
+  bg: "var(--near)",
+  fg: "var(--on-state)",
+  border: "var(--near)",
+};
+// `miss` is a light neutral, so white on it is only 3.4:1. Ink is 5.2:1 and
+// still reads as spent. See docs/design.md.
+const MISS: Palette = {
+  bg: "var(--miss)",
+  fg: "var(--on-miss)",
+  border: "var(--miss)",
+};
+
 const PALETTES: Record<TileState, Palette> = {
-  empty: { bg: "transparent", fg: "var(--text)", border: "var(--line)" },
-  filled: { bg: "var(--surface)", fg: "var(--text)", border: "var(--muted)" },
-  correct: { bg: "var(--correct)", fg: "var(--ink)", border: "var(--correct)" },
-  present: { bg: "var(--present)", fg: "var(--ink)", border: "var(--present)" },
-  absent: { bg: "var(--absent)", fg: "var(--on-absent)", border: "var(--absent)" },
-  accent: { bg: "var(--accent)", fg: "var(--ink)", border: "var(--accent)" },
-  locked: { bg: "var(--surface)", fg: "var(--muted)", border: "var(--line)" },
+  empty: EMPTY,
+  typed: TYPED,
+  hit: HIT,
+  near: NEAR,
+  miss: MISS,
+  filled: TYPED,
+  correct: HIT,
+  present: NEAR,
+  absent: MISS,
+  accent: { bg: "var(--accent)", fg: "var(--on-state)", border: "var(--accent)" },
+  locked: { bg: "var(--raised)", fg: "var(--muted)", border: "var(--line)" },
   muted: { bg: "transparent", fg: "var(--muted)", border: "var(--line)" },
 };
 
@@ -58,6 +101,11 @@ export interface TileProps {
   flip?: boolean;
   /** Delay in ms before the flip starts, for staggered row reveals. */
   flipDelay?: number;
+  /**
+   * Length of one flip. Defaults to the full cascade timing; pass the reduced
+   * motion value to swap the rotation for a plain crossfade.
+   */
+  flipMs?: number;
   /** Bounce as it lands. Fired once per change of the value passed. */
   settleKey?: string | number;
   onPress?: () => void;
@@ -86,6 +134,7 @@ export const Tile = forwardRef<HTMLDivElement, TileProps>(function Tile(
     px,
     flip = false,
     flipDelay = 0,
+    flipMs = FLIP_MS,
     settleKey,
     onPress,
     disabled = false,
@@ -126,19 +175,20 @@ export const Tile = forwardRef<HTMLDivElement, TileProps>(function Tile(
     setFlipping(false);
     const start = window.setTimeout(() => {
       setFlipping(true);
-      const mid = window.setTimeout(() => setShown(state), 160);
-      const end = window.setTimeout(() => setFlipping(false), 320);
+      // The colour swaps at the halfway point, while the tile is edge on.
+      const mid = window.setTimeout(() => setShown(state), flipMs / 2);
+      const end = window.setTimeout(() => setFlipping(false), flipMs);
       timers.current.push(mid, end);
     }, flipDelay);
     timers.current.push(start);
-  }, [state, flip, flipDelay]);
+  }, [state, flip, flipDelay, flipMs]);
 
   // Settle bounce whenever the caller bumps settleKey.
   useEffect(() => {
     if (settleKey === undefined || settleKey === prevSettle.current) return;
     prevSettle.current = settleKey;
     setSettling(true);
-    const id = window.setTimeout(() => setSettling(false), 260);
+    const id = window.setTimeout(() => setSettling(false), SETTLE_MS);
     timers.current.push(id);
   }, [settleKey]);
 
@@ -164,13 +214,14 @@ export const Tile = forwardRef<HTMLDivElement, TileProps>(function Tile(
   const styles: CSSProperties = {
     width: side,
     height: side,
-    fontSize: px ? `${Math.round(px * 0.44)}px` : FONT_EM[size],
+      fontSize: px ? `${Math.round(px * 0.44)}px` : FONT_EM[size],
     backgroundColor: pal.bg,
     color: pal.fg,
     borderWidth: 2,
     borderStyle: "solid",
-    borderColor: selected || target ? "var(--accent)" : pal.border,
-    boxShadow: selected ? "0 0 0 2px var(--accent) inset" : undefined,
+    borderColor: selected || target ? "var(--ink)" : pal.border,
+    boxShadow: selected ? "0 0 0 2px var(--ink) inset" : undefined,
+    animationDuration: flipping ? `${flipMs}ms` : undefined,
     cursor: interactive ? "pointer" : undefined,
     ...style,
   };
