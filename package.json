@@ -12,10 +12,11 @@
     "test:watch": "vitest",
     "data:words": "tsx scripts/build-wordlists.ts",
     "data:puzzles": "tsx scripts/build-puzzles.ts",
-    "data:all": "npm run data:words && npm run data:puzzles",
+    "data:all": "npm run data:words && npm run data:puzzles && npm run data:mini",
     "verify": "npm run typecheck && npm run lint && npm run test",
     "data:fetch": "tsx scripts/fetch-sources.ts",
-    "data:icons": "tsx scripts/build-icons.ts"
+    "data:icons": "tsx scripts/build-icons.ts",
+    "data:mini": "tsx scripts/build-mini.ts"
   },
   "dependencies": {
     "next": "15.5.22",
