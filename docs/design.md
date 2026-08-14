@@ -1,0 +1,253 @@
+# Ordlek design system
+
+Source of truth for the visual layer. `docs/five-spec.md` owns Five's
+behaviour; this file owns how anything looks.
+
+Status: home screen and all of Five migrated, 14 August 2026. Hive, Grid, Loop,
+Ordoku, Rush and Tiles still run on the legacy aliases below.
+
+State colours are green and yellow as of the same date; the orange and blue
+pair they replaced is recorded under "Green and yellow, by choice".
+
+---
+
+## The one rule
+
+**Colour only ever means game state.**
+
+Nothing in navigation, chrome, headers or icons is coloured. The only saturated
+pixels in the app are:
+
+1. tiles reporting a result,
+2. keyboard keys reporting a result,
+3. the single bar on the result sheet for the round just played.
+
+That is the whole list. The home screen used to spend colour on seven
+decorative badges, which is why the board's feedback had no weight left by the
+time you reached it. Board glyphs are monochrome for the same reason: colouring
+one cell of the Five glyph to liven it up is the rule breaking.
+
+`test/design.test.ts` enforces this. `--hit`, `--near` and `--miss` may only be
+referenced by `components/Tile.tsx`, `components/Keyboard.tsx` and
+`games/five/FiveResult.tsx`, and the redesigned screens may not reference a
+colour token at all, legacy aliases and per-game accents included.
+
+## Colour
+
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| `--paper` | `#EDEBE4` | `#16181C` | page ground |
+| `--ink` | `#16181C` | `#EDEBE4` | primary text, active tile border |
+| `--raised` | `#E3E0D6` | `#212429` | stat blocks, keyboard keys |
+| `--line` | `#C6C2B6` | `#3A3E44` | tile borders, dividers, glyphs |
+| `--muted` | `#636057` | `#93908A` | secondary text |
+| `--hit` | `#63AC5B` | `#5B9B52` | right letter, right place |
+| `--near` | `#E0B93F` | `#C9A63A` | in the word, wrong place |
+| `--miss` | `#8E8A80` | `#55585E` | not in the word |
+| `--on-state` | `#16181C` | `#16181C` | text on hit and near |
+| `--on-miss` | `var(--ink)` | `var(--ink)` | text on miss |
+
+`--on-state` is the one token that does **not** flip between modes. It is a
+fixed dark ink, not `var(--ink)`: `--ink` inverts to near-white in dark mode,
+and near-white on a mid green is 2.81:1. Fixed dark ink is 6.42:1 in light and
+5.29:1 in dark, and the tile letter is then the same colour in both themes.
+
+### Green and yellow, by choice
+
+The state pair is Wordle-conventional green and yellow. This is a deliberate
+decision to be conventional, and it has a known cost, recorded here so it can
+be revisited rather than rediscovered.
+
+**The cost.** Green and yellow are the exact pair red-green colour blindness
+confuses, which affects roughly 8% of men. They are also close in lightness, so
+removing hue does not separate them either:
+
+| | `L(hit)` | `L(near)` | gap |
+|---|---|---|---|
+| light | 0.329 | 0.509 | 0.180 |
+| dark | 0.263 | 0.400 | 0.137 |
+
+A board is still readable without hue — the gap is not nothing, and position on
+the board carries most of the meaning — but the pair is not colour blind safe
+in the way a hue-opposed pair would be.
+
+**There is deliberately no greyscale separation test.** An earlier revision had
+one at `|L(hit) − L(near)| ≥ 0.15`, which this palette would fail in dark mode.
+It was removed rather than lowered: a threshold tuned until whatever ships
+passes it tests nothing. If the pair changes again, reinstate the test at a
+threshold chosen from first principles, not from the shipped values.
+
+**What was here before**, if this decision is ever reversed — a hue-opposed
+pair, deep orange and deep blue, which passed a 0.15 separation in both modes:
+
+| Token | Light | Dark |
+|---|---|---|
+| `--hit` | `#CE460D` | `#FF862A` |
+| `--near` | `#082167` | `#4980E5` |
+| `--on-state` | `#FFFFFF` | `#16181C` |
+
+That pair needed white tile text, and white at 4.5:1 caps a light background at
+L ≤ 0.183, which is what forced `near` down to a near-black navy. Switching the
+tile letter to dark ink is what allows the current mid-tone green and yellow.
+
+### Other values that differ from the original brief
+
+- **`--on-miss` added.** `--on-state` on `--miss` is **3.44:1 light and 2.49:1
+  dark** — the miss tile is a light neutral by design, so white on it fails. Ink
+  on it is 5.16:1 and 5.98:1 and still reads as spent.
+
+- **`--muted` light `#7A776C` → `#636057`.** It was 3.76:1 on paper and 3.40:1
+  on raised. Every caption and one-line description in the app is `--muted`, so
+  that is most of the app's secondary text failing AA. Now 5.27:1 and 4.76:1.
+
+## Type
+
+Familjen Grotesk, via `next/font/google`, subset `latin` (which carries å, ä and
+ö). Behind one token, `--font-display`, so swapping it is one line in
+`app/layout.tsx` plus that token.
+
+| Class | Size | Weight | Tracking |
+|---|---|---|---|
+| `.t-wordmark` | 30px | 700 | −0.02em |
+| `.t-result` | 38px | 700 | −0.02em |
+| `.t-title` | 19px | 600 | — |
+| `.t-row` | 15px | 600 | — |
+| `.t-body` | 13px | 400 | — |
+| `.t-caption` | 11px | 400 | — |
+
+Tile letters scale with tile size (`px * 0.44`), weight 600, `line-height: 1`.
+Two weights, 400 and 600, plus 700 for the wordmark and the result word.
+`.tnum` gives tabular numerals and is applied wherever numbers sit in a column.
+
+### Cap-height centring, and why
+
+**Do not vertically centre the tile letter on the em box.** Centre it on cap
+height, or Å and Ä sit visibly lower than A in the same row, because the ring
+and the umlaut eat the space above the cap.
+
+The shift is `--tile-cap-shift: -0.075em`, derived from the font's own metrics
+rather than guessed. Familjen Grotesk 600: `unitsPerEm` 1200, typo ascender
+1230, descender −270, `sCapHeight` 780, and `USE_TYPO_METRICS` is set, so a
+browser builds the line box from the typo values.
+
+```
+A = 1230/1200 = 1.025em    D = 270/1200 = 0.225em    C = 780/1200 = 0.65em
+
+half-leading = (1 − (A + D)) / 2 = −0.125em
+baseline     = half-leading + A  =  0.900em from the top of the line box
+cap centre   = baseline − C/2    =  0.575em
+box centre   =                      0.500em
+shift        = 0.500 − 0.575     = −0.075em      i.e. (C + D − A) / 2
+```
+
+Tiles never set `overflow: hidden`, so a diacritic can never clip. A and Å share
+a baseline exactly; Å simply extends above it, which is correct.
+
+**If the typeface changes, this number changes.** Re-derive it from the new
+font's `sCapHeight`, ascender and descender rather than carrying −0.075em over.
+
+## Navigation
+
+**The back chevron goes up one level in the hierarchy. It never goes back
+through history.**
+
+`router.back()` looks right until the stack has anything extra on it. Five's
+result sheet pushed a fourth entry with Byt nivå, so `[home, difficulty, game]`
+became `[home, difficulty, game, difficulty]` and the difficulty screen's
+chevron went *forwards* into the game. History is not a hierarchy and cannot be
+used as one.
+
+Every screen therefore names its parent:
+
+| Screen | Chevron goes to |
+|---|---|
+| `/five/[lang]/[difficulty]` (game) | `/five/[lang]` |
+| `/five/[lang]` (difficulty) | `/` |
+| `/five` (language) | `/` |
+| `/mini/[lang]/[difficulty]` (game) | `/mini/[lang]` |
+| `/mini/[lang]` (difficulty) | `/` |
+| `/mini` (language) | `/` |
+
+`Screen` takes a `backHref` and renders the chevron as a real `<Link>`, because
+up-navigation is a destination. A control that changes level uses
+`router.replace`, not `push`, so switching never grows the stack at all.
+
+**The six unmigrated games still call `router.back()`.** Grid does it directly
+in its own header; Hive, Loop, Ordoku, Rush and Tiles fall through `Screen`'s
+default. Give each one a `backHref` when it is migrated.
+
+## Spacing and shape
+
+Radius **3px** on tiles and keys, **8px** on cards and buttons, **22px** on the
+page container. Tile gap **4px**. Nothing else is rounded.
+
+## The tile is the only atom
+
+One `<Tile>`, used by the board, the difficulty picker and the language picker.
+Size is a prop and flows from `fitTile` in `lib/useBoardFit.ts`, which is not
+forked. Variants:
+
+| Variant | Ground | Border | Letter |
+|---|---|---|---|
+| `empty` | transparent | `--line` | `--ink` |
+| `typed` | `--paper` | `--ink` | `--ink` |
+| `hit` | `--hit` | `--hit` | `--on-state` (fixed dark ink) |
+| `near` | `--near` | `--near` | `--on-state` (fixed dark ink) |
+| `miss` | `--miss` | `--miss` | `--on-miss` |
+
+`filled`, `correct`, `present`, `absent`, `accent`, `locked` and `muted` are
+legacy names the six unmigrated games still pass; the first four render
+identically to `typed`, `hit`, `near` and `miss`.
+
+## Reveal cascade
+
+`lib/reveal.ts` is the source of truth; `globals.css` mirrors the numbers.
+
+- Flip **220ms** per tile, `ease-out`, colour swapping at the halfway point
+- Stagger **160ms** per column, so a six-letter row completes in **1.02s**
+- Keyboard keys recolour **only after the whole row has finished** — the board
+  drives a `revealed` counter and the keyboard reads that, not `guesses`
+- On a win, a settle bounce on the winning row after the last tile lands
+
+Reduced motion: no flip, colour in a **120ms** fade, **no stagger**, no bounce.
+Wired to both the OS media query and the in-app override
+(`data-reduce-motion` on `<html>`) through `lib/useReducedMotion.ts`. The CSS
+alone is not enough, because the stagger is a JavaScript delay no media query
+can reach.
+
+## Board glyphs
+
+`<BoardGlyph game={...} />`, 34×34, monochrome in `--line`. Each is a miniature
+of that game's real board, because every review round came back with "I cannot
+tell what this game is".
+
+Five a row of five squares · Hive seven hexes in a flower · Grid a 5×5 grid ·
+Loop six dots on a circle · Ordoku a 4×4 grid with heavier 2×2 divides · Rush an
+interlocking crossword fragment · Tiles a 3×3 board corner.
+
+Geometry is a pure function, `glyphShapes(game)`, which **throws on an unknown
+id** rather than rendering an empty box, so a new game cannot ship without one.
+
+## Migrating the other six
+
+They still write the old token names, aliased in `globals.css`:
+
+| Legacy | Now |
+|---|---|
+| `--text` | `--ink` |
+| `--surface` | `--raised` |
+| `--correct` | `--hit` |
+| `--present` | `--near` |
+| `--absent` | `--miss` |
+| `--on-absent` | `--on-miss` |
+| `--radius-sheet` | `--radius-card` |
+
+`--ink` is **not** aliased. It used to mean "the page ground, and the colour of
+text on a saturated surface"; it now means primary text. Those call sites were
+renamed by hand to `--on-state` (text on a filled surface) and `--raised` /
+`--paper` (the two that meant a ground).
+
+To migrate a game: replace its `--accent-*` chrome with `--ink` and `--muted`,
+swap its legacy tile states for the new names, adopt the `.t-*` type classes,
+and delete its entry from `--accent-*`. The colour-leak test will start
+covering it as soon as it stops using the aliases.
