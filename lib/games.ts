@@ -16,6 +16,20 @@ export function isGameId(v: unknown): v is GameId {
   return typeof v === "string" && (GAME_IDS as readonly string[]).includes(v);
 }
 
+/**
+ * The games that still have ten levels, which is every game except Five.
+ * Five moved to difficulties and lives at /five, so it has no /g/five routes.
+ */
+export const LEVELLED_GAME_IDS = GAME_IDS.filter(
+  (g): g is Exclude<GameId, "five"> => g !== "five",
+);
+
+export function isLevelledGameId(v: unknown): v is Exclude<GameId, "five"> {
+  return (
+    typeof v === "string" && (LEVELLED_GAME_IDS as readonly string[]).includes(v)
+  );
+}
+
 export interface GameMeta {
   id: GameId;
   /** CSS variable name holding this game's accent. */

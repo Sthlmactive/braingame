@@ -3,10 +3,11 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { useLanguage } from "./helpers";
 import { setPuzzleLoader, loadGridSquares, loadLoopBoards } from "@/lib/puzzles";
-import { getLanguage, poolSize, randomWord } from "@/lib/dictionary";
+import { difficultyPool, getLanguage, poolSize } from "@/lib/dictionary";
 import { answerPool } from "@/lib/dictionary";
 import { LANGS, type Lang } from "@/lib/i18n";
 import { LEVELS } from "@/lib/games";
+import { DIFFICULTIES } from "@/lib/difficulty";
 import {
   fiveConfig,
   gridConfig,
@@ -39,12 +40,47 @@ beforeAll(async () => {
 
 describe.each(LANGS)("%s", (lang: Lang) => {
   describe("Five", () => {
-    it.each(LEVELS)("level %i has an answer pool and can serve a word", (level) => {
-      const cfg = fiveConfig(level);
-      expect(poolSize(lang, cfg.length, cfg.band)).toBeGreaterThan(30);
-      const w = randomWord(lang, cfg.length, cfg.band, mulberry32(level * 31));
-      expect(w).not.toBeNull();
-      expect(w!.length).toBe(cfg.length);
+    // Five has difficulties instead of levels, and every one of them is a five
+    // letter word. The pool itself is covered in difficulty.test.ts.
+    it.each(DIFFICULTIES)("%s serves words of its own length", (difficulty) => {
+      const cfg = fiveConfig(difficulty);
+      const pool = difficultyPool(lang, difficulty);
+      expect(pool.length).toBeGreaterThan(300);
+      for (const w of pool) expect(w).toHaveLength(cfg.length);
+    });
+
+    // The agreed table, pinned. Lätt and Medel are five letters, Svår and
+    // Extrem are six, every difficulty gets six guesses, and there is no hard
+    // mode anywhere: Svår and Extrem differ only by the keyboard colours.
+    it.each(DIFFICULTIES)("%s matches the agreed rule table", (difficulty) => {
+      const cfg = fiveConfig(difficulty);
+      const expected = {
+        easy: {
+          length: 5,
+          guesses: 6,
+          hints: 2,
+          keyboardColours: true,
+        },
+        medium: {
+          length: 5,
+          guesses: 6,
+          hints: 1,
+          keyboardColours: true,
+        },
+        hard: {
+          length: 6,
+          guesses: 6,
+          hints: 0,
+          keyboardColours: true,
+        },
+        extreme: {
+          length: 6,
+          guesses: 6,
+          hints: 0,
+          keyboardColours: false,
+        },
+      }[difficulty];
+      expect(cfg).toEqual(expected);
     });
   });
 

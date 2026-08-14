@@ -15,17 +15,22 @@ import type { GameId, Level } from "@/lib/games";
 import {
   clearState,
   defaultState,
+  getFiveStat,
   getRecord,
   highestCleared,
   loadState,
+  recordFive,
   recordRun,
   saveState,
   type AppState,
+  type FiveStat,
+  type GlyphMode,
   type LevelRecord,
   type MotionPref,
   type RunResult,
   type Settings,
 } from "@/lib/storage";
+import type { Difficulty } from "@/lib/difficulty";
 import { primeAudio, setSoundEnabled } from "@/lib/sound";
 
 interface AppContextValue {
@@ -36,6 +41,7 @@ interface AppContextValue {
   setLang: (lang: Lang) => void;
   setSound: (on: boolean) => void;
   setMotion: (pref: MotionPref) => void;
+  setOrdokuGlyphs: (mode: GlyphMode) => void;
   record: (
     game: GameId,
     lang: Lang,
@@ -44,6 +50,15 @@ interface AppContextValue {
   ) => { record: LevelRecord; isBestScore: boolean };
   getRecordFor: (game: GameId, lang: Lang, level: Level) => LevelRecord;
   highest: (game: GameId, lang: Lang) => number;
+  /** Five keeps stats per language and difficulty, not per level. */
+  recordFiveRun: (
+    lang: Lang,
+    difficulty: Difficulty,
+    result: { won: boolean; guessesUsed: number },
+  ) => FiveStat;
+  fiveStat: (lang: Lang, difficulty: Difficulty) => FiveStat;
+  /** Where Five was last played, for the home card's deep link. */
+  fiveLast: AppState["fiveLast"];
   resetAll: () => void;
 }
 
@@ -99,6 +114,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setLang: (l) => patchSettings({ lang: l }),
       setSound: (on) => patchSettings({ sound: on }),
       setMotion: (m) => patchSettings({ motion: m }),
+      setOrdokuGlyphs: (g) => patchSettings({ ordokuGlyphs: g }),
       record: (game, l, level, result) => {
         const next = recordRun(state, game, l, level, result);
         setState(next.state);
@@ -106,6 +122,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
       },
       getRecordFor: (game, l, level) => getRecord(state, game, l, level),
       highest: (game, l) => highestCleared(state, game, l),
+      recordFiveRun: (l, difficulty, result) => {
+        const next = recordFive(state, l, difficulty, result);
+        setState(next.state);
+        return next.stat;
+      },
+      fiveStat: (l, difficulty) => getFiveStat(state, l, difficulty),
+      fiveLast: state.fiveLast,
       resetAll: () => {
         clearState();
         setState({ ...defaultState(), settings: state.settings });

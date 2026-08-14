@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { GameShell, type GameProps } from "@/components/GameShell";
 import { Loading, NotFound } from "@/components/NotFound";
-import { asLevel, isGameId, type GameId } from "@/lib/games";
+import { asLevel, isLevelledGameId, type GameId } from "@/lib/games";
 import { isLang } from "@/lib/i18n";
 
 /**
@@ -12,10 +12,8 @@ import { isLang } from "@/lib/i18n";
  */
 const loading = () => <Loading />;
 
-const BOARDS: Record<GameId, React.ComponentType<GameProps>> = {
-  five: dynamic(() => import("@/games/five/Five").then((m) => m.Five), {
-    loading,
-  }),
+/** Five is not here: it has no levels and lives at /five. */
+const BOARDS: Record<Exclude<GameId, "five">, React.ComponentType<GameProps>> = {
   hive: dynamic(() => import("@/games/hive/Hive").then((m) => m.Hive), {
     loading,
   }),
@@ -36,6 +34,9 @@ const BOARDS: Record<GameId, React.ComponentType<GameProps>> = {
   }),
 };
 
+/** Games that render their own header and full page layout. */
+const OWN_CHROME = new Set<GameId>(["hive", "loop", "ordoku", "grid"]);
+
 export function GameScreen({
   game,
   lang,
@@ -46,11 +47,17 @@ export function GameScreen({
   level: string;
 }) {
   const lvl = asLevel(level);
-  if (!isGameId(game) || !isLang(lang) || lvl === null) return <NotFound />;
+  if (!isLevelledGameId(game) || !isLang(lang) || lvl === null) return <NotFound />;
   const Board = BOARDS[game];
 
   return (
-    <GameShell game={game} lang={lang} level={lvl}>
+    <GameShell
+      game={game}
+      lang={lang}
+      level={lvl}
+      // These games draw their own header and page frame.
+      ownChrome={OWN_CHROME.has(game)}
+    >
       {(props) => <Board {...props} />}
     </GameShell>
   );

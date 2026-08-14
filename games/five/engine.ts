@@ -63,57 +63,41 @@ export function keyboardState(
   return out;
 }
 
-export interface HardModeViolation {
-  kind: "missingCorrect" | "missingPresent";
-  letter: string;
-  /** Only set for missingCorrect. */
-  position?: number;
+/**
+ * Why a guess was refused. `null` means it was accepted.
+ *
+ * These are the only two reasons a guess can be turned away, and the strings
+ * double as i18n keys for the flash message.
+ */
+export type RejectReason = "wrongLength" | "notAWord";
+
+export interface GuessCheck {
+  ok: boolean;
+  reason: RejectReason | null;
 }
 
 /**
- * Hard mode: every clue already revealed has to be reused. A green letter must
- * stay in its column, and a yellow letter must appear somewhere.
+ * The single gate every guess passes through. Five's Enter key calls exactly
+ * this, and so do the tests, so a rule can never be true in one and not the
+ * other.
+ *
+ * There are exactly two ways to be refused: wrong length, or not a word. The
+ * word check is the whole dictionary and never a frequency band, so the answer
+ * may be drawn from a narrow pool while any real word remains a legal guess at
+ * any point.
  */
-export function hardModeViolation(
-  guess: string,
-  previousGuesses: string[],
-  answer: string,
-): HardModeViolation | null {
-  const fixed = new Map<number, string>();
-  const required = new Map<string, number>();
-
-  for (const prev of previousGuesses) {
-    const marks = scoreGuess(prev, answer);
-    const counts = new Map<string, number>();
-    for (let i = 0; i < prev.length; i++) {
-      const ch = prev[i]!;
-      const m = marks[i]!;
-      if (m === "correct") {
-        fixed.set(i, ch);
-        counts.set(ch, (counts.get(ch) ?? 0) + 1);
-      } else if (m === "present") {
-        counts.set(ch, (counts.get(ch) ?? 0) + 1);
-      }
-    }
-    // Across guesses, keep the strongest evidence for each letter.
-    for (const [ch, n] of counts) {
-      required.set(ch, Math.max(required.get(ch) ?? 0, n));
-    }
-  }
-
-  for (const [pos, ch] of fixed) {
-    if (guess[pos] !== ch) {
-      return { kind: "missingCorrect", letter: ch, position: pos };
-    }
-  }
-
-  const have = new Map<string, number>();
-  for (const ch of guess) have.set(ch, (have.get(ch) ?? 0) + 1);
-  for (const [ch, n] of required) {
-    if ((have.get(ch) ?? 0) < n) return { kind: "missingPresent", letter: ch };
-  }
-
-  return null;
+export function checkGuess({
+  guess,
+  length,
+  isWord,
+}: {
+  guess: string;
+  length: number;
+  isWord: (word: string) => boolean;
+}): GuessCheck {
+  if (guess.length !== length) return { ok: false, reason: "wrongLength" };
+  if (!isWord(guess)) return { ok: false, reason: "notAWord" };
+  return { ok: true, reason: null };
 }
 
 /**

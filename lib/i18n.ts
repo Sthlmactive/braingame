@@ -65,7 +65,13 @@ const en = {
   tooShort: "Too short, {n} letters minimum",
   wrongLength: "Needs {n} letters",
   missingCentre: "Missing the centre letter",
-  useTheClues: "Use the letters you have found",
+  typeAWord: "Type a word",
+  scorePoints: "{n} points",
+  wordsOfTotal: "{n} of {m} words",
+  goalN: "Goal {n}",
+  foundWords: "Found words",
+  nLetters: "{n} letters",
+  more: "More",
   timeLeft: "Time",
   score: "Score",
   found: "Found",
@@ -145,23 +151,80 @@ const en = {
   // Loop
   boardCleared: "Board cleared",
   bonusFound: "{n} bonus words",
+  dragToForm: "Drag to form a word",
+  bonusN: "Bonus {n}",
+  tapHint: "Tap the letters, then tap the last one again to submit.",
+  gotIt: "Got it",
 
   // Ordoku
   hiddenWord: "Hidden word",
   hiddenWordLocked: "Solve the board to see it",
   conflict: "Conflict",
+  glyphNumbers: "Numbers",
+  glyphLetters: "Letters",
+  cellsFilled: "{n} of {m} cells",
+  undo: "Undo",
+  erase: "Erase",
+  notes: "Notes",
 
   // Grid
   rowsLeft: "{n} rows to go",
+  gridRowHints: "Use the letters you have found",
+  howToPlay: "How to play",
+  startPlaying: "Play",
+  gridRule1: "Every one of the five rows is a word.",
+  gridRule2:
+    "Guess any five letter word. A letter in the right column fills in, on every row at once.",
+  gridRule3: "An amber letter is somewhere in that row, but in another column.",
+  gridInstruction:
+    "Guess a five letter word. Correct letters in the right column fill in.",
+  guessesLeft: "{n} guesses left",
+  previousGuesses: "Previous guesses",
 
-  // Word data credits. The Swedish list is CC BY 4.0, so naming its source is
-  // a licence condition, not a courtesy.
+  // Five, which has difficulties instead of levels and never ends
+  chooseDifficulty: "Choose difficulty",
+  diffEasy: "Easy",
+  diffMedium: "Medium",
+  diffHard: "Hard",
+  diffExtreme: "Extreme",
+  diffEasyDesc: "Common words. Two hints.",
+  diffMediumDesc: "One hint.",
+  diffHardDesc: "Six letters. Rarer words.",
+  diffExtremeDesc: "Six letters. No keyboard colours.",
+  newWord: "New word",
+  changeDifficulty: "Change difficulty",
+  loadingWords: "Loading word list",
+  allWordsPlayed: "You have played every word at this level",
+  rightIn: "Right in {n}",
+  theWordWasLabel: "The word was",
+  changeLevel: "Change level",
+  share: "Share",
+  shareCopied: "Copied",
+  played: "Played",
+  wins: "Wins",
+  winRate: "Win rate",
+  currentStreak: "Streak",
+  maxStreak: "Best streak",
+  guessDistribution: "Guesses",
+  noGamesYet: "No words played yet",
+  fiveRuleGuesses: "Guess the hidden {len} letter word in {n} guesses.",
+  fiveRuleColours:
+    "A green letter is in the right column. An amber letter is in the word, but somewhere else.",
+  fiveRuleNoColours:
+    "At this difficulty the keyboard stays grey. The board still shows its colours.",
+
+  // Word data credits. Both the Swedish list and the frequency data carry
+  // attribution licences, so naming the source is a condition, not a courtesy.
+  // The FrequencyWords repo is MIT for its code but CC BY-SA 4.0 for the word
+  // lists themselves, and it is the word lists we use.
   wordData: "Word lists",
   wordDataSv:
     "Swedish: SALDO morphology, Språkbanken, University of Gothenburg (CC BY 4.0).",
   wordDataEn: "English: SCOWL by Kevin Atkinson (SCOWL licence).",
   wordDataFreq:
-    "Word frequencies: OpenSubtitles 2018 via hermitdave/FrequencyWords (MIT).",
+    "Word frequencies: OpenSubtitles 2018 via hermitdave/FrequencyWords (CC BY-SA 4.0).",
+  wordDataFilter:
+    "Answer filtering: LDNOOBW word lists (CC BY 4.0). Guessing is unaffected.",
 } as const;
 
 export type StringKey = keyof typeof en;
@@ -215,8 +278,14 @@ const sv: Record<StringKey, string> = {
   alreadyFound: "Redan hittat",
   tooShort: "För kort, minst {n} bokstäver",
   wrongLength: "Behöver {n} bokstäver",
-  missingCentre: "Mittbokstaven saknas",
-  useTheClues: "Använd bokstäverna du har hittat",
+  missingCentre: "Saknar mittbokstaven",
+  typeAWord: "Skriv ett ord",
+  scorePoints: "{n} poäng",
+  wordsOfTotal: "{n} av {m} ord",
+  goalN: "Mål {n}",
+  foundWords: "Hittade ord",
+  nLetters: "{n} bokstäver",
+  more: "Mer",
   timeLeft: "Tid",
   score: "Poäng",
   found: "Hittade",
@@ -290,19 +359,73 @@ const sv: Record<StringKey, string> = {
 
   boardCleared: "Brädet är klart",
   bonusFound: "{n} bonusord",
+  dragToForm: "Dra för att bilda ord",
+  bonusN: "Bonus {n}",
+  tapHint: "Tryck på bokstäverna, tryck på den sista igen för att svara.",
+  gotIt: "Uppfattat",
 
   hiddenWord: "Dolt ord",
   hiddenWordLocked: "Lös brädet för att se det",
   conflict: "Konflikt",
+  glyphNumbers: "Siffror",
+  glyphLetters: "Bokstäver",
+  cellsFilled: "{n} av {m} rutor",
+  undo: "Ångra",
+  erase: "Radera",
+  notes: "Anteckningar",
 
   rowsLeft: "{n} rader kvar",
+  gridRowHints: "Använd bokstäverna du har hittat",
+  howToPlay: "Så spelar du",
+  startPlaying: "Spela",
+  gridRule1: "Var och en av de fem raderna är ett ord.",
+  gridRule2:
+    "Gissa vilket fembokstavsord som helst. En bokstav i rätt kolumn fylls i, på alla rader samtidigt.",
+  gridRule3: "En gul bokstav finns någonstans i raden, men i en annan kolumn.",
+  gridInstruction:
+    "Gissa ett fembokstavsord. Rätt bokstav i rätt kolumn fylls i.",
+  guessesLeft: "{n} gissningar kvar",
+  previousGuesses: "Tidigare gissningar",
+
+  chooseDifficulty: "Välj svårighetsgrad",
+  diffEasy: "Lätt",
+  diffMedium: "Medel",
+  diffHard: "Svår",
+  diffExtreme: "Extrem",
+  diffEasyDesc: "Vanliga ord. Två ledtrådar.",
+  diffMediumDesc: "En ledtråd.",
+  diffHardDesc: "Sex bokstäver. Ovanligare ord.",
+  diffExtremeDesc: "Sex bokstäver. Inget färgat tangentbord.",
+  newWord: "Nytt ord",
+  changeDifficulty: "Byt svårighetsgrad",
+  loadingWords: "Laddar ordlista",
+  allWordsPlayed: "Du har spelat alla ord på den här nivån",
+  rightIn: "Rätt på {n}",
+  theWordWasLabel: "Ordet var",
+  changeLevel: "Byt nivå",
+  share: "Dela",
+  shareCopied: "Kopierat",
+  played: "Spelade",
+  wins: "Vinster",
+  winRate: "Vinstandel",
+  currentStreak: "Svit",
+  maxStreak: "Bästa svit",
+  guessDistribution: "Gissningar",
+  noGamesYet: "Inga ord spelade än",
+  fiveRuleGuesses: "Gissa det dolda ordet på {len} bokstäver på {n} gissningar.",
+  fiveRuleColours:
+    "En grön bokstav står i rätt kolumn. En gul bokstav finns i ordet, men på en annan plats.",
+  fiveRuleNoColours:
+    "På den här svårighetsgraden förblir tangentbordet grått. Brädet visar fortfarande sina färger.",
 
   wordData: "Ordlistor",
   wordDataSv:
     "Svenska: SALDO:s morfologi, Språkbanken, Göteborgs universitet (CC BY 4.0).",
   wordDataEn: "Engelska: SCOWL av Kevin Atkinson (SCOWL-licens).",
   wordDataFreq:
-    "Ordfrekvenser: OpenSubtitles 2018 via hermitdave/FrequencyWords (MIT).",
+    "Ordfrekvenser: OpenSubtitles 2018 via hermitdave/FrequencyWords (CC BY-SA 4.0).",
+  wordDataFilter:
+    "Filtrering av svarsord: LDNOOBW:s ordlistor (CC BY 4.0). Gissningar påverkas inte.",
 };
 
 const dicts: Record<Lang, Record<StringKey, string>> = { en, sv };

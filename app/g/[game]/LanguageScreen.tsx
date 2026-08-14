@@ -5,7 +5,7 @@ import { useApp } from "@/components/AppProvider";
 import { Screen } from "@/components/Screen";
 import { Tile } from "@/components/Tile";
 import { NotFound } from "@/components/NotFound";
-import { GAMES, isGameId } from "@/lib/games";
+import { GAMES, isLevelledGameId } from "@/lib/games";
 import { LANGS, type Lang } from "@/lib/i18n";
 import { play } from "@/lib/sound";
 
@@ -17,7 +17,7 @@ export function LanguageScreen({ game }: { game: string }) {
   const router = useRouter();
   const { t, lang, setLang, highest } = useApp();
 
-  if (!isGameId(game)) return <NotFound />;
+  if (!isLevelledGameId(game)) return <NotFound />;
   const meta = GAMES[game];
 
   const choose = (next: Lang) => {

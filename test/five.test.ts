@@ -1,11 +1,51 @@
-import { describe, expect, it } from "vitest";
+import { beforeAll, describe, expect, it } from "vitest";
 import {
-  hardModeViolation,
+  checkGuess,
   hintPosition,
   keyboardState,
   scoreGuess,
   scoreRun,
 } from "@/games/five/engine";
+import { isValidWord } from "@/lib/dictionary";
+import { useLanguage } from "./helpers";
+import { SEED_WORDS } from "./seed-words";
+
+describe("checkGuess, the gate the Enter key actually calls", () => {
+  beforeAll(async () => {
+    await useLanguage("sv");
+    await useLanguage("en");
+  });
+
+  const accept = (guess: string, lang: "sv" | "en") =>
+    checkGuess({
+      guess,
+      length: 5,
+      isWord: (w) => isValidWord(w, lang),
+    });
+
+  // The regression that matters: not "is it in the dictionary module" but
+  // "does pressing Enter on it work". Every five letter seed word must pass.
+  it.each(["sv", "en"] as const)("accepts every five letter %s seed word", (lang) => {
+    const five = SEED_WORDS[lang].filter((w) => w.length === 5);
+    expect(five.length).toBeGreaterThan(15);
+    const refused = five.filter((w) => !accept(w, lang).ok);
+    expect(refused, `refused: ${refused.join(" ")}`).toEqual([]);
+  });
+
+  it("never narrows validation to the answer's frequency band", () => {
+    // "fjäll" is a real word far outside any common band. If validation were
+    // ever scoped to the band the answer was drawn from, this would fail.
+    expect(accept("fjäll", "sv").ok).toBe(true);
+    expect(accept("nymph", "en").ok).toBe(true);
+  });
+
+  it("reports the reason rather than a bare false", () => {
+    expect(accept("hus", "sv")).toMatchObject({ ok: false, reason: "wrongLength" });
+    expect(accept("qxzvw", "sv")).toMatchObject({ ok: false, reason: "notAWord" });
+  });
+
+
+});
 
 describe("scoreGuess", () => {
   it("marks an exact match", () => {
@@ -73,34 +113,6 @@ describe("keyboardState", () => {
   });
 });
 
-describe("hardModeViolation", () => {
-  it("allows anything on the first guess", () => {
-    expect(hardModeViolation("stare", [], "crate")).toBeNull();
-  });
-
-  it("requires a green letter to stay in its column", () => {
-    // "crate" vs "stare": r is present, a is correct at index 2, e correct at 4.
-    const v = hardModeViolation("point", ["stare"], "crate");
-    expect(v).not.toBeNull();
-    expect(v!.kind).toBe("missingCorrect");
-  });
-
-  it("requires a yellow letter to be reused somewhere", () => {
-    // Guess "moist" against "crate": t is present at the end.
-    const v = hardModeViolation("clued", ["moist"], "crate");
-    expect(v).toEqual({ kind: "missingPresent", letter: "t" });
-  });
-
-  it("accepts a guess that honours every clue", () => {
-    expect(hardModeViolation("crate", ["stare"], "crate")).toBeNull();
-  });
-
-  it("requires both copies when a letter is known twice", () => {
-    // "geese" vs guess "esses": two e's are accounted for.
-    const v = hardModeViolation("crate", ["esses"], "geese");
-    expect(v).not.toBeNull();
-  });
-});
 
 describe("scoreRun", () => {
   it("is zero when unsolved", () => {

@@ -1,4 +1,5 @@
 import type { Band } from "./bands";
+import { DIFFICULTY_LENGTH, type Difficulty } from "./difficulty";
 import type { Level } from "./games";
 
 /**
@@ -20,41 +21,55 @@ function at<T>(table: readonly T[], level: Level): T {
 // ---------------------------------------------------------------------------
 
 export interface FiveConfig {
+  /** 5 for Lätt and Medel, 6 for Svår and Extrem. */
   length: number;
   guesses: number;
-  band: Band;
   hints: number;
-  /** Revealed clues must be reused in later guesses. */
-  hardMode: boolean;
-  /** Level 10 takes the letter colours off the keyboard. */
+  /** Extrem takes the letter colours off the keyboard. */
   keyboardColours: boolean;
 }
 
-const FIVE_LENGTH = [4, 4, 5, 5, 5, 5, 6, 6, 7, 7] as const;
-const FIVE_GUESSES = [8, 7, 7, 6, 6, 5, 5, 5, 4, 4] as const;
-const FIVE_BAND: readonly Band[] = [
-  "top1k",
-  "top2k",
-  "top3k",
-  "top5k",
-  "top10k",
-  "top20k",
-  "top20k",
-  "top40k",
-  "full",
-  "full",
-];
-const FIVE_HINTS = [2, 2, 1, 1, 0, 0, 0, 0, 0, 0] as const;
+/**
+ * Five has no levels. It has four difficulties and plays forever.
+ *
+ *   Lätt    5 letters, 6 guesses, keyboard colours on,  2 hints
+ *   Medel   5 letters, 6 guesses, keyboard colours on,  1 hint
+ *   Svår    6 letters, 6 guesses, keyboard colours on,  0 hints
+ *   Extrem  6 letters, 6 guesses, keyboard colours off, 0 hints
+ *
+ * There is no hard mode anywhere: any valid word is a legal guess at any
+ * point. Svår and Extrem differ only by the keyboard colours and by how hard
+ * the words themselves are.
+ */
+export const FIVE_CONFIG: Record<Difficulty, FiveConfig> = {
+  easy: {
+    length: DIFFICULTY_LENGTH.easy,
+    guesses: 6,
+    hints: 2,
+    keyboardColours: true,
+  },
+  medium: {
+    length: DIFFICULTY_LENGTH.medium,
+    guesses: 6,
+    hints: 1,
+    keyboardColours: true,
+  },
+  hard: {
+    length: DIFFICULTY_LENGTH.hard,
+    guesses: 6,
+    hints: 0,
+    keyboardColours: true,
+  },
+  extreme: {
+    length: DIFFICULTY_LENGTH.extreme,
+    guesses: 6,
+    hints: 0,
+    keyboardColours: false,
+  },
+};
 
-export function fiveConfig(level: Level): FiveConfig {
-  return {
-    length: at(FIVE_LENGTH, level),
-    guesses: at(FIVE_GUESSES, level),
-    band: at(FIVE_BAND, level),
-    hints: at(FIVE_HINTS, level),
-    hardMode: level >= 7,
-    keyboardColours: level < 10,
-  };
+export function fiveConfig(difficulty: Difficulty): FiveConfig {
+  return FIVE_CONFIG[difficulty];
 }
 
 // ---------------------------------------------------------------------------
@@ -101,12 +116,31 @@ export interface GridConfig {
 
 const GRID_GUESSES = [15, 14, 13, 12, 11, 10, 9, 8, 7, 6] as const;
 
+/**
+ * Grid used to borrow Five's band ladder. Five has no levels any more, so Grid
+ * owns its ladder now. The values are exactly what Grid was already getting:
+ * the top two rungs read "top40k" rather than "full" because those two bands
+ * are the same set today, and pinning them keeps Grid's answers unchanged if
+ * the answer pool is ever widened.
+ */
+const GRID_BAND: readonly Band[] = [
+  "top1k",
+  "top2k",
+  "top3k",
+  "top5k",
+  "top10k",
+  "top20k",
+  "top20k",
+  "top40k",
+  "top40k",
+  "top40k",
+];
+
 export function gridConfig(level: Level): GridConfig {
   return {
     size: 5,
     guesses: at(GRID_GUESSES, level),
-    // The pool widens exactly as it does in Five.
-    band: at(FIVE_BAND, level),
+    band: at(GRID_BAND, level),
     columnsToo: level >= 9,
   };
 }
@@ -138,29 +172,30 @@ export function loopConfig(level: Level): LoopConfig {
 // ---------------------------------------------------------------------------
 
 export interface OrdokuConfig {
-  size: 4 | 6 | 9;
-  /** Fraction of cells revealed at the start. */
+  /** Always 9. Difficulty is the givens and the assists, not the board. */
+  size: 9;
+  /** How many cells start filled. */
   givens: number;
   /** Levels 1 to 5 highlight a clash the moment it happens. */
   liveConflicts: boolean;
+  /** Levels 1 to 3 dim a pad value once all nine of it are placed. */
+  dimUsedValues: boolean;
   /** Levels 9 and 10 keep the hidden word secret until the board is solved. */
   hideWordUntilSolved: boolean;
-  /** Milliseconds of no progress before the word is offered as a hint. */
-  wordHintAfterMs: number;
+  hints: number;
 }
 
-const ORDOKU_SIZE = [4, 4, 6, 6, 9, 9, 9, 9, 9, 9] as const;
-const ORDOKU_GIVENS = [
-  0.6, 0.56, 0.52, 0.48, 0.44, 0.4, 0.36, 0.32, 0.29, 0.26,
-] as const;
+const ORDOKU_GIVENS = [50, 46, 42, 38, 34, 32, 30, 28, 26, 24] as const;
+const ORDOKU_HINTS = [3, 3, 2, 2, 1, 1, 0, 0, 0, 0] as const;
 
 export function ordokuConfig(level: Level): OrdokuConfig {
   return {
-    size: at(ORDOKU_SIZE, level) as 4 | 6 | 9,
+    size: 9,
     givens: at(ORDOKU_GIVENS, level),
     liveConflicts: level <= 5,
+    dimUsedValues: level <= 3,
     hideWordUntilSolved: level >= 9,
-    wordHintAfterMs: 60_000,
+    hints: at(ORDOKU_HINTS, level),
   };
 }
 

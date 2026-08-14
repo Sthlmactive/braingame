@@ -5,7 +5,7 @@ import { useApp } from "@/components/AppProvider";
 import { Screen } from "@/components/Screen";
 import { LevelDial } from "@/components/LevelDial";
 import { NotFound } from "@/components/NotFound";
-import { GAMES, LEVELS, isGameId, type Level } from "@/lib/games";
+import { GAMES, LEVELS, isLevelledGameId, type Level } from "@/lib/games";
 import { isLang } from "@/lib/i18n";
 import type { LevelRecord } from "@/lib/storage";
 
@@ -13,7 +13,7 @@ export function LevelScreen({ game, lang }: { game: string; lang: string }) {
   const router = useRouter();
   const { t, getRecordFor, highest, ready } = useApp();
 
-  if (!isGameId(game) || !isLang(lang)) return <NotFound />;
+  if (!isLevelledGameId(game) || !isLang(lang)) return <NotFound />;
   const meta = GAMES[game];
 
   const records = Object.fromEntries(

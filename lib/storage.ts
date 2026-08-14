@@ -1,5 +1,6 @@
 import type { Lang } from "./i18n";
 import { isLang } from "./i18n";
+import { isDifficulty, type Difficulty } from "./difficulty";
 import { GAME_IDS, type GameId, type Level } from "./games";
 
 /**
@@ -9,14 +10,23 @@ import { GAME_IDS, type GameId, type Level } from "./games";
  */
 
 export const STORAGE_KEY = "Ordlek.state.v1";
-export const SCHEMA_VERSION = 1;
+
+/**
+ * 2 dropped Five's per level records, because Five stopped having levels. The
+ * other six games kept theirs untouched.
+ */
+export const SCHEMA_VERSION = 2;
 
 export type MotionPref = "system" | "full" | "reduced";
+
+/** Ordoku renders the same puzzle as digits or as the hidden word's letters. */
+export type GlyphMode = "numbers" | "letters";
 
 export interface Settings {
   lang: Lang;
   sound: boolean;
   motion: MotionPref;
+  ordokuGlyphs: GlyphMode;
 }
 
 export interface LevelRecord {
@@ -27,21 +37,59 @@ export interface LevelRecord {
   streak: number;
 }
 
+/** How many guesses a Five win took, bucketed 1..6. Index 0 is a one guess win. */
+export const GUESS_BUCKETS = 6;
+
+/** Five's record for one language and difficulty. It has no levels to key on. */
+export interface FiveStat {
+  played: number;
+  won: number;
+  streak: number;
+  maxStreak: number;
+  /** Six bars: wins by number of guesses used. */
+  distribution: number[];
+}
+
+export function emptyFiveStat(): FiveStat {
+  return {
+    played: 0,
+    won: 0,
+    streak: 0,
+    maxStreak: 0,
+    distribution: new Array<number>(GUESS_BUCKETS).fill(0),
+  };
+}
+
 export interface AppState {
   v: number;
   settings: Settings;
-  /** Keyed by `${game}:${lang}:${level}`. */
+  /** Keyed by `${game}:${lang}:${level}`. Five is no longer in here. */
   progress: Record<string, LevelRecord>;
+  /** Five only, keyed by `${lang}:${difficulty}`. */
+  five: Record<string, FiveStat>;
+  /** Last language and difficulty played, so the home card can deep link. */
+  fiveLast: { lang: Lang; difficulty: Difficulty } | null;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
   lang: "sv",
   sound: true,
   motion: "system",
+  ordokuGlyphs: "letters",
 };
 
 export function defaultState(): AppState {
-  return { v: SCHEMA_VERSION, settings: { ...DEFAULT_SETTINGS }, progress: {} };
+  return {
+    v: SCHEMA_VERSION,
+    settings: { ...DEFAULT_SETTINGS },
+    progress: {},
+    five: {},
+    fiveLast: null,
+  };
+}
+
+export function fiveKey(lang: Lang, difficulty: Difficulty): string {
+  return `${lang}:${difficulty}`;
 }
 
 export function progressKey(game: GameId, lang: Lang, level: Level): string {
@@ -70,6 +118,7 @@ function num(v: unknown, fallback = 0): number {
 function parseSettings(v: unknown): Settings {
   if (!isObject(v)) return { ...DEFAULT_SETTINGS };
   const motion = v.motion;
+  const glyphs = v.ordokuGlyphs;
   return {
     lang: isLang(v.lang) ? v.lang : DEFAULT_SETTINGS.lang,
     sound: typeof v.sound === "boolean" ? v.sound : DEFAULT_SETTINGS.sound,
@@ -77,10 +126,17 @@ function parseSettings(v: unknown): Settings {
       motion === "full" || motion === "reduced" || motion === "system"
         ? motion
         : DEFAULT_SETTINGS.motion,
+    ordokuGlyphs:
+      glyphs === "numbers" || glyphs === "letters"
+        ? glyphs
+        : DEFAULT_SETTINGS.ordokuGlyphs,
   };
 }
 
-const KEY_RE = new RegExp(`^(${GAME_IDS.join("|")}):(sv|en):([1-9]|10)$`);
+// Five is deliberately absent: it has difficulties now, not levels, so a
+// "five:sv:3" key from v1 matches nothing here and is dropped on migration.
+const LEVELLED_GAMES = GAME_IDS.filter((g) => g !== "five");
+const KEY_RE = new RegExp(`^(${LEVELLED_GAMES.join("|")}):(sv|en):([1-9]|10)$`);
 
 function parseProgress(v: unknown): Record<string, LevelRecord> {
   if (!isObject(v)) return {};
@@ -97,9 +153,40 @@ function parseProgress(v: unknown): Record<string, LevelRecord> {
   return out;
 }
 
+const FIVE_KEY_RE = /^(sv|en):(easy|medium|hard|extreme)$/;
+
+function parseFive(v: unknown): Record<string, FiveStat> {
+  if (!isObject(v)) return {};
+  const out: Record<string, FiveStat> = {};
+  for (const [key, raw] of Object.entries(v)) {
+    if (!FIVE_KEY_RE.test(key) || !isObject(raw)) continue;
+    const dist = Array.isArray(raw.distribution) ? raw.distribution : [];
+    out[key] = {
+      played: Math.max(0, num(raw.played)),
+      won: Math.max(0, num(raw.won)),
+      streak: Math.max(0, num(raw.streak)),
+      maxStreak: Math.max(0, num(raw.maxStreak)),
+      distribution: Array.from({ length: GUESS_BUCKETS }, (_, i) =>
+        Math.max(0, num(dist[i])),
+      ),
+    };
+  }
+  return out;
+}
+
+function parseFiveLast(v: unknown): AppState["fiveLast"] {
+  if (!isObject(v)) return null;
+  if (!isLang(v.lang) || !isDifficulty(v.difficulty)) return null;
+  return { lang: v.lang, difficulty: v.difficulty };
+}
+
 /**
- * Bring any stored payload up to the current schema. Future versions add a
- * case here; anything unrecognised falls through to defaults.
+ * Bring any stored payload up to the current schema.
+ *
+ * v1 to v2 is not a rewrite: settings and the other six games' progress are
+ * parsed exactly as before, and Five's old per level records simply fail the
+ * progress key test and disappear. Anything unrecognised still falls through
+ * to defaults silently, so a bad payload cannot brick the app on a phone.
  */
 export function migrate(raw: unknown): AppState {
   if (!isObject(raw)) return defaultState();
@@ -109,6 +196,9 @@ export function migrate(raw: unknown): AppState {
     v: SCHEMA_VERSION,
     settings: parseSettings(raw.settings),
     progress: parseProgress(raw.progress),
+    // v1 had no Five stats at all, so this is simply empty for those payloads.
+    five: parseFive(raw.five),
+    fiveLast: parseFiveLast(raw.fiveLast),
   };
 }
 
@@ -207,6 +297,51 @@ export function recordRun(
     state: { ...state, progress: { ...state.progress, [key]: record } },
     record,
     isBestScore,
+  };
+}
+
+export function getFiveStat(
+  state: AppState,
+  lang: Lang,
+  difficulty: Difficulty,
+): FiveStat {
+  return state.five[fiveKey(lang, difficulty)] ?? emptyFiveStat();
+}
+
+/**
+ * Fold one finished Five word into its language and difficulty record, and
+ * remember where it was played so the home card can deep link back.
+ */
+export function recordFive(
+  state: AppState,
+  lang: Lang,
+  difficulty: Difficulty,
+  result: { won: boolean; guessesUsed: number },
+): { state: AppState; stat: FiveStat } {
+  const key = fiveKey(lang, difficulty);
+  const prev = state.five[key] ?? emptyFiveStat();
+  const distribution = [...prev.distribution];
+  if (result.won) {
+    // Guesses are 1-based; a win in one guess is the first bar. A win outside
+    // the six bars is still counted as a win, just not plotted.
+    const bar = result.guessesUsed - 1;
+    if (bar >= 0 && bar < GUESS_BUCKETS) distribution[bar] = (distribution[bar] ?? 0) + 1;
+  }
+  const streak = result.won ? prev.streak + 1 : 0;
+  const stat: FiveStat = {
+    played: prev.played + 1,
+    won: prev.won + (result.won ? 1 : 0),
+    streak,
+    maxStreak: Math.max(prev.maxStreak, streak),
+    distribution,
+  };
+  return {
+    state: {
+      ...state,
+      five: { ...state.five, [key]: stat },
+      fiveLast: { lang, difficulty },
+    },
+    stat,
   };
 }
 

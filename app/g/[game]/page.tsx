@@ -1,8 +1,8 @@
-import { GAME_IDS } from "@/lib/games";
+import { LEVELLED_GAME_IDS } from "@/lib/games";
 import { LanguageScreen } from "./LanguageScreen";
 
 export function generateStaticParams() {
-  return GAME_IDS.map((game) => ({ game }));
+  return LEVELLED_GAME_IDS.map((game) => ({ game }));
 }
 
 export default async function Page({

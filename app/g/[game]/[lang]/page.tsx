@@ -1,9 +1,9 @@
-import { GAME_IDS } from "@/lib/games";
+import { LEVELLED_GAME_IDS } from "@/lib/games";
 import { LANGS } from "@/lib/i18n";
 import { LevelScreen } from "./LevelScreen";
 
 export function generateStaticParams() {
-  return GAME_IDS.flatMap((game) => LANGS.map((lang) => ({ game, lang })));
+  return LEVELLED_GAME_IDS.flatMap((game) => LANGS.map((lang) => ({ game, lang })));
 }
 
 export default async function Page({
