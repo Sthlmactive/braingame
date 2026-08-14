@@ -375,7 +375,7 @@ export function Tiles({ lang, level, onFinish, setStatus, onGiveUp }: GameProps)
         {message ? (
           <div
             className="fade-enter absolute top-1 z-10 max-w-[92%] rounded-lg px-3 py-1.5 text-center text-xs font-semibold"
-            style={{ background: "var(--text)", color: "var(--ink)" }}
+            style={{ background: "var(--raised)", color: "var(--paper)" }}
             role="status"
           >
             {message}
@@ -417,7 +417,7 @@ export function Tiles({ lang, level, onFinish, setStatus, onGiveUp }: GameProps)
                     : (style?.bg ?? "rgba(255,255,255,0.04)"),
                   color: letter
                     ? isPending
-                      ? "var(--ink)"
+                      ? "var(--on-state)"
                       : "var(--text)"
                     : "var(--muted)",
                 }}
@@ -556,7 +556,7 @@ function SmallButton({
       className="tap flex-1 rounded-lg px-1 text-[0.7rem] font-semibold disabled:opacity-35"
       style={{
         background: loud ? "var(--accent)" : "transparent",
-        color: loud ? "var(--ink)" : "var(--text)",
+        color: loud ? "var(--on-state)" : "var(--text)",
         border: loud ? "none" : "1px solid var(--line)",
       }}
       onClick={onPress}

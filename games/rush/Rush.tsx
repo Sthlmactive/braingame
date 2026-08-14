@@ -227,7 +227,7 @@ export function Rush({ lang, level, onFinish, setStatus, onGiveUp }: GameProps) 
         {message ? (
           <div
             className="fade-enter absolute top-1 z-10 rounded-lg px-3 py-1.5 text-xs font-semibold"
-            style={{ background: "var(--text)", color: "var(--ink)" }}
+            style={{ background: "var(--raised)", color: "var(--paper)" }}
             role="status"
           >
             {message}
@@ -322,7 +322,7 @@ export function Rush({ lang, level, onFinish, setStatus, onGiveUp }: GameProps) 
           <button
             type="button"
             className="tap flex-1 rounded-xl py-3 text-sm font-semibold disabled:opacity-40"
-            style={{ background: "var(--accent)", color: "var(--ink)" }}
+            style={{ background: "var(--accent)", color: "var(--on-state)" }}
             onClick={() => finish("notCleared")}
             disabled={cells.size === 0}
           >

@@ -37,6 +37,8 @@ export function applyGuess(state: GridState, guess: string): GuessOutcome {
   const placed: Array<[number, number]> = [];
   let newHints = 0;
 
+  // The column check. Each letter of the guess is compared against all five
+  // cells of its own column, so one guess can fill cells on any row.
   for (let r = 0; r < state.solution.length; r++) {
     const row = state.solution[r]!;
     for (let c = 0; c < GRID_SIZE; c++) {
@@ -45,19 +47,22 @@ export function applyGuess(state: GridState, guess: string): GuessOutcome {
         placed.push([r, c]);
       }
     }
-    // A letter is a hint for this row when the row contains it but the guess
-    // put it in the wrong column, and it is not already sitting revealed.
-    for (let c = 0; c < GRID_SIZE; c++) {
-      const ch = guess[c]!;
+  }
+
+  // The hints. Any letter of the guess that is in a row but was not revealed
+  // there by the column check becomes an amber chip for that row. Chips
+  // accumulate across guesses and clear once the letter is placed.
+  const guessLetters = new Set(guess);
+  for (let r = 0; r < state.solution.length; r++) {
+    const row = state.solution[r]!;
+    for (const ch of guessLetters) {
       if (!row.includes(ch)) continue;
-      if (row[c] === ch) continue;
       const stillHidden = [...row].some((rc, i) => rc === ch && !revealed[r]![i]);
       if (stillHidden && !rowHints[r]!.has(ch)) {
         rowHints[r]!.add(ch);
         newHints++;
       }
     }
-    // Once every copy of a letter is placed, its hint has served its purpose.
     for (const ch of [...rowHints[r]!]) {
       const stillHidden = [...row].some((rc, i) => rc === ch && !revealed[r]![i]);
       if (!stillHidden) rowHints[r]!.delete(ch);

@@ -14,6 +14,8 @@ import {
   type Size,
 } from "@/games/ordoku/engine";
 import { mulberry32 } from "@/lib/rng";
+import { LEVELS } from "@/lib/games";
+import { ordokuConfig } from "@/lib/levels";
 
 const SIZES: Size[] = [4, 6, 9];
 
@@ -157,7 +159,7 @@ describe("generateOrdoku", () => {
     for (const size of SIZES) {
       const word = size === 4 ? "hund" : size === 6 ? "kastru" : "bortglms";
       const distinct = uniqueLetters(word, size);
-      const p = generateOrdoku(distinct, size, 0.45, mulberry32(size * 13));
+      const p = generateOrdoku(distinct, size, Math.round(size * size * 0.45), mulberry32(size * 13));
       expect(p, `size ${size}`).not.toBeNull();
       expect(hasUniqueSolution(p!.puzzle, size)).toBe(true);
       // The diagonal of the solution, mapped through the letters, is the word.
@@ -169,23 +171,60 @@ describe("generateOrdoku", () => {
   });
 
   it("refuses a word of the wrong length or with repeats", () => {
-    expect(generateOrdoku("cat", 4, 0.5, mulberry32(1))).toBeNull();
-    expect(generateOrdoku("keep", 4, 0.5, mulberry32(1))).toBeNull();
+    expect(generateOrdoku("cat", 4, 8, mulberry32(1))).toBeNull();
+    expect(generateOrdoku("keep", 4, 8, mulberry32(1))).toBeNull();
   });
 
   it("reports the givens it actually managed", () => {
-    const p = generateOrdoku("hund", 4, 0.6, mulberry32(9))!;
+    const p = generateOrdoku("hund", 4, 10, mulberry32(9))!;
     expect(p.givens).toBe(Array.from(p.puzzle).filter((v) => v >= 0).length);
     expect(p.givens).toBeGreaterThan(0);
     expect(p.givens).toBeLessThan(16);
   });
 
   it("hits roughly the requested density on a 9x9", () => {
-    const p = generateOrdoku("bortglms", 9, 0.4, mulberry32(77));
+    const p = generateOrdoku("bortglms", 9, 32, mulberry32(77));
     expect(p).toBeNull(); // 8 letters cannot fill a 9x9
-    const ok = generateOrdoku("utbildarn".slice(0, 9), 9, 0.4, mulberry32(77));
+    const ok = generateOrdoku("utbildarn".slice(0, 9), 9, 32, mulberry32(77));
     if (ok) expect(ok.givens).toBeLessThanOrEqual(Math.round(81 * 0.55));
   });
+});
+
+describe("the level ladder", () => {
+  const EXPECTED = [50, 46, 42, 38, 34, 32, 30, 28, 26, 24];
+
+  it("is every level at 9x9", () => {
+    for (const level of LEVELS) {
+      expect(ordokuConfig(level).size).toBe(9);
+    }
+  });
+
+  it("asks for the published given counts", () => {
+    for (const level of LEVELS) {
+      expect(ordokuConfig(level).givens).toBe(EXPECTED[level - 1]);
+    }
+  });
+
+  it("hits each level's given count within two, and stays unique", () => {
+    // The word only supplies the nine symbols, so any nine distinct letters
+    // exercise the same generator the game uses.
+    const word = "utbildarn";
+    for (const level of LEVELS) {
+      const target = ordokuConfig(level).givens;
+      for (let seed = 1; seed <= 3; seed++) {
+        const p = generateOrdoku(word, 9, target, mulberry32(level * 100 + seed));
+        expect(p, `level ${level}`).not.toBeNull();
+        // Uniqueness is the hard floor; density may only ever overshoot.
+        expect(hasUniqueSolution(p!.puzzle, 9), `level ${level}`).toBe(true);
+        expect(p!.givens, `level ${level} seed ${seed}`).toBeGreaterThanOrEqual(
+          target,
+        );
+        expect(p!.givens, `level ${level} seed ${seed}`).toBeLessThanOrEqual(
+          target + 2,
+        );
+      }
+    }
+  }, 60000);
 });
 
 describe("conflicts and completion", () => {

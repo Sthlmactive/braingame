@@ -24,6 +24,11 @@ export interface GameProps {
    * still reveal the answer. Returning null falls back to a plain zero.
    */
   onGiveUp: (fn: () => GameResult | null) => void;
+  /**
+   * Opens the give up confirmation. Games drawing their own chrome call this
+   * from wherever they put the control.
+   */
+  requestGiveUp: () => void;
 }
 
 /**
@@ -34,11 +39,17 @@ export function GameShell({
   game,
   lang,
   level,
+  ownChrome = false,
   children,
 }: {
   game: GameId;
   lang: Lang;
   level: Level;
+  /**
+   * The game draws its own header and page frame. The shell still owns
+   * loading, giving up, recording the run and the result sheet.
+   */
+  ownChrome?: boolean;
   children: (props: GameProps) => ReactNode;
 }) {
   const { t, record } = useApp();
@@ -98,39 +109,22 @@ export function GameShell({
 
   if (phase === "error") return <DataError onRetry={load} />;
 
-  return (
-    <Screen
-      title={t(meta.nameKey)}
-      subtitle={t("levelN", { n: level })}
-      game={game}
-      right={
-        <div className="flex items-center gap-3">
-          {status}
-          <button
-            type="button"
-            className="tap px-1 text-xs font-semibold text-[var(--muted)]"
-            onClick={() => setConfirmQuit(true)}
-          >
-            {t("giveUp")}
-          </button>
-        </div>
-      }
-    >
-      {phase === "loading" ? (
-        <Loading />
-      ) : (
-        <div key={runId} className="flex min-h-0 flex-1 flex-col">
-          {children({
-            lang,
-            level,
-            runId,
-            onFinish,
-            setStatus,
-            onGiveUp: registerGiveUp,
-          })}
-        </div>
-      )}
+  const board = (
+    <>
+      {children({
+        lang,
+        level,
+        runId,
+        onFinish,
+        setStatus,
+        onGiveUp: registerGiveUp,
+        requestGiveUp: () => setConfirmQuit(true),
+      })}
+    </>
+  );
 
+  const sheets = (
+    <>
       <Sheet
         open={confirmQuit}
         onClose={() => setConfirmQuit(false)}
@@ -167,6 +161,56 @@ export function GameShell({
         isBestScore={isBest}
         onPlayAgain={restart}
       />
+    </>
+  );
+
+  if (ownChrome) {
+    return (
+      <div
+        className="game-surface"
+        style={{ ["--accent" as string]: meta.accent }}
+      >
+        {phase === "loading" ? (
+          <div className="flex min-h-dvh flex-col">
+            <Loading />
+          </div>
+        ) : (
+          <div key={runId} className="contents">
+            {board}
+          </div>
+        )}
+        {sheets}
+      </div>
+    );
+  }
+
+  return (
+    <Screen
+      title={t(meta.nameKey)}
+      subtitle={t("levelN", { n: level })}
+      game={game}
+      right={
+        <div className="flex items-center gap-3">
+          {status}
+          <button
+            type="button"
+            className="tap px-1 text-xs font-semibold text-[var(--muted)]"
+            onClick={() => setConfirmQuit(true)}
+          >
+            {t("giveUp")}
+          </button>
+        </div>
+      }
+    >
+      {phase === "loading" ? (
+        <Loading />
+      ) : (
+        <div key={runId} className="flex min-h-0 flex-1 flex-col">
+          {board}
+        </div>
+      )}
+
+      {sheets}
     </Screen>
   );
 }

@@ -306,13 +306,14 @@ export interface OrdokuPuzzle {
 export function generateOrdoku(
   word: string,
   size: Size,
-  givensFraction: number,
+  /** Absolute number of cells to leave filled. */
+  targetGivens: number,
   rng: Rng,
 ): OrdokuPuzzle | null {
   if (word.length !== size) return null;
   if (new Set(word).size !== size) return null;
 
-  const target = Math.max(size, Math.round(size * size * givensFraction));
+  const target = Math.max(size, Math.round(targetGivens));
 
   // How sparse a grid can get and stay unique varies by grid, and digging is
   // cheap, so try a few and keep the emptiest. Uniqueness is never traded
@@ -331,6 +332,14 @@ export function generateOrdoku(
   }
 
   if (!best) return null;
+
+  // Uniqueness is never traded for density. If the target could not be dug to
+  // without the board becoming ambiguous, it ships with the extra givens.
+  if (best.givens > target && typeof console !== "undefined") {
+    console.warn(
+      `ordoku: wanted ${target} givens, kept ${best.givens} to stay uniquely solvable`,
+    );
+  }
 
   return {
     size,
