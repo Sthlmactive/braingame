@@ -2,6 +2,7 @@ import type { StringKey } from "./i18n";
 
 export const GAME_IDS = [
   "five",
+  "mini",
   "hive",
   "grid",
   "loop",
@@ -20,11 +21,17 @@ export function isGameId(v: unknown): v is GameId {
  * The games that still have ten levels, which is every game except Five.
  * Five moved to difficulties and lives at /five, so it has no /g/five routes.
  */
+export type UnlevelledGameId = "five" | "mini";
+
+/**
+ * The games that still have ten levels: every game except Five and Mini, both
+ * of which have difficulties and their own routes.
+ */
 export const LEVELLED_GAME_IDS = GAME_IDS.filter(
-  (g): g is Exclude<GameId, "five"> => g !== "five",
+  (g): g is Exclude<GameId, UnlevelledGameId> => g !== "five" && g !== "mini",
 );
 
-export function isLevelledGameId(v: unknown): v is Exclude<GameId, "five"> {
+export function isLevelledGameId(v: unknown): v is Exclude<GameId, UnlevelledGameId> {
   return (
     typeof v === "string" && (LEVELLED_GAME_IDS as readonly string[]).includes(v)
   );
@@ -46,6 +53,13 @@ export const GAMES: Record<GameId, GameMeta> = {
     accent: "#5B7CFF",
     nameKey: "gameFive",
     descKey: "gameFiveDesc",
+  },
+  mini: {
+    id: "mini",
+    accentVar: "--accent-mini",
+    accent: "#8A8F98",
+    nameKey: "miniName",
+    descKey: "miniTagline",
   },
   hive: {
     id: "hive",

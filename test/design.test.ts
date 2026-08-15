@@ -115,6 +115,10 @@ describe("colour only ever means game state", () => {
     "components/Tile.tsx",
     "components/Keyboard.tsx",
     "games/five/FiveResult.tsx",
+    // Mini's only coloured pixel: the time, when it is a personal best. The
+    // board itself never reports state mid solve, so nothing there is
+    // coloured — see docs/mini-spec.md.
+    "games/mini/MiniResult.tsx",
   ]);
 
   const sources = (dir: string): string[] => {

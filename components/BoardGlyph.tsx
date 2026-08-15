@@ -13,7 +13,16 @@ export const GLYPH_SIZE = 34;
 
 /** A primitive in the 34x34 glyph box. */
 export type GlyphShape =
-  | { kind: "rect"; x: number; y: number; w: number; h: number; heavy?: boolean }
+  | {
+      kind: "rect";
+      x: number;
+      y: number;
+      w: number;
+      h: number;
+      heavy?: boolean;
+      /** Solid rather than outlined. Only Mini uses it, for a black square. */
+      fill?: boolean;
+    }
   | { kind: "circle"; cx: number; cy: number; r: number }
   | { kind: "hex"; cx: number; cy: number; r: number }
   | { kind: "line"; x1: number; y1: number; x2: number; y2: number; heavy?: boolean };
@@ -161,7 +170,40 @@ function tiles(): GlyphShape[] {
   return out;
 }
 
+/**
+ * A 5x5 with three black squares in 180 degree rotational symmetry.
+ *
+ * The black squares are the whole point: no other glyph fills a cell, so a
+ * filled square reads as "crossword" and nothing else. Cells are contiguous
+ * rather than gapped, which is the second difference from Grid — the only
+ * other 5x5 in the set. See the collision note in docs/mini-spec.md.
+ */
+function mini(): GlyphShape[] {
+  const n = 5;
+  const cell = 5.6;
+  const total = n * cell;
+  const o = (S - total) / 2;
+  // Rotationally symmetric: a corner pair plus the centre, the same rule the
+  // real pattern enumerator uses.
+  const filled = new Set([0, 12, 24]);
+  const out: GlyphShape[] = [];
+  for (let r = 0; r < n; r++) {
+    for (let c = 0; c < n; c++) {
+      out.push({
+        kind: "rect",
+        x: o + c * cell,
+        y: o + r * cell,
+        w: cell,
+        h: cell,
+        fill: filled.has(r * n + c),
+      });
+    }
+  }
+  return out;
+}
+
 const BUILDERS: Record<GameId, () => GlyphShape[]> = {
+  mini,
   five,
   hive,
   grid,
@@ -220,6 +262,7 @@ export function BoardGlyph({
               height={s.h}
               rx={1}
               strokeWidth={s.heavy ? 1.6 : 1}
+              fill={s.fill ? "var(--line)" : "none"}
             />
           );
         }

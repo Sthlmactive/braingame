@@ -3,7 +3,12 @@
 import dynamic from "next/dynamic";
 import { GameShell, type GameProps } from "@/components/GameShell";
 import { Loading, NotFound } from "@/components/NotFound";
-import { asLevel, isLevelledGameId, type GameId } from "@/lib/games";
+import {
+  asLevel,
+  isLevelledGameId,
+  type GameId,
+  type UnlevelledGameId,
+} from "@/lib/games";
 import { isLang } from "@/lib/i18n";
 
 /**
@@ -12,8 +17,8 @@ import { isLang } from "@/lib/i18n";
  */
 const loading = () => <Loading />;
 
-/** Five is not here: it has no levels and lives at /five. */
-const BOARDS: Record<Exclude<GameId, "five">, React.ComponentType<GameProps>> = {
+/** Five and Mini are not here: they have difficulties, and their own routes. */
+const BOARDS: Record<Exclude<GameId, UnlevelledGameId>, React.ComponentType<GameProps>> = {
   hive: dynamic(() => import("@/games/hive/Hive").then((m) => m.Hive), {
     loading,
   }),

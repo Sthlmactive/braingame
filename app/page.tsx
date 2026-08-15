@@ -13,13 +13,16 @@ import { GAME_LIST } from "@/lib/games";
  * miniature of that game's real board instead.
  */
 export default function HomePage() {
-  const { t, fiveLast } = useApp();
+  const { t, fiveLast, miniLast } = useApp();
 
   // Five has no levels, so its row goes straight back to the last language and
   // difficulty played. Both pickers stay one tap away from the game itself.
   const fiveHref = fiveLast
     ? `/five/${fiveLast.lang}/${fiveLast.difficulty}`
     : "/five";
+  const miniHref = miniLast
+    ? `/mini/${miniLast.lang}/${miniLast.difficulty}`
+    : "/mini";
 
   return (
     <main className="page-enter safe-x mx-auto flex min-h-dvh w-full max-w-[560px] flex-col">
@@ -49,7 +52,9 @@ export default function HomePage() {
         {GAME_LIST.map((g, i) => (
           <Link
             key={g.id}
-            href={g.id === "five" ? fiveHref : `/g/${g.id}`}
+            href={
+              g.id === "five" ? fiveHref : g.id === "mini" ? miniHref : `/g/${g.id}`
+            }
             className="flex items-center gap-4 py-4"
             style={{
               borderTop: i === 0 ? "1px solid var(--line)" : undefined,
