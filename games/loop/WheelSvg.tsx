@@ -201,7 +201,7 @@ export function WheelSvg({
         cx={WHEEL_CENTRE}
         cy={WHEEL_CENTRE}
         r={HUB_RADIUS}
-        fill="var(--surface)"
+        fill="var(--raised)"
       />
 
       {/* The trail sits under the letters, so a letter is never obscured. */}
@@ -221,7 +221,7 @@ export function WheelSvg({
           <polyline
             points={trailPoints(shownTrail)}
             fill="none"
-            stroke={feedback === "pulse" ? "var(--muted)" : "var(--accent)"}
+            stroke={feedback === "pulse" ? "var(--muted)" : "var(--ink)"}
             strokeOpacity={0.6}
             strokeWidth={6}
             strokeLinecap="round"
@@ -231,7 +231,7 @@ export function WheelSvg({
         <line
           ref={liveLine}
           visibility="hidden"
-          stroke="var(--accent)"
+          stroke="var(--ink)"
           strokeOpacity={0.6}
           strokeWidth={6}
           strokeLinecap="round"
@@ -254,8 +254,8 @@ export function WheelSvg({
           >
             <circle
               r={radius}
-              fill={on ? "var(--accent)" : "var(--paper)"}
-              stroke={on ? "var(--accent)" : "var(--line)"}
+              fill={on ? "var(--ink)" : "var(--paper)"}
+              stroke={on ? "var(--ink)" : "var(--line)"}
               strokeWidth={2}
             />
             <text
@@ -264,7 +264,7 @@ export function WheelSvg({
               y={-2}
               textAnchor="middle"
               dominantBaseline="central"
-              fill={on ? "var(--on-state)" : "var(--text)"}
+              fill={on ? "var(--paper)" : "var(--ink)"}
               style={{
                 fontFamily: "var(--font-ui)",
                 fontWeight: 700,

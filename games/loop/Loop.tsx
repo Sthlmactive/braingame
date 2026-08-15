@@ -320,7 +320,7 @@ export function Loop({
           {bonus.length > 0 ? (
             <span
               className="rounded-full px-2 py-0.5 text-[0.68rem] font-semibold"
-              style={{ background: "var(--surface)", color: "var(--accent)" }}
+              style={{ background: "var(--raised)", color: "var(--ink)" }}
             >
               {t("bonusN", { n: bonus.length })}
             </span>
@@ -367,8 +367,8 @@ export function Loop({
                 }}
                 className="grid aspect-square place-items-center rounded-[3px]"
                 style={{
-                  background: shown ? "var(--accent)" : "var(--surface)",
-                  color: shown ? "var(--on-state)" : "transparent",
+                  background: shown ? "var(--ink)" : "var(--raised)",
+                  color: shown ? "var(--paper)" : "transparent",
                   fontWeight: 700,
                   fontSize: Math.round(cellPx * 0.52),
                   lineHeight: 1,
@@ -416,7 +416,7 @@ export function Loop({
             style={{
               height: 48,
               border: "1px solid var(--line)",
-              color: hintsLeft > 0 ? "var(--accent)" : "var(--muted)",
+              color: hintsLeft > 0 ? "var(--ink)" : "var(--muted)",
             }}
             onClick={useHint}
             disabled={hintsLeft <= 0}
@@ -454,7 +454,7 @@ export function Loop({
                 flyPhase === "start"
                   ? "none"
                   : `transform ${FLY_MS}ms var(--ease-soft)`,
-              color: "var(--accent)",
+              color: "var(--ink)",
               fontSize: 20,
             }}
             aria-hidden
