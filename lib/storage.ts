@@ -14,8 +14,11 @@ export const STORAGE_KEY = "Ordlek.state.v1";
 /**
  * 2 dropped Five's per level records, because Five stopped having levels. The
  * other six games kept theirs untouched.
+ *
+ * 3 added Mini. Nothing was dropped, so a v2 state upgrades by gaining an
+ * empty `mini` map rather than by losing anything.
  */
-export const SCHEMA_VERSION = 2;
+export const SCHEMA_VERSION = 3;
 
 export type MotionPref = "system" | "full" | "reduced";
 
@@ -60,6 +63,23 @@ export function emptyFiveStat(): FiveStat {
   };
 }
 
+/**
+ * Mini's record for one language and difficulty. A crossword is a speed game,
+ * so the number that matters is time, not guesses — there is no distribution
+ * to plot and no win rate, because a mini is not lost, only unfinished.
+ */
+export interface MiniStat {
+  solved: number;
+  /** Seconds. 0 when nothing has been solved yet. */
+  bestSeconds: number;
+  streak: number;
+  maxStreak: number;
+}
+
+export function emptyMiniStat(): MiniStat {
+  return { solved: 0, bestSeconds: 0, streak: 0, maxStreak: 0 };
+}
+
 export interface AppState {
   v: number;
   settings: Settings;
@@ -69,6 +89,9 @@ export interface AppState {
   five: Record<string, FiveStat>;
   /** Last language and difficulty played, so the home card can deep link. */
   fiveLast: { lang: Lang; difficulty: Difficulty } | null;
+  /** Mini only, keyed by `${lang}:${difficulty}`. */
+  mini: Record<string, MiniStat>;
+  miniLast: { lang: Lang; difficulty: Difficulty } | null;
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -85,10 +108,16 @@ export function defaultState(): AppState {
     progress: {},
     five: {},
     fiveLast: null,
+    mini: {},
+    miniLast: null,
   };
 }
 
 export function fiveKey(lang: Lang, difficulty: Difficulty): string {
+  return `${lang}:${difficulty}`;
+}
+
+export function miniKey(lang: Lang, difficulty: Difficulty): string {
   return `${lang}:${difficulty}`;
 }
 
@@ -174,6 +203,23 @@ function parseFive(v: unknown): Record<string, FiveStat> {
   return out;
 }
 
+function parseMini(v: unknown): Record<string, MiniStat> {
+  if (!isObject(v)) return {};
+  const out: Record<string, MiniStat> = {};
+  for (const [key, value] of Object.entries(v)) {
+    if (!isObject(value)) continue;
+    const [lang, difficulty] = key.split(":");
+    if (!isLang(lang) || !isDifficulty(difficulty)) continue;
+    out[key] = {
+      solved: num(value.solved),
+      bestSeconds: num(value.bestSeconds),
+      streak: num(value.streak),
+      maxStreak: num(value.maxStreak),
+    };
+  }
+  return out;
+}
+
 function parseFiveLast(v: unknown): AppState["fiveLast"] {
   if (!isObject(v)) return null;
   if (!isLang(v.lang) || !isDifficulty(v.difficulty)) return null;
@@ -198,6 +244,8 @@ export function migrate(raw: unknown): AppState {
     progress: parseProgress(raw.progress),
     // v1 had no Five stats at all, so this is simply empty for those payloads.
     five: parseFive(raw.five),
+    mini: parseMini(raw.mini),
+    miniLast: parseFiveLast(raw.miniLast),
     fiveLast: parseFiveLast(raw.fiveLast),
   };
 }
@@ -342,6 +390,46 @@ export function recordFive(
       fiveLast: { lang, difficulty },
     },
     stat,
+  };
+}
+
+export function getMiniStat(
+  state: AppState,
+  lang: Lang,
+  difficulty: Difficulty,
+): MiniStat {
+  return state.mini[miniKey(lang, difficulty)] ?? emptyMiniStat();
+}
+
+/**
+ * Fold one finished crossword in. Only solved puzzles are recorded: a mini is
+ * never lost, so an abandoned one leaves the streak alone rather than breaking
+ * it — walking away from a puzzle is not a defeat.
+ */
+export function recordMini(
+  state: AppState,
+  lang: Lang,
+  difficulty: Difficulty,
+  seconds: number,
+): { state: AppState; stat: MiniStat; isBest: boolean } {
+  const key = miniKey(lang, difficulty);
+  const prev = state.mini[key] ?? emptyMiniStat();
+  const isBest = prev.bestSeconds === 0 || seconds < prev.bestSeconds;
+  const streak = prev.streak + 1;
+  const stat: MiniStat = {
+    solved: prev.solved + 1,
+    bestSeconds: isBest ? seconds : prev.bestSeconds,
+    streak,
+    maxStreak: Math.max(prev.maxStreak, streak),
+  };
+  return {
+    state: {
+      ...state,
+      mini: { ...state.mini, [key]: stat },
+      miniLast: { lang, difficulty },
+    },
+    stat,
+    isBest,
   };
 }
 

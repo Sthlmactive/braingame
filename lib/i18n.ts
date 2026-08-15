@@ -13,7 +13,7 @@ export function isLang(v: unknown): v is Lang {
 const en = {
   // Shell
   appName: "Ordlek",
-  tagline: "Seven word games",
+  tagline: "Eight word games",
   back: "Back",
   close: "Close",
   settings: "Settings",
@@ -213,6 +213,27 @@ const en = {
   fiveRuleNoColours:
     "At this difficulty the keyboard stays grey. The board still shows its colours.",
 
+  // Mini, the crossword. Difficulties like Five, and it never ends either.
+  miniName: "Mini",
+  miniTagline: "A small crossword",
+  miniAcross: "Across",
+  miniDown: "Down",
+  clues: "Clues",
+  newCross: "New crossword",
+  miniBestTime: "Best time",
+  timeTaken: "Time",
+  solvedCount: "Solved",
+  notQuite: "Not quite — the marked letters are wrong",
+  miniDiffEasyDesc: "4x4, no black squares. Two hints.",
+  miniDiffMediumDesc: "5x5 with black squares.",
+  miniDiffHardDesc: "5x5, fewer black squares.",
+  miniDiffExtremeDesc: "5x5, every letter checked twice.",
+  miniRule1: "Every across and every down run is a word.",
+  miniRule2:
+    "Tap a square to select it. Tap it again to switch between across and down.",
+  miniRule3:
+    "Nothing is checked until every square is filled. Fill the grid and the puzzle tells you.",
+
   // Word data credits. Both the Swedish list and the frequency data carry
   // attribution licences, so naming the source is a condition, not a courtesy.
   // The FrequencyWords repo is MIT for its code but CC BY-SA 4.0 for the word
@@ -231,7 +252,7 @@ export type StringKey = keyof typeof en;
 
 const sv: Record<StringKey, string> = {
   appName: "Ordlek",
-  tagline: "Sju ordspel",
+  tagline: "Åtta ordspel",
   back: "Tillbaka",
   close: "Stäng",
   settings: "Inställningar",
@@ -417,6 +438,25 @@ const sv: Record<StringKey, string> = {
     "En grön bokstav står i rätt kolumn. En gul bokstav finns i ordet, men på en annan plats.",
   fiveRuleNoColours:
     "På den här svårighetsgraden förblir tangentbordet grått. Brädet visar fortfarande sina färger.",
+
+  miniName: "Mini",
+  miniTagline: "Ett litet korsord",
+  miniAcross: "Vågrätt",
+  miniDown: "Lodrätt",
+  clues: "Ledtrådar",
+  newCross: "Nytt kryss",
+  miniBestTime: "Bästa tid",
+  timeTaken: "Tid",
+  solvedCount: "Lösta",
+  notQuite: "Inte riktigt — de markerade bokstäverna är fel",
+  miniDiffEasyDesc: "4x4, inga svarta rutor. Två ledtrådar.",
+  miniDiffMediumDesc: "5x5 med svarta rutor.",
+  miniDiffHardDesc: "5x5, färre svarta rutor.",
+  miniDiffExtremeDesc: "5x5, varje bokstav kontrolleras två gånger.",
+  miniRule1: "Varje rad och varje kolumn bildar ett ord.",
+  miniRule2: "Tryck på en ruta för att välja den. Tryck igen för att byta led.",
+  miniRule3:
+    "Ingenting kontrolleras förrän alla rutor är fyllda. Fyll i hela krysset så säger pusslet till.",
 
   wordData: "Ordlistor",
   wordDataSv:

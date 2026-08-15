@@ -33,6 +33,18 @@ export function bagKey(lang: Lang, level: Difficulty): string {
   return `${lang}:${level}`;
 }
 
+/**
+ * Mini's bags live in the same store under their own prefix.
+ *
+ * The mechanism is identical — a shuffled bag over a pool, a cursor, and a
+ * fingerprint that resets it when the pool changes — but the pools are
+ * different things, so `sv:easy` must not mean Five's word bag and Mini's
+ * puzzle bag at once.
+ */
+export function miniBagKey(lang: Lang, difficulty: Difficulty): string {
+  return `mini:${lang}:${difficulty}`;
+}
+
 // ---------------------------------------------------------------------------
 // The permutation
 // ---------------------------------------------------------------------------

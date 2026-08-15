@@ -16,15 +16,18 @@ import {
   clearState,
   defaultState,
   getFiveStat,
+  getMiniStat,
   getRecord,
   highestCleared,
   loadState,
   recordFive,
+  recordMini,
   recordRun,
   saveState,
   type AppState,
   type FiveStat,
   type GlyphMode,
+  type MiniStat,
   type LevelRecord,
   type MotionPref,
   type RunResult,
@@ -59,6 +62,14 @@ interface AppContextValue {
   fiveStat: (lang: Lang, difficulty: Difficulty) => FiveStat;
   /** Where Five was last played, for the home card's deep link. */
   fiveLast: AppState["fiveLast"];
+  /** Mini keeps time, not guesses, so its record is a different shape. */
+  recordMiniRun: (
+    lang: Lang,
+    difficulty: Difficulty,
+    seconds: number,
+  ) => { stat: MiniStat; isBest: boolean };
+  miniStat: (lang: Lang, difficulty: Difficulty) => MiniStat;
+  miniLast: AppState["miniLast"];
   resetAll: () => void;
 }
 
@@ -129,6 +140,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
       },
       fiveStat: (l, difficulty) => getFiveStat(state, l, difficulty),
       fiveLast: state.fiveLast,
+      recordMiniRun: (l, difficulty, seconds) => {
+        const next = recordMini(state, l, difficulty, seconds);
+        setState(next.state);
+        return { stat: next.stat, isBest: next.isBest };
+      },
+      miniStat: (l, difficulty) => getMiniStat(state, l, difficulty),
+      miniLast: state.miniLast,
       resetAll: () => {
         clearState();
         setState({ ...defaultState(), settings: state.settings });
