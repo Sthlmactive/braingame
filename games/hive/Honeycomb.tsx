@@ -120,7 +120,7 @@ export function Honeycomb({
         >
           <polygon
             points={hexPoints(slot.cx, slot.cy, DRAW_R)}
-            fill={isCentre ? "var(--accent)" : "var(--surface)"}
+            fill={isCentre ? "var(--ink)" : "var(--raised)"}
           />
           <text
             x={slot.cx}
@@ -129,7 +129,7 @@ export function Honeycomb({
             y={slot.cy - 2}
             textAnchor="middle"
             dominantBaseline="central"
-            fill={isCentre ? "var(--on-state)" : "var(--text)"}
+            fill={isCentre ? "var(--paper)" : "var(--ink)"}
             style={{
               fontFamily: "var(--font-ui)",
               fontWeight: 700,

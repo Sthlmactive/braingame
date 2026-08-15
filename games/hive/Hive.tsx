@@ -213,7 +213,7 @@ export function Hive({
             className="h-full rounded-full"
             style={{
               width: `${progress * 100}%`,
-              background: "var(--accent)",
+              background: "var(--ink)",
               transition: "width 220ms var(--ease-soft)",
             }}
           />
@@ -250,9 +250,9 @@ export function Hive({
                   key={w}
                   className="shrink-0 rounded-md px-2 py-1 text-[0.72rem]"
                   style={{
-                    background: "var(--surface)",
-                    color: pangram ? "var(--accent)" : "var(--muted)",
-                    border: `1px solid ${pangram ? "var(--accent)" : "transparent"}`,
+                    background: "var(--raised)",
+                    color: pangram ? "var(--ink)" : "var(--muted)",
+                    border: `1px solid ${pangram ? "var(--ink)" : "transparent"}`,
                   }}
                 >
                   {w}
@@ -270,10 +270,8 @@ export function Hive({
             key={toast.id}
             className="toast-enter rounded-lg px-3 py-1 text-xs font-semibold"
             style={{
-              background: toast.tone === "good" ? "var(--accent)" : "var(--ink)",
-              // Follows the ground it sits on. `--on-state` is a fixed dark,
-              // so on the ink toast it was dark on dark in light mode.
-              color: toast.tone === "good" ? "var(--on-state)" : "var(--paper)",
+              background: "var(--ink)",
+              color: "var(--paper)",
             }}
             role="status"
           >
@@ -293,7 +291,7 @@ export function Hive({
                 key={i}
                 style={{
                   color:
-                    ch === puzzle.centre ? "var(--accent)" : "var(--text)",
+                    ch === puzzle.centre ? "var(--ink)" : "var(--muted)",
                 }}
               >
                 {ch}
@@ -304,7 +302,7 @@ export function Hive({
               style={{
                 width: 2,
                 height: "1.15em",
-                background: "var(--accent)",
+                background: "var(--ink)",
               }}
               aria-hidden
             />
@@ -338,7 +336,7 @@ export function Hive({
             width: 48,
             height: 48,
             border: "1px solid var(--line)",
-            color: "var(--text)",
+            color: "var(--ink)",
           }}
           onClick={() => {
             // Only the ring moves. The centre letter is required in every
@@ -364,8 +362,8 @@ export function Hive({
           className="tap rounded-full px-6 text-sm font-semibold"
           style={{
             height: 48,
-            background: "var(--accent)",
-            color: "var(--on-state)",
+            background: "var(--ink)",
+            color: "var(--paper)",
           }}
           onClick={submit}
         >
@@ -393,9 +391,9 @@ export function Hive({
                       key={w}
                       className="rounded-md px-2 py-1 text-[0.78rem]"
                       style={{
-                        background: "var(--surface)",
-                        color: pangram ? "var(--accent)" : "var(--text)",
-                        border: `1px solid ${pangram ? "var(--accent)" : "transparent"}`,
+                        background: "var(--raised)",
+                        color: "var(--ink)",
+                        border: `1px solid ${pangram ? "var(--ink)" : "transparent"}`,
                       }}
                     >
                       {w}
