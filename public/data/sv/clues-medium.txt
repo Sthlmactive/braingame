@@ -1,0 +1,806 @@
+adeln	Societeten med titlar och vapen	De med grevar och baroner
+agent	Person som arbetar hemligt för en organisation	Någon som förmedlar affärer å andras vägnar
+agera	Handla i en situation	Vidta åtgärder
+akta	Vara försiktig med	Visa respekt för
+akten	Delen av ett skådespel	Det juridiska dokumentet
+akter	Bakre delen av ett fartyg	Riktningen mot fartygets bakre del
+akut	Brådskande och allvarligt	Som kräver omedelbar åtgärd
+alarm	Larmande signal vid fara	Ljud som varnar för hot
+alert	Vaken och uppmärksam	Snabb att reagera
+alias	Annat namn man använder	Täcknamn för en person
+alkis	Person med alkoholproblem, vardagligt	Nedsättande ord för en fyllbult
+allra	Förstärkning som betyder 'mest av alla'	Ord före en superlativ
+alls	Inte det minsta	Överhuvudtaget, i nekande sats
+allt	Varje sak som finns	Totaliteten av något
+amen	Ord som avslutar en bön	Sägs efter en välsignelse
+anade	Kände på sig, tidigare	Hade en föraning om något
+anar	Känner på sig, just nu	Har en föraning
+andas	Drar in och ut luft	Lever genom att hämta syre
+andel	Del av en helhet	Ägarskap i en gemensam summa
+andre	Den som kommer efter den första	Nummer två i ordningen
+anger	Rapporterar, just nu	Uppger något, i nutid
+aning	Svag förnimmelse av något	En liten misstanke
+ankor	Fåglar som kvackar vid dammen	Simfåglar man ofta ser i parker
+annat	Motsatsen till detsamma	Något som skiljer sig från det nämnda
+anrop	Signal för att få kontakt över radio	Ett rop för att påkalla uppmärksamhet
+anse	Att betrakta något på ett visst sätt	Att ha en åsikt om något
+anses	Betraktas allmänt som något	Uppfattas av andra på ett visst sätt
+anta	Att förmoda utan bevis	Att gissa sig till en förklaring
+antik	Mycket gammal och värdefull, från forntiden	Beskriver möbler från svunna tider
+antog	Förmodade något förr	Trodde på en förklaring i det förflutna
+arken	Skeppet Noa byggde enligt berättelsen	Fartyget som räddade djuren från floden
+arkiv	Plats där gamla dokument förvaras	Samling av historiska handlingar
+arten	Den biologiska kategori en varelse tillhör	Sorten eller slaget av något specifikt
+arvet	Det man ärver efter en anhörig	Kulturell tradition som förs vidare
+asen	Nordiska gudar i mytologin	Gudasläktet med Oden och Tor
+aset	Ett dött djur som lockar rovfåglar	Kadaver som liggit och ruttnat
+asken	Lådan med tändstickor i	Behållaren för cigaretter man bär i fickan
+atom	Minsta beståndsdelen av ett grundämne	Byggsten i all materia
+att	Litet ord som binder ihop en bisats	Infinitivmärke framför ett verb
+avser	Syftar på	Har för avsikt
+avund	Missunnsamhet mot andras lycka	Känsla av att önska sig andras ägodelar
+bete	Lockmat vid fiske	Stötande tand hos elefant
+bio	Plats att se film på	Salong med filmduk
+blad	Del av en växt	Sida i en bok
+blek	Utan färg i ansiktet	Ljus och urblekt
+bli	Övergå till att vara	Förvandlas till något
+blod	Röd vätska i kroppen	Pumpas av hjärtat
+blus	Klädesplagg för överkroppen	Bärs ofta till kjol
+blås	Fläkta luft, kort form	Ge ifrån sig vind
+blåsa	Fläkta med munnen	Producera vind
+blöta	Göra våt	Fukta ordentligt
+boven	Den skyldige	Skurken i historien
+bra	Fint, av god kvalitet	Duktigt utfört
+bravo	Utrop av beundran	Jubelrop efter en bra insats
+brist	När något saknas eller inte räcker	Ekonomiskt underskott eller avsaknad
+bråka	Vara stökig och högljudd	Skapa konflikt med andra
+bräda	Platt bit av trä	Lura eller besegra någon
+bränt	Har fattat eld	Doft av rök från maten
+byggt	Uppfört från grunden	Skapat genom konstruktion
+dagar	Tidsenheter på tjugofyra timmar	Flera dygn i följd
+dagen	Idag, det aktuella dygnet	Tiden mellan morgon och kväll
+dagis	Plats där små barn vistas dagtid	Förskola för de yngsta
+dalen	Låglänt mark mellan bergen	Platsen där en flod ofta rinner
+damer	Kvinnor av finare stånd	Spelbrickor i ett brädspel
+dansa	Röra sig till musik	Utföra steg i takt med rytmen
+data	Information lagrad digitalt	Fakta som matas in i en dator
+dator	Elektronisk apparat för beräkningar	Maskin man skriver och surfar på
+datum	Specifik dag i kalendern	Anges vid en tidpunkt för händelse
+del	En bit av en helhet	Andel av något större
+dela	Fördela mellan flera personer	Bryta upp i mindre bitar
+delen	Den specifika biten av helheten	Andelen som tillhör någon
+dem	Pronomen som syftar på flera personer	Objektsform av 'de'
+demo	Kort visning av en produkt	Provversion innan lansering
+dessa	Pekar ut flera saker nära talaren	De här sakerna
+diet	Kostplan för viktnedgång	Regelbundet matschema
+dig	Objektsform av 'du'	Ord man använder till en person man tilltalar
+dike	Dräneringsgrav vid vägkant	Smal fördjupning för avrinning
+dikt	Text skriven i versform	Lyrisk skapelse med rytm
+din	Possessivt ord för mottagaren	Tillhör den du talar med
+dirk	Verktyg för att låsa upp utan nyckel	Tunn metallbit som knäcker lås
+dit	Riktning mot ett mål	Motsats till 'hit'
+dito	Samma sak igen	Ord som betyder 'likaledes'
+dolda	Ej synliga för blotta ögat	Gömda undan andras blickar
+dom	Beslut från en domstol	Utslag efter en rättegång
+drake	Mytiskt eldsprutande odjur	Flygande leksak med lina
+drar	Flyttar en vagn framåt med kraft	Suger in rök från en cigarett
+dras	Utsätts för lidande, till exempel av sjukdom	Blir bogserad framåt
+drink	Blandad alkoholhaltig dryck på en bar	Cocktail som serveras med is
+driv	Inre energi att uppnå mål	Kraft som får något att röra sig framåt
+droga	Bruka ett berusande preparat	Ge någon ett bedövande ämne
+duger	Räcker till eller är tillräckligt bra	Är godtagbar eller acceptabel
+duken	Textilien som täcker bordet	Ytan där filmen visas
+dyker	Utövar sport under vattenytan	Sjunker hastigt, till exempel om kurser
+dyrka	Älska och beundra högt	Öppna lås utan nyckel
+dålig	Motsatsen till bra	Undermålig kvalitet
+dårar	Personer som handlar oförnuftigt	Enfaldiga stackare
+dåre	En galning	Person som beter sig vansinnigt
+där	Motsats till här	På den platsen
+dödad	Berövad livet	Avlivad, om ett djur
+dödar	Tar liv av någon	Gör slut på existensen
+egen	Som tillhör en själv	Personlig, inte lånad
+eget	Som tillhör en själv, neutrum	Personligt och inte delat med andra
+egna	Ens tillhörigheter	De personliga sakerna
+ekar	Stora lövträd i skogen	Ger genljud
+elak	Ondsint till sinnelaget	Grym mot andra
+elaka	Ondsinta personer	De grymma i sagan
+elakt	Sagt på ett grymt sätt	Ondskefullt uttalat
+elda	Tända en brasa	Sätta fyr på ved
+eldar	Tänder bränder	Håller brasan vid liv
+elden	Lågorna i brasan	Branden
+elit	De allra bästa i sitt slag	Toppskiktet inom ett område
+eller	Ord som ger alternativ	Antingen det ena — — det andra
+ena	Den första av ett par	En av två sidor i en tvist
+enats	Blivit överens	Kommit fram till samförstånd
+ende	Den enda som finns, i maskulin form	Ensam kvarvarande av sitt slag
+eniga	Överens i en fråga	Samstämmiga i en åsikt
+ens	Förstärkning som betyder 'till och med'	Förstärkning som betyder 'till och med'
+ensak	Något som bara angår en själv	Privat angelägenhet, ej andras
+era	Tidsperiod i historien	Epok med tydlig prägel
+eran	Den tidsperioden	Nittiotalet, till exempel
+erat	Tillhör er	Ert, om ett hus
+etik	Läran om rätt och fel	Moralfilosofi
+ett	Talet efter noll	Minsta udda talet
+evig	Utan slut i tiden	Bestående för alltid
+eviga	De som varar för alltid	Ändlösa, om till exempel löften
+evigt	För alltid, adverbialt	Utan ände i tid
+fader	Högtidligt ord för pappa	Titel man tilltalar en präst med
+fakta	Sanna och kontrollerbara uppgifter	Information som kan verifieras
+fan	Djävulen i talspråk	Kraftuttryck vid irritation
+far	Pappa	Manlig förälder
+fara	Risk för olycka	Något farligt som hotar
+faran	Hotet	Risken man varnas för
+fars	Skämtsam teaterpjäs	Löjeväckande upptåg
+fel	Något som är felaktigt	Motsatsen till rätt
+filen	Dokumentet på datorn	Verktyget man slipar med
+firar	Uppmärksammar en högtid	Hyllar med tårta och sång
+flera	Mer än ett par stycken	Ett obestämt större antal
+flint	Bar hjässa utan hår	Kalt huvud
+flöda	Rinna rikligt fram	Strömma i stora mängder
+forna	Från en svunnen tid	Det som en gång var, förr
+forum	Plats för offentlig diskussion	Mötesplats för meningsutbyte, ofta online
+frige	Släppa ut ur fångenskap	Ge fri från fängelse
+from	Mild och religiöst andäktig	Ödmjuk och gudfruktig till sinnet
+fru	Titel för en gift kvinna	Hustru i vardagligt tal
+fråga	Det man ställer för att få svar	Undran som kräver ett svar
+fuska	Bryta mot reglerna för att vinna	Göra något slarvigt och oärligt
+får	Ullbärande djur på äng	Bräkande gårdsdjur
+föder	Ger näring åt sitt barn	Ger upphov till avkomma
+föras	Att bli transporterad	Att bli ledd någonstans
+fören	Framre delen av en båt	Där ankaret ofta finns på fartyget
+förmå	Att ha kraft att klara något	Att övertala någon till handling
+fört	Har blivit lett eller styrt	Har transporterats någonstans
+gale	Tuppens morgonrop, i konjunktiv	Att skrika ut som en tupp
+galet	Vansinnigt eller tokigt, om ett neutrumord	Alldeles fel och absurt
+galna	Tokiga eller vansinniga, flera	Handlar helt orimligt, om flera
+galne	Den tokige mannen	Han som beter sig vansinnigt
+game	Ett parti i tennis	Del av en match i racketsport
+garde	Vaktstyrka kring en furste	Elittrupp som skyddar
+gasen	Pedalen man trycker för fart	Drivmedlet
+gaser	Ämnen i luftform	Det som kommer ur en avgasrör
+gator	Vägar mellan hus i en stad	Där bilar och fotgängare rör sig i tätorten
+gav	Räckte över till någon annan	Skänkte bort något
+gay	Homosexuell, kort ord	Beteckning för samkönat kärlek
+ger	Överlämnar något	Skänker eller lämnar ifrån sig
+gett	Har skänkt bort något	Har lämnat ifrån sig en present
+gevär	Vapen som soldater bär	Långt skjutvapen
+gilla	Tycka om något	Ge tummen upp åt
+glad	Känner sig lycklig	På gott humör
+glada	Rovfågel som svävar i luften	Kärlekens fjäder, flygande rovfågel
+glans	Skimmer på en yta	Lyster hos metall eller hår
+glas	Dricksbehållare av genomskinligt material	Material i fönster
+gnida	Gnugga mot en yta	Frottera intensivt
+goa	Trevliga, i vardagligt tal	Skönt fina, talspråk
+god	Snäll och vänlig	Smakar bra
+gode	Den snälle mannen	Den hedervärde, ålderdomligt
+godta	Acceptera ett förslag	Säga ja till villkor
+gosse	Ung pojke	Manlig unge
+gott	Smakar väldigt bra	Behagligt och trevligt
+grav	Plats där en död begravs	Djup fördjupning i marken
+gray	Färgen mellan svart och vitt, på engelska stavning	Ljusgrå nyans som ibland stavas utan svenskt å
+grej	Vardagligt ord för sak eller pryl	Något man inte kommer på namnet för
+greve	Adelstitel under en hertig	Man med adlig rang och gods
+grov	Motsatsen till fin, om struktur	Allvarlig, om ett brott
+grova	Beskriver flera saker som ojämna eller allvarliga	Om skämt som är oanständiga
+grove	Beskriver en man som är ojämn eller sträv	Om en man som begått ett allvarligt brott
+gruva	Plats under jord där malm bryts	Anläggning för utvinning av mineraler
+gryta	Kärl man lagar soppa i	Maträtt som puttrar länge på spisen
+gråt	Ljudet och tårarna vid sorg	Det man gör när man är mycket ledsen
+gråta	Fälla tårar av sorg	Vad ett litet barn ofta gör vid smärta
+gräns	Skiljelinje mellan två länder	Den yttersta punkten för vad som är tillåtet
+gräs	Grönt som växer på ängar	Det korta gröna man går barfota på
+gräv	Uppmaning att skopa upp jord	Uppmaning att skopa upp jord
+gröt	Havreflingor kokta med mjölk till frukost	Varm frukostmat i skål med mjölk
+gudar	Övernaturliga väsen i mytologier	De högre makterna som dyrkas i tempel
+gåtan	Det olösta mysteriet man just nämnt	Frågan som ännu inte fått sitt svar
+gått	Har förflyttat sig till fots	Har promenerat tidigare
+gömde	Placerade något utom synhåll tidigare	Doldes bakom ett föremål förr i tiden
+gör	Utför just nu	Uträttar en syssla
+hagel	Små isklumpar från skyn	Ammunition till en flinta
+hagen	Inhägnaden för djuren	Betesmarken utanför laden
+hake	Böjd metallkrok	Litet problem eller invändning
+hale	Uttal av bogsera i sjömanstermer	Dra hårt i ett rep
+halo	Ljussken kring huvudet	Ring av ljus runt solen
+hals	Kroppsdel mellan huvud och bål	Delen man sväljer med
+har	Äger eller besitter något	Verb för att inneha något just nu
+hare	Snabbt hoppande djur i markerna	Långörat djur i skogen
+hatar	Avskyr något intensivt	Känner stark motvilja just nu
+haven	De stora vattenmassorna på jorden	Oceanerna sedda som en samlad grupp
+hem	Platsen man bor på	Dit man går efter jobbet
+hemma	Där man bor och känner sig trygg	Motsatsen till borta i en match
+henne	Kvinnan i objektsform	Den man syftar på om en kvinna
+hit	Till denna plats	Riktning mot talaren
+hojen	Motorcykeln i vardagligt tal	Tvåhjulingen med motor
+hos	Preposition, bor tillsammans med	I någons hem
+hotad	Utsatt för fara	Riskerar att försvinna
+hoten	Farliga varningar riktade mot någon	Flera uttalanden om att skada någon
+house	Musikstil från klubbscenen	Elektronisk dansmusikgenre
+humör	Sinnesstämning för stunden	Om man är glad eller sur just nu
+hur	Frågeord om sätt	På vilket vis, frågas det
+hynda	Hunhund	Kvinnligt djur av hundsläktet
+håla	Litet gömställe under jord	Djurs boplats i berg
+här	På denna plats	Stridande styrka, kort ord
+häråt	I den här riktningen	Mot den plats där talaren befinner sig
+häst	Ridbart fyrbent djur	Schackpjäs med hoppande drag
+högar	Staplar av saker	Flera drivor eller hopar
+högen	Stapeln	Sophögen
+höger	Motsatt sida mot vänster	Politisk riktning, konservativ
+höjer	Ökar något, till exempel priset	Lyfter upp något till en högre nivå
+hör	Uppfattar med öronen	Lyssnar just nu
+höras	Kunna uppfattas med örat	Ge ljud ifrån sig
+hörde	Uppfattade ljud, förr	Lyssnade tidigare
+hördu	Utrop för att fånga uppmärksamhet	Säg, hallå där!
+hört	Uppfattat med öronen, tidigare	Har fått höra
+idag	Denna dag	Nu, inte igår
+ideal	Perfekt förebild	Det man strävar mot
+idel	Enbart, uteslutande	Bara och inget annat
+iden	Björnens vinterbo	Djurets gömställe under vintersömn
+idiot	Mycket dum person	Nedsättande ord för dåre
+ifall	Under förutsättning att	Om det skulle vara så
+ifjol	Under föregående år	Året innan detta
+igen	En gång till	På nytt
+igång	I drift eller rörelse	Startad och fungerande
+ikapp	I samma takt som någon annan, till slut	Springa för att komma i fatt
+ikon	Religiös bild att vörda	Symbol på datorskärmen
+illa	Dåligt, på ett negativt sätt	Motsatsen till bra
+image	Yttre bild av en person eller ett företag	Rykte och framtoning utåt
+inatt	Kommande natt eller natten som just varit	Tidsangivelse för mörkrets timmar
+ingen	Inte en enda person	Noll av något, syftande på människor
+inget	Ingenting alls	Noll av något, syftande på ting
+ingå	Vara en del av något större	Sluta ett avtal
+innan	Tidigare än något annat	Före en viss tidpunkt
+inne	Motsatsen till ute	Populärt just nu
+inom	Innanför en gräns	Under en viss tid, som i en vecka
+inre	Det som finns på insidan	Rörande själslivet
+inse	Förstå till slut	Bli medveten om en sanning
+inta	Erövra genom att ta över	Sätta sig ner på en plats
+inte	Nekande ord	Motsatsen till ja i en mening
+inåt	Riktning mot centrum	Mot det inre
+isen	Den frusna ytan på sjön	Det man åker skridskor på
+iver	Stark entusiasm	Brinnande vilja att göra något
+iväg	Bort från platsen man är på	Ut på en resa
+jade	Grönaktig ädelsten	Sten använd i smycken och skulpturer
+jadå	Bekräftande svar med eftertryck	Ett övertygat ja
+jag	Det egna självet	Personligt pronomen i första person
+jaga	Förfölja ett byte	Springa efter något med avsikt att fånga
+jakt	Sysselsättning med gevär i skogen	Sökande efter byte
+jude	Person av viss religiös tillhörighet	Tillhör en av världens äldsta trosinriktningar
+julen	Högtiden i december	Tiden med gran och klappar
+kajen	Platsen vid vattnet där båtar lägger till	Hamnens kant mot vattnet
+kali	Ämne i konstgödsel	Mineral som används inom jordbruk
+kallt	Låg temperatur, motsatsen till varmt	Hur vädret känns en vintermorgon
+kamel	Djur med puckel i öknen	Ökendjur som kan gå länge utan vatten
+kan	Har förmåga att göra något	Uttrycker möjlighet
+kanot	Farkost man paddlar med enkelblad	Smal båt för forsfärder
+karta	Papper som visar vägar och platser	Hjälpmedel för att hitta rätt väg
+kila	Springa iväg snabbt	Skynda sig någonstans
+kilo	Måttenhet för vikt	Tusen gram
+kines	Person från Östasien	Talar mandarin, kanske
+klar	Redo att börja	Genomskinlig, som glas
+klart	Utan tvekan sant	Fritt från moln, om himlen
+klave	Krage för dragdjur	Sida på ett mynt vid singling
+klev	Tog ett steg	Steg över en tröskel
+kliv	Ett steg framåt	Långt steg
+kliva	Ta stora steg	Gå med bestämda steg
+kloka	Visa och förståndiga	De som ger goda råd
+klon	Exakt genetisk kopia	Identisk kopia av en organism
+kläm	Fastnat mellan två saker	Kraft och energi i rösten
+kniv	Skärverktyg med skaft och blad	Används vid matlagning för att skära
+knyt	Litet paket att bära	Bylte med tillhörigheter
+knäna	Kroppsdelar man böjer när man sitter	Lederna mellan lår och underben
+knäpp	Lite tokig eller virrig person	Ljudet från en fingertopp
+koder	Flera hemliga tecken eller siffror	System som styr datorprogram
+kola	Söta godisbitar	Bränsle av svart mineral
+kolla	Titta efter något	Undersöka eller granska
+kom	Anlände till platsen	Uppmaning att infinna sig
+koma	Djupt medvetslöst tillstånd	Svårt sjuk och utan medvetande
+komet	Himlakropp med svans av is	Reser genom rymden med lysande svans
+konst	Måleri och skulptur	Kreativt skapande verk
+korn	Sädesslag till öl	Liten partikel av något
+korta	Göra mindre i längd	Förkorta en text
+krage	Del av en skjorta runt halsen	Sitter högst upp på plagget
+kram	Omfamning med armarna	Ges som tröst eller kärlek
+krama	Omfamna någon varmt	Trycka något hårt i handen
+krav	Något som måste uppfyllas	Fordran eller villkor
+krets	Elektrisk koppling	Grupp av personer med gemensamt intresse
+kris	Allvarligt läge som kräver åtgärd	Svår situation eller nödläge
+krita	Används för att skriva på tavlan	Vitt stift av mineral
+kul	Roligt och trevligt	Beskriver ett skämt
+kula	Rund metallprojektil	Klot man kastar i friidrott
+kyla	Låg temperatur ute	Göra något kallt
+kyrka	Byggnad för gudstjänst	Plats med torn och klockor
+kyss	Öm beröring med läpparna	Tecken på kärlek
+kyssa	Trycka sina läppar mot någon	Visa ömhet med munnen
+kåken	Vardagligt ord för fängelset	Slang för häktet
+kåre	Lätt vindpust	Ilning längs ryggraden
+kåren	Studentgruppen vid lärosätet	Militärenheten som helhet
+källa	Ursprung till vatten ur marken	Var informationen kommer ifrån
+känn	Uppmaning att undersöka med fingrarna	Kort för att uppleva något
+köket	Rummet där man lagar mat	Där kastrullerna finns hemma
+kör	Grupp som sjunger tillsammans	Ensemble av sångare
+ladda	Fylla på energi i ett batteri	Förbereda ett vapen för avfyring
+lade	Placerade något någonstans förr	Satte ner ett föremål tidigare
+lades	Blev placerad av någon annan	Blev nedlagd förr i tiden
+laga	Tillaga mat	Reparera något trasigt
+lagen	Regelverket i samhället	Det juridiska system man måste följa
+lager	Förråd av varor	En sorts öl, eller ett skikt
+lagt	Har placerat något	Har satt ner ett föremål
+lakan	Textil man bäddar sängen med	Tyget under täcket i sängen
+larm	Signal vid fara	Ljud som varnar för inbrott
+laser	Koncentrerad ljusstråle	Teknik som används vid ögonoperationer
+last	Gods som transporteras	Det ett fartyg fraktar
+ledas	Att styras av någon	Att bli uttråkad tillsammans
+legat	Har befunnit sig i liggande ställning	Har varit belägen någonstans
+lejon	Kung av savannen	Stort kattdjur med man
+lekar	Flera aktiviteter för barn	Tävlingar på en fest
+lera	Fuktig jord man kan forma	Material för krukmakeri
+leran	Materialet i keramik	Formbar jordart vid en flodbank
+leta	Söka efter något	Att spana efter det förlorade
+letat	Har sökt tidigare	Har spanat efter något
+lidit	Har utstått plåga	Har genomlidit svårigheter
+liga	Kriminell organisation	Grupp av lag i en tävling
+ligan	Den kriminella gruppen	Tävlingsserien
+like	En person på samma nivå	Jämlike i förmåga
+liket	Den döda kroppen	Kadavret
+likna	Ha stora gemensamma drag med något annat	Påminna starkt om en annan person eller sak
+lime	Grön citrusfrukt	Syrlig frukt i drinkar
+linje	Rak sträcka mellan två punkter	Busslinjens väg mellan hållplatser
+liten	Av ringa storlek	Motsats till stor
+litet	Ringa till storleken	Nästan obefintligt
+live	Direktsänt och inte inspelat	Sker just nu inför publik
+lodis	Person som ofta dricker sprit, slang	Uttjänt alkoholist på gatan
+loge	Byggnad för spannmål på gården	Utrymme där skörden förvaras
+logik	Läran om giltigt resonemang	Förnuftig tankegång
+lokal	Utrymme man hyr för verksamhet	Rör en avgränsad plats
+loss	Fri från fäste	Inte längre fastsatt
+lossa	Frigöra något som suttit fast	Ta bort last från fordon
+lumen	Enhet för ljusflöde	Mått på hur starkt en lampa lyser
+lyan	Det enkla boendet, vardagligt	Den lilla lägenheten
+lyste	Strålade i mörkret	Gav ljus förr i tiden
+lådor	Flera förvaringsutrymmen	Kartonger på ett lager
+låga	Eld som brinner	Det som flammar i en brasa
+lågan	Den brinnande elden	Eldslågan man ser i mörkret
+låna	Ta emot något för en tid	Få pengar från banken tillfälligt
+låser	Reglar en dörr	Sätter fast med kombination
+låset	Anordningen på dörren	Det man öppnar med en nyckel
+låsta	Reglade med nyckel	Stängda så att ingen kom in
+låt	Kort musikstycke	Det man lyssnar på i radion
+låten	Den specifika melodin	Musikstycket man just hörde
+låter	Ger ett ljud ifrån sig	Tillåter något att ske
+läge	Plats eller belägenhet	Situationen just nu
+läger	Tillfälligt boende utomhus	Plats med tält för övernattning
+läget	Den aktuella situationen	Hur det ligger till just nu
+läkte	Blev frisk förr	Sårade stället gick ihop igen
+längd	Mått på hur lång något är	Kroppsmått i centimeter
+länge	Under lång tid	Inte kort stund
+lärde	Undervisade någon förr	Gav kunskap till en elev
+läsa	Titta på text och förstå den	Studera en bok
+läsk	Kolsyrad dryck	Bubblig sötsak att dricka
+magen	Den som kurrar av hunger	Organet där maten hamnar
+mager	Utan mycket fett på kroppen	Motsatsen till fyllig
+make	Den man är gift med	Äktenskaplig partner
+makt	Inflytande över andra	Det härskare besitter
+man	Vuxen manlig person	Hästens hårprydnad på nacken
+mask	Krypande djur i jorden	Något man täcker ansiktet med
+massa	Stor mängd av något	Formlöst material eller kladd
+maten	Det man äter till middag	Näringen på tallriken
+men	Litet ord som invänder	Bestående skada efter olycka
+mena	Ha för avsikt att säga	placeholder
+mens	Kvinnans månatliga blödning, kort sagt	Cykliskt återkommande blödning hos kvinnor
+mer	Ytterligare, i jämförelse	Motsatsen till mindre
+mera	Ytterligare av något	En större mängd
+mesar	Fega personer, i talspråk	Små fåglar med blåaktig fjäderdräkt
+mesig	Feg och velig	Utan ryggrad, om person
+mest	I högsta grad, av alla	Superlativformen av mycket
+meter	Längdmått med hundra centimeter	Enhet i det metriska systemet
+mig	Objektsform av jag	Ordet man använder om sig själv i objekt
+min	Possessivt ord, tillhör mig	Ansiktsuttryck som visar känsla
+missa	Att inte lyckas nå målet	Gå miste om något viktigt
+mist	Tät dimma över vattnet	Förlorat, i uttrycket gå någon ur handen
+misär	Djup fattigdom och elände	Svåra och nedbrutna levnadsförhållanden
+mode	Trend inom kläder och stil	Det som är populärt just nu
+mors	Possessivt uttryck kopplat till mamma	Tillhör den kvinna som fött en
+mosad	Krossad till jämn konsistens	Som pressats sönder till mos
+mot	I riktning emot	I opposition till
+muren	Den stenbyggda gränsen	Skyddsvallen runt en borg
+myten	Den urgamla sagan om gudar	En spridd men osann föreställning
+myter	Gamla sägner och legender	Osanna föreställningar som lever kvar
+måla	Applicera färg med pensel	Skildra med bilder eller ord
+målet	Det man siktar mot	Var bollen ska in för att ge poäng
+mår	Känner sig på ett visst sätt	Uttrycker hur hälsan är just nu
+märka	Att lägga sig till med, upptäcka	Sätta etikett på något
+märke	Spår efter något	Varumärke eller symbol på en vara
+mögel	Grönt eller svart på gammalt bröd	Fuktig svamp på väggar
+möten	Sammankomster där man diskuterar	Tillfällen då personer träffas
+naiv	Godtrogen och oerfaren	Ser inte det bakomliggande syftet
+naken	Utan kläder	Helt bar, inget täcker
+nate	Vattenväxt med långa blad	Släkte av vattenlevande örter
+natur	Skog, mark och allt levande utomhus	Det som finns oberoende av människan
+nedåt	I riktning mot marken	Rörelse som pekar neråt
+neka	Säga nej till något	Vägra medge eller erkänna
+ner	Åt marken till	Motsatsen till upp
+nere	Befinner sig lägre placerad	Nedstämd till humöret
+neråt	Mot lägre nivå	I riktning nedåt
+nivån	Den specifika höjden eller graden	Det bestämda skiktet man befinner sig på
+nog	Ganska säkert, kanske	Tillräckligt mycket
+noga	Med stor omsorg	Petnoga och exakt
+notan	Den slutgiltiga kostnaden	Kvittot man ska betala
+noter	Symboler för musik	Det man läser vid pianot
+nutid	Vår egen tidsepok	Motsats till dåtid och framtid
+nye	Nyss tillsatta personen	Den senast anställda
+nytta	Praktiskt värde	Fördel man har av något
+nyår	Firas med raketer sista natten	Skiftet mellan december och januari
+nån	En obestämd person	Vem som helst, kanske
+nåt	En obestämd sak	Något, kort sagt
+när	Vid vilken tidpunkt	Frågeord om tid
+näst	Andra i ordningen, direkt efter den första	Precis efter i rangordningen
+odla	Få grödor att växa	Sköta om en trädgård
+ofta	Många gånger om	Vanemässigt, gång på gång
+ogräs	Oönskad växt i trädgården	Rensas bort från rabatten
+okey	Alternativ stavning av jakande svar	Ett gammaldags sätt att säga okej
+okänd	Ingen vet vem det är	Anonym eller obekant
+okänt	Inte identifierat	Främmande och obekant
+olik	Inte densamma som	Skild från något annat
+olika	Av skilda slag	Varierande, inte likadana
+olikt	Inte typiskt för någon	På ett avvikande sätt
+olåst	Inte säkrat med nyckel	Dörren stod så här
+omega	Sista bokstaven i ett grekiskt alfabet	Slutet, motsats till alfa
+omger	Finns runt omkring något	Bildar en ring runt en plats
+onda	Motsatsen till goda	Elaka krafter
+onde	Den elaka i sagan	Motsatsen till den gode
+open	Engelskt ord för öppen, syns i tävlingsnamn	Motsats till stängd, på engelska
+opera	Sjungen scenkonst	Föreställning med arior
+orden	Sällskap med hemliga tecken	Utmärkelser man tilldelas
+order	Direkt befallning	Instruktion från chef
+ordet	Det man ber om att få, i debatt	Ett enskilt uttryck i språket
+ordna	Ställa i rätt struktur	Se till att något blir klart
+oreda	Kaos och oordning	Rörigt tillstånd
+oren	Inte ren	Smutsig eller förorenad
+orena	Göra smutsig	Förstöra renheten hos något
+orka	Ha kraft nog att fortsätta	Kunna hålla ut fysiskt
+orkan	Kraftig tropisk storm	Häftigt oväder med extrem vind
+orkar	Har fortfarande krafter kvar	Klarar av att fortsätta
+oroa	Göra rädd eller nervös	Väcka bekymmer hos någon
+oroar	Väcker ängslan hos någon	Gör orolig, i nutid
+oss	Pronomen för en grupp inklusive talaren	Objektsformen av vi
+ovan	Oerfaren	Inte van vid något
+ovän	Motståndare	Person man ligger i konflikt med
+page	Ung betjänt vid hotell	Person som bär bagage åt gäster
+paret	De två tillsammans	Den kopplade duon
+parti	Politisk organisation	En viss mängd varor
+party	Fest med gäster	Tillställning med musik och dans
+passa	Vara lämplig	Sköta ett ansvar tillfälligt
+paus	Kort avbrott	Vila mitt i arbetet
+peruk	Löshår att sätta på huvudet	Något man bär om man är skallig
+piga	Tjänsteflicka förr i tiden	Kvinna anställd i hushållet
+pilot	Person som flyger flygplan	Den som sitter i cockpit
+plan	Yta utan höjdskillnader	Avsikt eller strategi
+plast	Syntetiskt material i förpackningar	Vad många leksaker är gjorda av
+post	Brev och paket som levereras	Tjänst eller uppdrag
+prat	Vardagligt samtal	Tomt ordande
+prima	Av högsta kvalitet	Utmärkt och förstklassig
+pris	Belöning för vinnare	Vad en vara kostar
+prov	Skriftligt kunskapstest	Test för att bedöma kunskap
+pröva	Testa om något passar	Sätta på sig i provrum
+psyke	Människans inre själsliv	Mentalt tillstånd och personlighet
+påle	Stolpe i marken	Stöd för ett staket
+påse	Behållare av papper eller plast	Där man bär godis hem i
+påve	Katolska kyrkans överhuvud	Bor i Vatikanen
+päls	Djurets hårbeklädnad	Varmt hölje av hår
+raden	Linjen med text på en sida	Ordningsföljden man står i
+radio	Apparat som sänder ljud	Medium för musik och nyheter
+rakt	Utan böjar eller kurvor	Direkt utan omvägar
+rang	Position i hierarkin	Grad av status eller anseende
+rasen	De olika folkgrupperna	Kategorierna inom en art
+rast	Kort paus från arbete	Vila mellan lektioner
+raven	Rovdjur med buskig svans	Listigt skogsdjur
+real	Genuin och äkta	Handfast och verklig
+reda	Ordning i kaos	Klarhet i en situation
+redan	Tidigare än väntat	Vid det här laget
+redo	Beredd och klar för start	I ordning, inget mer att förbereda
+regel	Metallstång som håller dörren stängd	En bestämd norm att följa
+regi	Konstnärlig ledning av en föreställning	Den som styr en filminspelning svarar för denna
+regn	Vatten som faller från molnen	Det som gör gatorna blöta
+regna	Falla ner som vatten från skyn	Molnen gör när det blir blött ute
+reko	Hederligt och schysst, i vardagligt tal	Prisvärt och direkt från gården, säger man ibland
+relik	Helgat föremål från förr	Kvarleva som vördas av troende
+remi	Oavgjort resultat i schack	Ingen vinnare, ingen förlorare i spelet
+rena	Göra fri från smuts eller föroreningar	Ta bort orenheter helt
+rensa	Ta bort ogräs ur rabatten	Städa upp och sortera bort skräp
+rent	Fritt från smuts	Utan orenheter
+repa	Liten skada på en yta	Märke efter något vasst som skrapat
+repet	Den tjocka linan	Det man klättrar i under gymnastik
+resan	Färden man just gjort	Utflykten som just avslutats
+reser	Åker iväg till annan plats	Ger sig av på en färd
+resor	Flera färder till olika platser	Semestrar och utflykter
+rest	Det som blir kvar efteråt	Kvarleva efter en måltid
+reta	Provocera någon medvetet	Göra någon irriterad med flit
+retas	Ägnar sig åt att göra narr av någon	Ägnar sig åt att göra narr av någon
+rida	Färdas på en hästs rygg	Sitta upp och styra en häst
+rike	Ett land styrt av en monark	Stat eller kungadöme
+rikta	Sikta eller vända mot ett mål	Anpassa något för en viss mottagare
+riset	Den ätbara spannmålen	Kvistarna man samlade ihop
+rivas	Bråkas eller kliar sönder varandra	Slåss med klor
+roa	Underhålla någon	Få tiden att gå trevligt
+road	Underhållen och glad	Tyckte något var lustigt
+roade	Fann nöje i något	Underhöll publiken förr
+rond	Omgång i en boxningsmatch	En varv i en tävling
+rulla	Röra sig runt sin egen axel	Färdas på hjul
+runt	I en cirkel omkring	Format utan hörn
+ruset	Känslan av berusning	Tillståndet efter för mycket alkohol
+rysk	Tillhör ett visst slaviskt folk	Från ett stort land i öst
+råna	Ta pengar med våld	Tömma en bank med hot
+rånat	Har begått ett rån	Har tömt kassan med hot
+rånet	Brottet med väska och pistol	Det olagliga tillgreppet
+räkna	Göra en uträkning	Addera tal
+rätt	Korrekt	En maträtt eller korrekt svar
+räven	Det listiga djuret	Rovdjuret med buskig svans
+röra	Sätta i rörelse	Ett virrigt tillstånd
+röret	Ledningen för vätska	Den cylindriska ledningen
+sade	Uttalade i ord	Berättade tidigare
+saker	Föremål eller ting	Prylar av olika slag
+sakta	Med låg hastighet	Utan brådska
+salen	Det stora rummet	Lokalen för fest eller möte
+saliv	Vätska i munnen	Rinner vid god mat
+sant	Överensstämmer med verkligheten	Motsatsen till falskt
+satt	Befann sig på en stol	Höll positionen på plats
+sen	Kommer efter utsatt tid	Motsatsen till tidig
+sena	Bindväv mellan muskel och ben	Kan slitas av vid idrottsskada
+ser	Uppfattar med ögonen	Betraktar något just nu
+seså	Uppmaning att skynda på	Sägs för att muntra upp någon
+shake	Tjock drink med glass	Vispad mjölkdryck med smak
+siare	Person som förutspår framtiden.	Kallas ofta orakel i gamla myter.
+side	Engelskt ord för lag i en match.	Kant eller flank på något.
+sig	Reflexivt pronomen: han tvättade ___.	Används när subjekt och objekt är samma person.
+sin	Possessivt pronomen om eget ägande.	Han tog med ___ bok.
+sina	Tillhör en själv, syftar tillbaka	Possessivt ord för egna saker
+sinka	Fördröja något.	Göra att något tar längre tid.
+sinne	En av kroppens fem varseblivningsförmågor.	Förmåga att uppfatta omvärlden, som syn eller hörsel.
+sir	Engelsk titel för en adlad man.	Artigt tilltal till en herre.
+siren	Ljudande larm vid fara.	Mytologisk varelse som lockade sjömän.
+sist	Efter alla andra i ordning.	Som kommer på slutet.
+sjuka	Åkomma som gör en sängliggande	Ord för en smittsam åkomma
+sjuke	Han som är krasslig	Patienten på avdelningen
+själv	Utan hjälp av andra.	Personligen, ingen annan.
+ska	Hjälpverb för framtid.	Jag ___ gå imorgon.
+skada	Fysisk åverkan efter en olycka	Att orsaka någon smärta eller men
+skaka	Röra kraftigt fram och tillbaka.	Darra av kyla eller rädsla.
+skall	Hundens läte.	Måste-form av verbet skola.
+skam	Känsla av förlägenhet över eget beteende.	Det man känner efter ett misstag.
+skapa	Frambringa något nytt.	Göra så att något uppstår.
+skatt	Pengar man betalar till staten.	Gömda värdesaker i en kista.
+sker	Vad som inträffar just nu	Äger rum
+sket	Dåtid av ett vardagligt uttryck för avföring.	Gjorde sina behov, vardagligt uttryckt.
+skina	Lysa starkt, som solen gör	Glänsa av eget ljus
+skog	Stort område täckt av träd	Plats där man plockar svamp och bär
+skola	Institution där barn får undervisning	Plats för lektioner och läxor
+skon	Fotbeklädnad man har på foten	Den man snörar innan promenaden
+skona	Låta någon slippa lidande	Behandla varsamt utan att skada
+skott	Ljud och verkan av att avfyra ett vapen	Ny liten planta som spirar ur en gren
+skum	Vitt lager bubblor ovanpå en drink	Bubblig massa på havets vågor
+skydd	Det som håller något säkert från fara	Barriär mot väder eller angrepp
+skyn	Himlens utseende just nu	Molntäcket ovanför landskapet
+skåla	Höja glaset tillsammans med andra	Fira med ett gemensamt dryckesutrop
+skäl	Orsak till att något sker	Motiv bakom ett beslut
+skär	Ljusröd nyans	Litet berg ute i havet
+sköna	Behagliga, om känslor	Avkopplande stunder
+skönt	Behagligt, som utrop	Vad man säger efter avslutat arbete
+sköta	Ta hand om något	Sysselsätta sig med uppgifter
+sköte	Kroppsdel där livet börjar	Familjens innersta krets, bildligt
+slag	Träff med hand eller vapen	Sorts eller kategori
+slav	Person utan frihet, ägd av andra	Ofri arbetare i forna tider
+slet	Arbetade hårt förr	Drog sönder något, i dåtid
+slita	Arbeta hårt	Dra sönder med kraft
+slog	Gav ett slag, i dåtid	Besegrade motståndaren, förr
+sluga	Listiga och beräknande	Klipska personer
+slut	Motsatsen till början	Där berättelsen tar sitt sista andetag
+sluta	Upphöra med något	Avsluta en aktivitet
+släde	Fordon som glider på snö	Dras av hästar eller hundar över is
+slösa	Använda pengar utan eftertanke	Ödsla resurser i onödan
+smak	Det tungan känner	Sinne för god mat
+smaka	Pröva maten med tungan	Testa hur något är i munnen
+smeka	Röra varsamt med handen	Kela ömt
+smet	Rörig blandning inför bakning	Tjock vätska av mjöl och ägg
+smita	Fly undan ansvar	Ge sig av i smyg
+smög	Rörde sig tyst förr i tiden	Gick i skydd utan att synas
+snett	På ett skevt sätt	Inte i rät vinkel
+snor	Vätska ur näsan	Rinner vid förkylning
+snut	Vardagligt ord för polis	Ordningsmakten, i slang
+snåla	Hushålla överdrivet med resurser	Vara sparsam till överdrift
+soda	Kemikalie i tvättmedel	Karbonat som mjukar upp vatten
+solig	Med klar himmel och sken	Utan moln, med strålar
+son	Manligt barn	Ättling av manligt kön
+sonen	Det manliga barnet	Pojken i familjen
+sopa	Städa golvet med kvast	Föra bort skräp
+sopar	Städar med kvast	Rensar undan skräp
+sorti	Avgång från en scen	Ett flygplans uppdrag
+sovit	Har vilat under natten	Har varit i drömlandet
+spade	Redskap för att gräva	Verktyg med skaft och blad för jordarbete
+spara	Lägga undan pengar	Undvika att slösa
+spark	Slag med foten	Vad man ger en boll med foten
+spik	Metallföremål man slår in i trä	Litet vasst föremål med huvud och spets
+spöke	Andeväsen som hemsöker ett hus	Vitklädd gestalt i skräckhistorier
+stad	Tätbebyggt område med gator och hus	Plats med torg, hus och invånare
+stake	Lång pinne att hålla eller styra med	Ljushållare på ett bord
+stal	Tog något som inte var ens eget	Snodde en sak i smyg
+stan	Centrala delen av en ort, vardagligt	Dit man åker för att shoppa i tätorten
+stans	Verktyg som slår hål i material	Maskin som formar plåt med tryck
+start	Ögonblicket något inleds	Signal för en tävlings början
+steg	Ett fotsteg framåt	Del av en trappa
+stege	Redskap för att klättra upp på tak	Räddningstjänsten använder en sådan
+stek	Kött tillagat i ugn	Söndagsmiddagens huvudrätt, ofta
+steka	Tillaga mat i het panna	Göra kött brunt i fett
+stel	Svår att böja	Kall och obekväm i sättet
+stiga	Röra sig uppåt	Öka i antal eller värde
+stil	Personlig smak i klädsel	Typsnittets utseende
+stod	Befann sig upprätt	Var kvar på samma plats
+stor	Motsatsen till liten	Beskriver något med imponerande mått
+story	En berättelse i tidningen	Handlingen i en film
+störa	Avbryta någon som jobbar	Vara i vägen för lugn och ro
+sura	Har en syrlig smak	Är på dåligt humör
+svag	Har liten kraft eller styrka	Motsatsen till stark
+svaga	Har lite kraft eller motståndskraft	Beskriver bräckliga personer
+svar	Det man ger på en fråga	Reaktion på ett brev
+svara	Ge respons på en fråga	Reagera på ett meddelande
+svart	Färgen utan ljus	Motsatsen till vit
+svida	Kännas som ett stick i huden	Göra ont som efter ett sår
+svika	Bryta ett givet löfte	Överge någon som litar på en
+svin	Gris på gården	Nedsättande ord om en dålig person
+svära	Uttala ett fult ord i ilska	Avlägga en högtidlig ed
+sylt	Söt smet av kokta bär	Bredas på smörgås till frukost
+synas	Kan ses av andra	Är synlig i mörkret
+såg	Verktyg för att kapa trä	Vad ögonen gjorde igår
+såra	Skada någons känslor	Göra fysisk skada på
+säg	Uppmaning att uttala något	Berätta det, kort och gott
+säga	Uttrycka något med ord	Berätta muntligt
+säger	Uttalar något just nu	Berättar
+sägs	Ryktas i förbifarten	Uttalas av någon annan
+säte	Plats att sitta på	Central ort för en organisation
+söker	Letar just nu	Ansöker aktivt om jobb
+söner	Manliga barn, flera stycken	Pojkar i förhållande till sina föräldrar
+tacka	Uttrycka sin tacksamhet	Hondjur av får
+tagen	Chockad och berörd	Överraskad av nyheten
+taget	Redan upptaget, ej ledigt	Redan bokat av någon annan
+tagna	Berörda, flera personer	Chockade av samma händelse
+tala	Uttrycka sig med rösten	Föra ett samtal
+talar	Håller ett anförande just nu	Uttrycker sig med ord
+talas	Det diskuteras mellan människor	Man samtalar om saken
+tand	Vitt föremål i munnen	Det man borstar morgon och kväll
+tango	Passionerad pardans	Dans med ursprung i Sydamerika
+tanke	Idé som dyker upp i huvudet	Mental föreställning
+tar	Griper efter något	Plockar åt sig
+tavla	Konstverk som hänger på vägg	Målning i en ram
+tesla	Måttenhet för magnetfält	Fysikalisk enhet inom elektromagnetism
+testa	Prova något innan man bestämmer	Undersöka en funktion
+tidig	Som sker före planerat	Morgonpigg och i god tid
+tiga	Hålla tyst medvetet	Avstå från att säga något
+timer	Äggklocka som räknar ner	Apparat som mäter tid till larm
+timma	Sextio minuter, i vardagligt tal	Lektionens längd i skolan
+tjena	Vardagligt hälsningsord	Slarvig hälsning bland kompisar
+tjock	Motsats till tunn	Har stor omkrets
+tjura	Vara sur och tyst	Trotsigt vägra prata
+tjära	Svart klibbigt ämne från trä	Används för att impregnera båtar
+toa	Vardagligt ord för badrum	Vardagligt ord för badrum
+toan	Rummet med toalettstolen	Dit man springer akut
+tog	Grep tag i något, förr	Förde bort med sig, i dåtid
+toner	Musikaliska ljud	Vad en melodi består av
+torka	Bli av med väta	Långvarig brist på regn
+tory	Brittisk politisk falang	Konservativ gruppering i Storbritannien
+trist	Tråkig och dyster	Utan glädje eller spänning
+tro	Övertygelse utan bevis	Religiös övertygelse
+tron	Kungens sittplats	Maktens säte i slottet
+tror	Är övertygad om något	Anser utan säker vetskap
+tros	Underkläders benämning, del av ordet	Litet underplagg för nedre kroppen
+tungt	Svårt att lyfta	Har hög vikt
+två	Talet efter ett	Antal ögon och öron
+tvål	Används vid handtvätt	Skummar i badrummet
+tygla	Hålla tillbaka sina känslor	Kontrollera en häst med tömmar
+tysk	Person från Berlin	Medborgare i ett centraleuropeiskt land
+tågen	Fordonen på räls	De skenburna transportmedlen
+tända	Sätta eld på något	Slå på en lampa
+tänk	Uppmaning att fundera	Kort ord för eftertanke
+tösen	Flickan, i vardagligt tal	Den unga kvinnan, gammaldags ord
+ufon	Mystiskt flygande föremål på himlen	Oidentifierat objekt i rymden
+ultra	Förled som betyder extremt	Beteckning för fanatisk anhängare
+ungt	Inte gammalt	Nyligen fött eller skapat
+unik	Utan motstycke	Enastående i sitt slag
+uppe	I vaket tillstånd, sent på natten	På övervåningen
+uppnå	Lyckas nå ett mål	Komma fram till önskat resultat
+urin	Kroppsvätska från njurarna	Det som lämnas i provburken
+uselt	På ett bedrövligt sätt	Riktigt undermåligt
+utan	Ord som betyder saknar	Motsats till med
+utkik	Plats för att spana efter fara	Vaksam blick mot horisonten
+utse	Peka ut som lämplig kandidat	Bestämma vem som ska väljas
+utöka	Göra större eller fler	Utvidga en samling
+vad	Grund plats att korsa ett vattendrag	Insats i ett spel
+vaddå	Uttryck för förvånad undran	Vad menar du, egentligen?
+vakta	Hålla uppsikt över något	Se till att inget stjäls
+vald	Utsedd genom röstning	Utpekad bland flera alternativ
+valp	Ung hund	Litet nyfött djur av hundras
+valt	Utsett genom röstning	Bestämt bland flera möjligheter
+vapen	Föremål avsett att skada motståndare	Svärd eller gevär, till exempel
+var	Frågeord om plats	Vätska från en infekterad sår
+vara	Existera	En handelsvara i en affär
+vare	Del av frasen som betyder oavsett vilket	Del av frasen som betyder oavsett vilket
+vars	Possessivt frågeord	Tillhör vem, i skriftlig fråga
+varse	Bli medveten om något plötsligt	Upptäcka något man inte sett förut
+vart	Fråga om riktning man är på väg till	Fråga om riktning man är på väg till
+vem	Frågeord om person	Undrar man om en okänd individ
+vet	Har kunskap om något	Känner till svaret
+via	Genom, som förbindelselänk	Med hjälp av en mellanhand
+vid	Bredvid, i närheten av	Rymlig, ej trång
+vilar	Kopplar av just nu	Ligger stilla och sover
+villa	Fristående hus med trädgård	Enfamiljsbostad
+viner	Flera druvdrycker	Sortiment på en vinlista
+visar	Pekar ut något just nu	Framställer eller demonstrerar
+vise	Den kloke mannen, i äldre stil	Person med stor visdom
+vrak	Sjunket fartyg	Rester av krocksmällt fordon
+vred	Handtag att vrida på	Var arg, i förfluten tid
+vågar	Redskap för att mäta vikt	Rörelser på havsytan
+vår	Årstiden efter vintern	Possessivt ord för 'vi'
+våras	För länge sedan, i uttryck om tid	'I ...' betyder för en tid sedan
+våren	Årstiden med blomning	Perioden när snön smälter
+väder	Klimatförhållanden just nu	Regn, sol eller snö
+väg	Sträcka man färdas på	Led mellan två platser
+vägen	Sträckan man ska gå	Leden till målet
+väger	Har en viss tyngd	Bestämmer hur tungt något är
+väl	Kanske, förmodligen	På ett bra sätt
+vänja	Göra van vid något	Anpassa sig gradvis
+vänt	Har svängt riktning	Bytt sida eller håll
+värme	Hög temperatur	Känsla av trygghet och kärlek
+väska	Bärbar förvaringsplats	Man packar den innan resan
+yrke	Det man arbetar med	Ens sysselsättning för pengar
+yrket	Det specifika arbetet	Ens karriär eller bransch
+yrsel	Känsla av att allt snurrar	Ostadighetskänsla i huvudet
+åka	Färdas med fordon	Ta bussen eller tåget någonstans
+åker	Bördig mark där gröda växer	Fält som plöjs och sås
+åkte	For iväg, i förfluten tid	Tog bilen dit igår
+ånger	Känsla av att man önskar ogjort	Skuldkänsla över ett misstag
+åren	Tidsperioderna, flera stycken	De gångna kalenderperioderna
+åsido	Ställd utanför, ur vägen	Lagd på hyllan för tillfället
+åska	Dunder från himlen vid oväder	Ljud som följer efter blixten
+åsnor	Flera envisa lastdjur	Djuren som bär packningen i bergen
+åtal	Rättslig anklagelse	Det som väcks mot en misstänkt
+åter	En gång till	Tillbaka igen
+åtta	Talet mellan sju och nio	Antal ben på en spindel
+ädel	Fin och upphöjd till karaktären	Beskriver metall som guld eller platina
+ädelt	Beskriver ett gott och storsint beteende	Kvalitet hos ett generöst handlande
+ägare	Den som innehar något	Person som juridiskt förfogar över egendom
+äger	Har som sin egendom	Innehar och förfogar över
+äggen	Hönans avkommor i skalet, flera	Det man kokar till frukost, flera stycken
+ägget	Det ovala föremålet från hönan	Ursprunget till kycklingen
+ägna	Lägga ner tid eller kraft på något	Vigsig helt åt en uppgift
+ägnar	Lägger ner sin tid på något	Vigsig åt en syssla just nu
+ägnat	Har lagt ner tid på något	Har viksig sig åt en uppgift
+ägor	Mark som tillhör någon	Jordbesittning i en herrgårds närhet
+äkta	Genuin, inte falsk	Beskriver ett riktigt gift par
+ämnad	Avsedd för ett syfte	Planerad att bli använd på visst sätt
+ängel	Himmelskt väsen med vingar	Beskyddande gestalt i tron
+änkor	Flera kvinnor som mist sina män	Kvinnor som lever ensamma efter make
+ärade	Visade stor respekt för	Hedrade högtidligt
+äran	Hedern	Ryktet och anseendet
+ärlig	Talar alltid sanning	Bedrar aldrig andra
+ärmen	Delen av tröjan som täcker armen	Plagget kring armen
+ärva	Ta emot något efter en avliden släkting	Få egendom vid ett dödsfall
+äta	Stoppa mat i munnen	Inta en måltid
+ätas	Kan förtäras som föda	Lämpar sig som mat
+äter	Intar en måltid just nu	Tuggar och sväljer mat
+ätit	Har intagit en måltid	Har konsumerat föda
+även	Dessutom, likaså	Också, utöver det
+öde	Det som är förutbestämt att hända	Obebott och tomt
+öden	Livets förutbestämda gångar	Skickelser som styr livet
+ödla	Litet krypande reptildjur	Fjällklätt djur som solar sig på sten
+ögat	Synorganet	Det man ser med
+ögon	Synorgan	Det man ser med
+ökad	Blivit större i mängd	Har stigit i antal
+ökade	Blev fler eller större	Steg i antal eller mängd
+ökar	Blir fler eller större just nu	Stiger i antal
+ökat	Har blivit större i mängd	Har stigit över tid
+öken	Sandigt och torrt landskap	Vidsträckt torrt område utan växtlighet
+öknen	Det sandiga, torra landskapet	Sahara är ett exempel på denna
+öra	Kroppsdel man hör med	Sitter på vardera sidan av huvudet
+östra	Belägen mot soluppgången	Den del som ligger åt öster
+övade	Tränade in en färdighet	Upprepade en rörelse för att bli bättre
+övar	Tränar regelbundet	Repeterar inför en föreställning
+övat	Har tränat flitigt	Har repeterat en uppgift
+över	Ovanför något	Färdig eller avslutad

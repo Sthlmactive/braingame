@@ -1,0 +1,978 @@
+{
+  "sv": [
+    {
+      "word": "att",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 3,
+      "reason": "3-letter"
+    },
+    {
+      "word": "fel",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 5,
+      "reason": "3-letter"
+    },
+    {
+      "word": "gör",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 7,
+      "reason": "3-letter"
+    },
+    {
+      "word": "kul",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 3,
+      "reason": "3-letter"
+    },
+    {
+      "word": "nog",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 2,
+      "reason": "3-letter"
+    },
+    {
+      "word": "var",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 9,
+      "reason": "3-letter"
+    },
+    {
+      "word": "vår",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 6,
+      "reason": "3-letter"
+    },
+    {
+      "word": "väg",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 3,
+      "reason": "3-letter"
+    },
+    {
+      "word": "brann",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 6,
+      "reason": "inflection"
+    },
+    {
+      "word": "damma",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 7,
+      "reason": "inflection"
+    },
+    {
+      "word": "hatar",
+      "length": 5,
+      "banks": [
+        "medium",
+        "extreme"
+      ],
+      "neighbours": 8,
+      "reason": "inflection"
+    },
+    {
+      "word": "kanan",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 6,
+      "reason": "inflection"
+    },
+    {
+      "word": "kista",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 6,
+      "reason": "inflection"
+    },
+    {
+      "word": "kosta",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 8,
+      "reason": "inflection"
+    },
+    {
+      "word": "lånet",
+      "length": 5,
+      "banks": [
+        "medium",
+        "extreme"
+      ],
+      "neighbours": 7,
+      "reason": "inflection"
+    },
+    {
+      "word": "mossa",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 8,
+      "reason": "inflection"
+    },
+    {
+      "word": "pasta",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 8,
+      "reason": "inflection"
+    },
+    {
+      "word": "rasta",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 11,
+      "reason": "inflection"
+    },
+    {
+      "word": "rider",
+      "length": 5,
+      "banks": [
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 9,
+      "reason": "inflection"
+    },
+    {
+      "word": "ritar",
+      "length": 5,
+      "banks": [
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 7,
+      "reason": "inflection"
+    },
+    {
+      "word": "skola",
+      "length": 5,
+      "banks": [
+        "medium",
+        "extreme"
+      ],
+      "neighbours": 7,
+      "reason": "inflection"
+    },
+    {
+      "word": "styrt",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 7,
+      "reason": "inflection"
+    },
+    {
+      "word": "taget",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 8,
+      "reason": "inflection"
+    },
+    {
+      "word": "trist",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 7,
+      "reason": "inflection"
+    },
+    {
+      "word": "vakar",
+      "length": 5,
+      "banks": [
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 9,
+      "reason": "inflection"
+    },
+    {
+      "word": "viska",
+      "length": 5,
+      "banks": [
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 8,
+      "reason": "inflection"
+    },
+    {
+      "word": "aning",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 0,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "ankor",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 2,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "drar",
+      "length": 4,
+      "banks": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "neighbours": 3,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "fram",
+      "length": 4,
+      "banks": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "neighbours": 4,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "galna",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 3,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "kamel",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 2,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "lakan",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 4,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "mens",
+      "length": 4,
+      "banks": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "neighbours": 4,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "smeka",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 2,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "stor",
+      "length": 4,
+      "banks": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "neighbours": 10,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "bero",
+      "length": 4,
+      "banks": [
+        "easy"
+      ],
+      "neighbours": 0,
+      "reason": "spread"
+    },
+    {
+      "word": "bott",
+      "length": 4,
+      "banks": [
+        "hard"
+      ],
+      "neighbours": 9,
+      "reason": "spread"
+    },
+    {
+      "word": "dissa",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 6,
+      "reason": "spread"
+    },
+    {
+      "word": "dåre",
+      "length": 4,
+      "banks": [
+        "easy",
+        "medium"
+      ],
+      "neighbours": 1,
+      "reason": "spread"
+    },
+    {
+      "word": "flit",
+      "length": 4,
+      "banks": [
+        "easy"
+      ],
+      "neighbours": 7,
+      "reason": "spread"
+    },
+    {
+      "word": "föder",
+      "length": 5,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 3,
+      "reason": "spread"
+    },
+    {
+      "word": "motiv",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 0,
+      "reason": "spread"
+    },
+    {
+      "word": "naivt",
+      "length": 5,
+      "banks": [
+        "hard"
+      ],
+      "neighbours": 1,
+      "reason": "spread"
+    },
+    {
+      "word": "näsa",
+      "length": 4,
+      "banks": [
+        "easy"
+      ],
+      "neighbours": 5,
+      "reason": "spread"
+    },
+    {
+      "word": "osedd",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 0,
+      "reason": "spread"
+    },
+    {
+      "word": "pilla",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 2,
+      "reason": "spread"
+    },
+    {
+      "word": "röret",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 1,
+      "reason": "spread"
+    },
+    {
+      "word": "spray",
+      "length": 5,
+      "banks": [
+        "hard"
+      ],
+      "neighbours": 0,
+      "reason": "spread"
+    },
+    {
+      "word": "säng",
+      "length": 4,
+      "banks": [
+        "easy"
+      ],
+      "neighbours": 7,
+      "reason": "spread"
+    }
+  ],
+  "en": [
+    {
+      "word": "ago",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 1,
+      "reason": "3-letter"
+    },
+    {
+      "word": "and",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 4,
+      "reason": "3-letter"
+    },
+    {
+      "word": "any",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 1,
+      "reason": "3-letter"
+    },
+    {
+      "word": "aye",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 6,
+      "reason": "3-letter"
+    },
+    {
+      "word": "era",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 0,
+      "reason": "3-letter"
+    },
+    {
+      "word": "lot",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 8,
+      "reason": "3-letter"
+    },
+    {
+      "word": "old",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 1,
+      "reason": "3-letter"
+    },
+    {
+      "word": "ten",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 7,
+      "reason": "3-letter"
+    },
+    {
+      "word": "bland",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 6,
+      "reason": "inflection"
+    },
+    {
+      "word": "cared",
+      "length": 5,
+      "banks": [
+        "medium",
+        "extreme"
+      ],
+      "neighbours": 6,
+      "reason": "inflection"
+    },
+    {
+      "word": "coats",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 6,
+      "reason": "inflection"
+    },
+    {
+      "word": "craps",
+      "length": 5,
+      "banks": [
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 7,
+      "reason": "inflection"
+    },
+    {
+      "word": "dated",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 7,
+      "reason": "inflection"
+    },
+    {
+      "word": "dents",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 6,
+      "reason": "inflection"
+    },
+    {
+      "word": "hacks",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 10,
+      "reason": "inflection"
+    },
+    {
+      "word": "hated",
+      "length": 5,
+      "banks": [
+        "medium",
+        "extreme"
+      ],
+      "neighbours": 6,
+      "reason": "inflection"
+    },
+    {
+      "word": "lakes",
+      "length": 5,
+      "banks": [
+        "medium",
+        "extreme"
+      ],
+      "neighbours": 9,
+      "reason": "inflection"
+    },
+    {
+      "word": "lunch",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 6,
+      "reason": "inflection"
+    },
+    {
+      "word": "paste",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 6,
+      "reason": "inflection"
+    },
+    {
+      "word": "pests",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 8,
+      "reason": "inflection"
+    },
+    {
+      "word": "rites",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 7,
+      "reason": "inflection"
+    },
+    {
+      "word": "roles",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 9,
+      "reason": "inflection"
+    },
+    {
+      "word": "seeds",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 10,
+      "reason": "inflection"
+    },
+    {
+      "word": "slaps",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 7,
+      "reason": "inflection"
+    },
+    {
+      "word": "spare",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 7,
+      "reason": "inflection"
+    },
+    {
+      "word": "store",
+      "length": 5,
+      "banks": [
+        "medium",
+        "extreme"
+      ],
+      "neighbours": 12,
+      "reason": "inflection"
+    },
+    {
+      "word": "abed",
+      "length": 4,
+      "banks": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "neighbours": 2,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "acids",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 0,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "arrow",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 0,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "brad",
+      "length": 4,
+      "banks": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "neighbours": 8,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "bravo",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 1,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "claw",
+      "length": 4,
+      "banks": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "neighbours": 7,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "dash",
+      "length": 4,
+      "banks": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "neighbours": 10,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "erase",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 0,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "hence",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 2,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "shin",
+      "length": 4,
+      "banks": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "neighbours": 7,
+      "reason": "multi-bank"
+    },
+    {
+      "word": "beige",
+      "length": 5,
+      "banks": [
+        "hard"
+      ],
+      "neighbours": 0,
+      "reason": "spread"
+    },
+    {
+      "word": "bills",
+      "length": 5,
+      "banks": [
+        "hard"
+      ],
+      "neighbours": 10,
+      "reason": "spread"
+    },
+    {
+      "word": "chefs",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 2,
+      "reason": "spread"
+    },
+    {
+      "word": "deeds",
+      "length": 5,
+      "banks": [
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 5,
+      "reason": "spread"
+    },
+    {
+      "word": "ended",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 0,
+      "reason": "spread"
+    },
+    {
+      "word": "frame",
+      "length": 5,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 1,
+      "reason": "spread"
+    },
+    {
+      "word": "holed",
+      "length": 5,
+      "banks": [
+        "medium",
+        "extreme"
+      ],
+      "neighbours": 3,
+      "reason": "spread"
+    },
+    {
+      "word": "labor",
+      "length": 5,
+      "banks": [
+        "extreme"
+      ],
+      "neighbours": 0,
+      "reason": "spread"
+    },
+    {
+      "word": "liver",
+      "length": 5,
+      "banks": [
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "neighbours": 11,
+      "reason": "spread"
+    },
+    {
+      "word": "mare",
+      "length": 4,
+      "banks": [
+        "easy",
+        "medium"
+      ],
+      "neighbours": 20,
+      "reason": "spread"
+    },
+    {
+      "word": "mash",
+      "length": 4,
+      "banks": [
+        "hard"
+      ],
+      "neighbours": 15,
+      "reason": "spread"
+    },
+    {
+      "word": "new",
+      "length": 3,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 3,
+      "reason": "spread"
+    },
+    {
+      "word": "swami",
+      "length": 5,
+      "banks": [
+        "medium"
+      ],
+      "neighbours": 1,
+      "reason": "spread"
+    },
+    {
+      "word": "thine",
+      "length": 5,
+      "banks": [
+        "hard"
+      ],
+      "neighbours": 5,
+      "reason": "spread"
+    }
+  ]
+}

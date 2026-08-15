@@ -1,0 +1,1580 @@
+[
+  {
+    "model": "claude-haiku-4-5",
+    "label": "Haiku 4.5",
+    "lang": "sv",
+    "clues": [
+      {
+        "answer": "att",
+        "clue1": "Infinitivmärke i svenska",
+        "clue2": "Markerar verbets grundform"
+      },
+      {
+        "answer": "fel",
+        "clue1": "Motsatsen till rätt",
+        "clue2": "Misstag eller brist"
+      },
+      {
+        "answer": "gör",
+        "clue1": "Utför en handling",
+        "clue2": "Framställer eller producerar"
+      },
+      {
+        "answer": "kul",
+        "clue1": "Roligt och skojigt",
+        "clue2": "Underhållande och lustigt"
+      },
+      {
+        "answer": "nog",
+        "clue1": "Tillräckligt mycket",
+        "clue2": "Önskvärt eller lämpligt"
+      },
+      {
+        "answer": "var",
+        "clue1": "Vilken plats eller lokalisering",
+        "clue2": "Existerade eller fanns"
+      },
+      {
+        "answer": "vår",
+        "clue1": "Säsong efter vintern",
+        "clue2": "Tillhör oss gruppen"
+      },
+      {
+        "answer": "väg",
+        "clue1": "Stig eller bana att gå på",
+        "clue2": "Färdväg mellan orter"
+      },
+      {
+        "answer": "brann",
+        "clue1": "Eldsväda eller lågor",
+        "clue2": "Förbrukades av eld"
+      },
+      {
+        "answer": "damma",
+        "clue1": "Städa bort damm",
+        "clue2": "Rensa från smuts och partiklar"
+      },
+      {
+        "answer": "hatar",
+        "clue1": "Avskyr starkt",
+        "clue2": "Motsatsen till älskar"
+      },
+      {
+        "answer": "kanan",
+        "clue1": "Sår på fotens sida",
+        "clue2": "Ont på lillåtot"
+      },
+      {
+        "answer": "kista",
+        "clue1": "Dödskammare av trä",
+        "clue2": "Gravkammare för avliden"
+      },
+      {
+        "answer": "kosta",
+        "clue1": "Har ett visst pris",
+        "clue2": "Kräver utgift eller betalning"
+      },
+      {
+        "answer": "lånet",
+        "clue1": "Pengar som måste återbetalas",
+        "clue2": "Borgen från bank eller annan"
+      },
+      {
+        "answer": "mossa",
+        "clue1": "Lågväxt växt på fuktig mark",
+        "clue2": "Grön växtlighet på stenar"
+      },
+      {
+        "answer": "pasta",
+        "clue1": "Italiensk spagetti eller penne",
+        "clue2": "Maträtt av veteprotein"
+      },
+      {
+        "answer": "rasta",
+        "clue1": "Vila under arbete eller resa",
+        "clue2": "Kort paus för återhämtning"
+      },
+      {
+        "answer": "rider",
+        "clue1": "Sitter på häst och styr den",
+        "clue2": "Förflyttar sig på djurrygg"
+      },
+      {
+        "answer": "ritar",
+        "clue1": "Skapar bilder med penna",
+        "clue2": "Framställer teckningar"
+      },
+      {
+        "answer": "skola",
+        "clue1": "Läranstalt för barn",
+        "clue2": "Institution för undervisning"
+      },
+      {
+        "answer": "styrt",
+        "clue1": "Kontrollerat farkosten",
+        "clue2": "Valt kurs eller väg"
+      },
+      {
+        "answer": "taget",
+        "clue1": "Hus översta del",
+        "clue2": "Skydd från regn och väder"
+      },
+      {
+        "answer": "trist",
+        "clue1": "Sorglöst och mörkt",
+        "clue2": "Saknar glädje och färg"
+      },
+      {
+        "answer": "vakar",
+        "clue1": "Är vid medvetande och vaken",
+        "clue2": "Öppenhålls under natten"
+      },
+      {
+        "answer": "viska",
+        "clue1": "Tala mycket lågt",
+        "clue2": "Säga något hemligt i örat"
+      },
+      {
+        "answer": "aning",
+        "clue1": "Svag misstanke eller gissning",
+        "clue2": "Liten föraning eller aning"
+      },
+      {
+        "answer": "ankor",
+        "clue1": "Vadare med näbb och vingar",
+        "clue2": "Vattenfåglar som gräsmar"
+      },
+      {
+        "answer": "drar",
+        "clue1": "Rycker eller släpar något",
+        "clue2": "Förflyttar i viss riktning"
+      },
+      {
+        "answer": "fram",
+        "clue1": "Framåt i riktning",
+        "clue2": "Vidare från här"
+      },
+      {
+        "answer": "galna",
+        "clue1": "Sinnessjuka eller vansinniga",
+        "clue2": "Helt från vettet"
+      },
+      {
+        "answer": "kamel",
+        "clue1": "Ökendjur med puckel",
+        "clue2": "Fyrfotad i Saharaöknen"
+      },
+      {
+        "answer": "lakan",
+        "clue1": "Täcke på sängen",
+        "clue2": "Vitt linne på bädden"
+      },
+      {
+        "answer": "mens",
+        "clue1": "Varje månad hos kvinnor",
+        "clue2": "Menstruativ cyklus"
+      },
+      {
+        "answer": "smeka",
+        "clue1": "Stryka zärtligt över",
+        "clue2": "Visa ömhet med händerna"
+      },
+      {
+        "answer": "stor",
+        "clue1": "Motsatsen till liten",
+        "clue2": "Stor storlek eller omfattning"
+      },
+      {
+        "answer": "bero",
+        "clue1": "Är beroende av något",
+        "clue2": "Hänga ihop med"
+      },
+      {
+        "answer": "bott",
+        "clue1": "Varit bosatt någonstans",
+        "clue2": "Haft hemvist tidigare"
+      },
+      {
+        "answer": "dissa",
+        "clue1": "Nedvärdera eller kritisera",
+        "clue2": "Göra mindre värdig"
+      },
+      {
+        "answer": "dåre",
+        "clue1": "Person utan förstånd",
+        "clue2": "Idiot eller befängd person"
+      },
+      {
+        "answer": "flit",
+        "clue1": "Ihärdigt arbete och iver",
+        "clue2": "Outtröttlig ansträngning"
+      },
+      {
+        "answer": "föder",
+        "clue1": "Frambringar ungar",
+        "clue2": "Får barn genom graviditet"
+      },
+      {
+        "answer": "motiv",
+        "clue1": "Orsak eller grund för handling",
+        "clue2": "Drivfjäder bakom handlingen"
+      },
+      {
+        "answer": "naivt",
+        "clue1": "Enkelt och godtroget",
+        "clue2": "Utan skepsis eller misstänksamhet"
+      },
+      {
+        "answer": "näsa",
+        "clue1": "Ansiktsdel för andning",
+        "clue2": "Förströmande organ för lukt"
+      },
+      {
+        "answer": "osedd",
+        "clue1": "Inte sedd eller lagd märke till",
+        "clue2": "Förbliven dold från ögonen"
+      },
+      {
+        "answer": "pilla",
+        "clue1": "Fiksa med fingrarna",
+        "clue2": "Manipulera smådelar"
+      },
+      {
+        "answer": "röret",
+        "clue1": "Cylindrisk kanal för vätskor",
+        "clue2": "Ledning för gas eller vätska"
+      },
+      {
+        "answer": "spray",
+        "clue1": "Ej flytande behållare för vätskor",
+        "clue2": "Sprutflaska för besprutning"
+      },
+      {
+        "answer": "säng",
+        "clue1": "Möbel man sover i",
+        "clue2": "Bädd för vila och sömn"
+      }
+    ],
+    "usage": {
+      "input": 1013,
+      "output": 1924
+    },
+    "costUsd": 0.010633,
+    "ms": 21966
+  },
+  {
+    "model": "claude-sonnet-5",
+    "label": "Sonnet 5",
+    "lang": "sv",
+    "clues": [
+      {
+        "answer": "att",
+        "clue1": "Infinitivmärke",
+        "clue2": "Ord före verb i grundform"
+      },
+      {
+        "answer": "fel",
+        "clue1": "Motsatsen till rätt",
+        "clue2": "Något som gått snett"
+      },
+      {
+        "answer": "gör",
+        "clue1": "Utför just nu",
+        "clue2": "Verb för att skapa handling"
+      },
+      {
+        "answer": "kul",
+        "clue1": "Roligt",
+        "clue2": "Trevlig upplevelse"
+      },
+      {
+        "answer": "nog",
+        "clue1": "Tillräckligt",
+        "clue2": "Antagligen"
+      },
+      {
+        "answer": "var",
+        "clue1": "Vätska från infekterat sår",
+        "clue2": "Frågeord om plats"
+      },
+      {
+        "answer": "vår",
+        "clue1": "Årstid efter vintern",
+        "clue2": "Tillhör oss"
+      },
+      {
+        "answer": "väg",
+        "clue1": "Sträcka att färdas på",
+        "clue2": "Asfalterad led"
+      },
+      {
+        "answer": "brann",
+        "clue1": "Stod i lågor",
+        "clue2": "Var eldhärjad"
+      },
+      {
+        "answer": "damma",
+        "clue1": "Ta bort smuts från möbler",
+        "clue2": "Virvla upp partiklar"
+      },
+      {
+        "answer": "hatar",
+        "clue1": "Avskyr starkt",
+        "clue2": "Känner stark motvilja mot"
+      },
+      {
+        "answer": "kanan",
+        "clue1": "Fågeln i grytan",
+        "clue2": "Fjäderfäet på gården"
+      },
+      {
+        "answer": "kista",
+        "clue1": "Låda för den avlidne",
+        "clue2": "Förvaringsmöbel med lock"
+      },
+      {
+        "answer": "kosta",
+        "clue1": "Ha ett pris",
+        "clue2": "Innebära en utgift"
+      },
+      {
+        "answer": "lånet",
+        "clue1": "Pengarna man ska betala tillbaka",
+        "clue2": "Boken från biblioteket"
+      },
+      {
+        "answer": "mossa",
+        "clue1": "Grön beväxning på sten",
+        "clue2": "Fuktälskande växt i skogen"
+      },
+      {
+        "answer": "pasta",
+        "clue1": "Italiensk nudelrätt",
+        "clue2": "Mat gjord på mjöl och vatten"
+      },
+      {
+        "answer": "rasta",
+        "clue1": "Ta en paus från arbete",
+        "clue2": "Ta hunden ut på promenad"
+      },
+      {
+        "answer": "rider",
+        "clue1": "Sitter på hästrygg",
+        "clue2": "Färdas till häst"
+      },
+      {
+        "answer": "ritar",
+        "clue1": "Tecknar med penna",
+        "clue2": "Skapar en bild för hand"
+      },
+      {
+        "answer": "skola",
+        "clue1": "Plats för undervisning",
+        "clue2": "Institution med lärare"
+      },
+      {
+        "answer": "styrt",
+        "clue1": "Kontrollerat riktningen",
+        "clue2": "Lett en verksamhet"
+      },
+      {
+        "answer": "taget",
+        "clue1": "Redan upptaget",
+        "clue2": "Hämtat från annan plats"
+      },
+      {
+        "answer": "trist",
+        "clue1": "Tråkig och dyster",
+        "clue2": "Utan glädje"
+      },
+      {
+        "answer": "vakar",
+        "clue1": "Håller sig vaken över natten",
+        "clue2": "Sitter vid en sjukbädd"
+      },
+      {
+        "answer": "viska",
+        "clue1": "Tala mycket tyst",
+        "clue2": "Prata utan att höras"
+      },
+      {
+        "answer": "aning",
+        "clue1": "Liten misstanke",
+        "clue2": "Föraning om något"
+      },
+      {
+        "answer": "ankor",
+        "clue1": "Fåglar som simmar i dammen",
+        "clue2": "Kvackande fjäderfän"
+      },
+      {
+        "answer": "drar",
+        "clue1": "Rycker något mot sig",
+        "clue2": "Flyttar med kraft"
+      },
+      {
+        "answer": "fram",
+        "clue1": "Motsatsen till bakåt",
+        "clue2": "I riktning framåt"
+      },
+      {
+        "answer": "galna",
+        "clue1": "Vansinniga",
+        "clue2": "Tokiga i huvudet"
+      },
+      {
+        "answer": "kamel",
+        "clue1": "Djur med puckel i öknen",
+        "clue2": "Ökendjur som klarar sig utan vatten länge"
+      },
+      {
+        "answer": "lakan",
+        "clue1": "Sängkläder under täcket",
+        "clue2": "Textil som bäddas på madrassen"
+      },
+      {
+        "answer": "mens",
+        "clue1": "Menstruation",
+        "clue2": "Månatlig blödning"
+      },
+      {
+        "answer": "smeka",
+        "clue1": "Röra varsamt med handen",
+        "clue2": "Klappa ömt"
+      },
+      {
+        "answer": "stor",
+        "clue1": "Motsatsen till liten",
+        "clue2": "Av betydande storlek"
+      },
+      {
+        "answer": "bero",
+        "clue1": "Vara avhängig av något",
+        "clue2": "Hänga på en faktor"
+      },
+      {
+        "answer": "bott",
+        "clue1": "Har haft sitt hem någonstans",
+        "clue2": "Levt på en adress"
+      },
+      {
+        "answer": "dissa",
+        "clue1": "Tala nedsättande om någon",
+        "clue2": "Förringa offentligt"
+      },
+      {
+        "answer": "dåre",
+        "clue1": "Galning",
+        "clue2": "Person som beter sig vansinnigt"
+      },
+      {
+        "answer": "flit",
+        "clue1": "Arbetsamhet",
+        "clue2": "Idogt slit"
+      },
+      {
+        "answer": "föder",
+        "clue1": "Ger näring åt",
+        "clue2": "Sätter barn till världen"
+      },
+      {
+        "answer": "motiv",
+        "clue1": "Anledning till handling",
+        "clue2": "Mönster i ett konstverk"
+      },
+      {
+        "answer": "naivt",
+        "clue1": "Barnsligt godtroget",
+        "clue2": "Utan misstänksamhet"
+      },
+      {
+        "answer": "näsa",
+        "clue1": "Sinnesorgan för lukt",
+        "clue2": "Sitter mitt i ansiktet"
+      },
+      {
+        "answer": "osedd",
+        "clue1": "Inte upptäckt av någon",
+        "clue2": "Utan att bli sedd"
+      },
+      {
+        "answer": "pilla",
+        "clue1": "Peta med fingrarna",
+        "clue2": "Fingra på något litet"
+      },
+      {
+        "answer": "röret",
+        "clue1": "Ledningen för vatten",
+        "clue2": "Cylindern som leder vätska"
+      },
+      {
+        "answer": "spray",
+        "clue1": "Vätska i sprejflaska",
+        "clue2": "Fint duggregn ur en burk"
+      },
+      {
+        "answer": "säng",
+        "clue1": "Möbel man sover i",
+        "clue2": "Plats för nattvila"
+      }
+    ],
+    "usage": {
+      "input": 1258,
+      "output": 2060
+    },
+    "costUsd": 0.023116,
+    "ms": 31004
+  },
+  {
+    "model": "claude-opus-5",
+    "label": "Opus 5",
+    "lang": "sv",
+    "clues": [
+      {
+        "answer": "att",
+        "clue1": "Litet ord före verbets grundform",
+        "clue2": "Inleder en bisats efter 'säga'"
+      },
+      {
+        "answer": "fel",
+        "clue1": "Inte rätt",
+        "clue2": "Miss i räkningen"
+      },
+      {
+        "answer": "gör",
+        "clue1": "Utför just nu",
+        "clue2": "Tillverkar, skapar"
+      },
+      {
+        "answer": "kul",
+        "clue1": "Roligt",
+        "clue2": "Trevligt och lustigt"
+      },
+      {
+        "answer": "nog",
+        "clue1": "Antagligen",
+        "clue2": "Tillräckligt mycket"
+      },
+      {
+        "answer": "var",
+        "clue1": "Frågeord om plats",
+        "clue2": "Gulaktig vätska i infekterat sår"
+      },
+      {
+        "answer": "vår",
+        "clue1": "Årstid efter vintern",
+        "clue2": "Tillhör oss"
+      },
+      {
+        "answer": "väg",
+        "clue1": "Bilarna kör på den",
+        "clue2": "Sträcka mellan två orter"
+      },
+      {
+        "answer": "brann",
+        "clue1": "Stod i lågor",
+        "clue2": "Förtärdes av eld förr"
+      },
+      {
+        "answer": "damma",
+        "clue1": "Torka bort smuts från hyllan",
+        "clue2": "Virvla upp torr jord"
+      },
+      {
+        "answer": "hatar",
+        "clue1": "Avskyr djupt",
+        "clue2": "Känner starkaste motsatsen till älskar"
+      },
+      {
+        "answer": "kanan",
+        "clue1": "Bortre delen av båten, bestämd",
+        "clue2": "Vattenkärlet med pip, bestämd form"
+      },
+      {
+        "answer": "kista",
+        "clue1": "Vilar den döde i",
+        "clue2": "Tung låda med lock för förvaring"
+      },
+      {
+        "answer": "kosta",
+        "clue1": "Ha ett pris",
+        "clue2": "Kräva i pengar"
+      },
+      {
+        "answer": "lånet",
+        "clue1": "Pengarna man ska betala tillbaka",
+        "clue2": "Skulden hos banken"
+      },
+      {
+        "answer": "mossa",
+        "clue1": "Mjukt grönt på stenar",
+        "clue2": "Växer i fuktig skog utan blommor"
+      },
+      {
+        "answer": "pasta",
+        "clue1": "Spaghetti och penne",
+        "clue2": "Italiensk rätt av vetemjöl och vatten"
+      },
+      {
+        "answer": "rasta",
+        "clue1": "Ta paus på resan",
+        "clue2": "Gå ut med hunden"
+      },
+      {
+        "answer": "rider",
+        "clue1": "Sitter på hästryggen",
+        "clue2": "Färdas med tyglar i handen"
+      },
+      {
+        "answer": "ritar",
+        "clue1": "Gör streck med penna",
+        "clue2": "Skapar en bild på papper"
+      },
+      {
+        "answer": "skola",
+        "clue1": "Dit barnen går för att lära",
+        "clue2": "Byggnad med klassrum"
+      },
+      {
+        "answer": "styrt",
+        "clue1": "Har hållit i ratten",
+        "clue2": "Har lett landet"
+      },
+      {
+        "answer": "taget",
+        "clue1": "Färdmedlet på räls, bestämt",
+        "clue2": "Greppet i brottning, bestämt"
+      },
+      {
+        "answer": "trist",
+        "clue1": "Tråkigt och grått",
+        "clue2": "Utan glädje"
+      },
+      {
+        "answer": "vakar",
+        "clue1": "Sover inte, håller uppsikt",
+        "clue2": "Sitter vid sjukbädden om natten"
+      },
+      {
+        "answer": "viska",
+        "clue1": "Tala mycket tyst",
+        "clue2": "Berätta något i någons öra"
+      },
+      {
+        "answer": "aning",
+        "clue1": "Vag känsla av vad som ska hända",
+        "clue2": "Man har ingen sådan när man inte vet"
+      },
+      {
+        "answer": "ankor",
+        "clue1": "Simfåglar som snattrar",
+        "clue2": "Kvackande gårdsfåglar"
+      },
+      {
+        "answer": "drar",
+        "clue1": "Släpar efter sig",
+        "clue2": "Ger sig av, sticker"
+      },
+      {
+        "answer": "fram",
+        "clue1": "Motsatsen till bak",
+        "clue2": "Riktning mot målet"
+      },
+      {
+        "answer": "galna",
+        "clue1": "Alldeles tokiga",
+        "clue2": "Vansinniga, som mist förståndet"
+      },
+      {
+        "answer": "kamel",
+        "clue1": "Ökendjur med puckel",
+        "clue2": "Karavanens lastdjur"
+      },
+      {
+        "answer": "lakan",
+        "clue1": "Ligger mellan dig och madrassen",
+        "clue2": "Vitt tyg i bäddningen"
+      },
+      {
+        "answer": "mens",
+        "clue1": "Under tiden som",
+        "clue2": "Kort ord för medan"
+      },
+      {
+        "answer": "smeka",
+        "clue1": "Stryka ömt över kinden",
+        "clue2": "Kärleksfullt vidröra"
+      },
+      {
+        "answer": "stor",
+        "clue1": "Inte liten",
+        "clue2": "Av betydande storlek"
+      },
+      {
+        "answer": "bero",
+        "clue1": "Vara avhängigt av något",
+        "clue2": "Ha sin orsak i"
+      },
+      {
+        "answer": "bott",
+        "clue1": "Har haft sin adress någonstans",
+        "clue2": "Levt på en plats i många år"
+      },
+      {
+        "answer": "dissa",
+        "clue1": "Tala nedsättande om någon",
+        "clue2": "Avfärda med förakt"
+      },
+      {
+        "answer": "dåre",
+        "clue1": "Person utan vett",
+        "clue2": "Han beter sig fullkomligt tokigt"
+      },
+      {
+        "answer": "flit",
+        "clue1": "Idogt arbete",
+        "clue2": "Egenskap hos den strävsamme eleven"
+      },
+      {
+        "answer": "föder",
+        "clue1": "Sätter barn till världen",
+        "clue2": "Ger mat åt familjen"
+      },
+      {
+        "answer": "motiv",
+        "clue1": "Skäl bakom ett brott",
+        "clue2": "Det konstnären avbildar"
+      },
+      {
+        "answer": "naivt",
+        "clue1": "Godtroget och barnsligt",
+        "clue2": "Utan misstänksamhet mot världen"
+      },
+      {
+        "answer": "näsa",
+        "clue1": "Sitter mitt i ansiktet",
+        "clue2": "Organ för lukt"
+      },
+      {
+        "answer": "osedd",
+        "clue1": "Som ingen har lagt märke till",
+        "clue2": "Smiter ut utan att någon märker det"
+      },
+      {
+        "answer": "pilla",
+        "clue1": "Peta småningom med fingrarna",
+        "clue2": "Fingra på något litet"
+      },
+      {
+        "answer": "röret",
+        "clue1": "Vattnet rinner genom det",
+        "clue2": "Man lyfte på det förr när telefonen ringde"
+      },
+      {
+        "answer": "spray",
+        "clue1": "Kommer i dimma ur burken",
+        "clue2": "Finfördelad vätska ur flaska"
+      },
+      {
+        "answer": "säng",
+        "clue1": "Möbel att sova i",
+        "clue2": "Står i sovrummet med madrass"
+      }
+    ],
+    "usage": {
+      "input": 1258,
+      "output": 2219
+    },
+    "costUsd": 0.061765,
+    "ms": 39361
+  },
+  {
+    "model": "claude-haiku-4-5",
+    "label": "Haiku 4.5",
+    "lang": "en",
+    "clues": [
+      {
+        "answer": "ago",
+        "clue1": "In the past",
+        "clue2": "Long time back"
+      },
+      {
+        "answer": "and",
+        "clue1": "Plus sign",
+        "clue2": "Connecting word"
+      },
+      {
+        "answer": "any",
+        "clue1": "No matter which",
+        "clue2": "One or more"
+      },
+      {
+        "answer": "aye",
+        "clue1": "Affirmative vote",
+        "clue2": "Yes from a sailor"
+      },
+      {
+        "answer": "era",
+        "clue1": "Historical period",
+        "clue2": "Age of time"
+      },
+      {
+        "answer": "lot",
+        "clue1": "Fortune or destiny",
+        "clue2": "Parking space section"
+      },
+      {
+        "answer": "old",
+        "clue1": "Not young",
+        "clue2": "Antique or aged"
+      },
+      {
+        "answer": "ten",
+        "clue1": "Perfect bowling score",
+        "clue2": "One more than nine"
+      },
+      {
+        "answer": "bland",
+        "clue1": "Dull or tasteless",
+        "clue2": "Lacking flavor"
+      },
+      {
+        "answer": "cared",
+        "clue1": "Showed concern",
+        "clue2": "Looked after"
+      },
+      {
+        "answer": "coats",
+        "clue1": "Winter garments",
+        "clue2": "Outer layers"
+      },
+      {
+        "answer": "craps",
+        "clue1": "Dice game",
+        "clue2": "Casino game with cubes"
+      },
+      {
+        "answer": "dated",
+        "clue1": "Went out romantically",
+        "clue2": "No longer fashionable"
+      },
+      {
+        "answer": "dents",
+        "clue1": "Impressions in metal",
+        "clue2": "Dings or indentations"
+      },
+      {
+        "answer": "hacks",
+        "clue1": "Taxi rides",
+        "clue2": "Coughs sharply"
+      },
+      {
+        "answer": "hated",
+        "clue1": "Despised greatly",
+        "clue2": "Disliked intensely"
+      },
+      {
+        "answer": "lakes",
+        "clue1": "Inland bodies of water",
+        "clue2": "Mountain reservoirs"
+      },
+      {
+        "answer": "lunch",
+        "clue1": "Midday meal",
+        "clue2": "Noon food"
+      },
+      {
+        "answer": "paste",
+        "clue1": "Adhesive substance",
+        "clue2": "Glue or cement"
+      },
+      {
+        "answer": "pests",
+        "clue1": "Annoying insects",
+        "clue2": "Bothersome creatures"
+      },
+      {
+        "answer": "rites",
+        "clue1": "Ceremonial acts",
+        "clue2": "Formal customs"
+      },
+      {
+        "answer": "roles",
+        "clue1": "Character parts",
+        "clue2": "Acting positions"
+      },
+      {
+        "answer": "seeds",
+        "clue1": "Plant embryos",
+        "clue2": "Things sown in soil"
+      },
+      {
+        "answer": "slaps",
+        "clue1": "Face strikes",
+        "clue2": "Sharp hits with palm"
+      },
+      {
+        "answer": "spare",
+        "clue1": "Extra or reserve",
+        "clue2": "Refrain from using"
+      },
+      {
+        "answer": "store",
+        "clue1": "Shop or retail place",
+        "clue2": "Save for later"
+      },
+      {
+        "answer": "abed",
+        "clue1": "In bed",
+        "clue2": "Resting between sheets"
+      },
+      {
+        "answer": "acids",
+        "clue1": "Sour chemicals",
+        "clue2": "Corrosive liquids"
+      },
+      {
+        "answer": "arrow",
+        "clue1": "Projectile with feathers",
+        "clue2": "Straight pointed missile"
+      },
+      {
+        "answer": "brad",
+        "clue1": "Thin nail",
+        "clue2": "Fastener for wood"
+      },
+      {
+        "answer": "bravo",
+        "clue1": "Excellent performance cry",
+        "clue2": "Well done shout"
+      },
+      {
+        "answer": "claw",
+        "clue1": "Cat's nail",
+        "clue2": "Bird's talon"
+      },
+      {
+        "answer": "dash",
+        "clue1": "Sprint quickly",
+        "clue2": "Punctuation mark"
+      },
+      {
+        "answer": "erase",
+        "clue1": "Remove markings",
+        "clue2": "Wipe away writing"
+      },
+      {
+        "answer": "hence",
+        "clue1": "Therefore",
+        "clue2": "For this reason"
+      },
+      {
+        "answer": "shin",
+        "clue1": "Front leg bone",
+        "clue2": "Lower leg part"
+      },
+      {
+        "answer": "beige",
+        "clue1": "Tan or pale color",
+        "clue2": "Neutral brownish shade"
+      },
+      {
+        "answer": "bills",
+        "clue1": "Paper money",
+        "clue2": "Restaurant charges"
+      },
+      {
+        "answer": "chefs",
+        "clue1": "Kitchen leaders",
+        "clue2": "Professional cooks"
+      },
+      {
+        "answer": "deeds",
+        "clue1": "Actions or exploits",
+        "clue2": "Property documents"
+      },
+      {
+        "answer": "ended",
+        "clue1": "Finished or stopped",
+        "clue2": "Came to a close"
+      },
+      {
+        "answer": "frame",
+        "clue1": "Picture border",
+        "clue2": "Body structure"
+      },
+      {
+        "answer": "holed",
+        "clue1": "Made a perforation",
+        "clue2": "Tore a hole in"
+      },
+      {
+        "answer": "labor",
+        "clue1": "Work or effort",
+        "clue2": "Toil and strain"
+      },
+      {
+        "answer": "liver",
+        "clue1": "Internal organ",
+        "clue2": "One who resides"
+      },
+      {
+        "answer": "mare",
+        "clue1": "Female horse",
+        "clue2": "Dam of a foal"
+      },
+      {
+        "answer": "mash",
+        "clue1": "Crush into pulp",
+        "clue2": "Soft mass"
+      },
+      {
+        "answer": "new",
+        "clue1": "Recently made",
+        "clue2": "Not old or used"
+      },
+      {
+        "answer": "swami",
+        "clue1": "Hindu spiritual teacher",
+        "clue2": "Indian holy person"
+      },
+      {
+        "answer": "thine",
+        "clue1": "Belonging to you",
+        "clue2": "Archaic yours"
+      }
+    ],
+    "usage": {
+      "input": 992,
+      "output": 1444
+    },
+    "costUsd": 0.008212,
+    "ms": 9602
+  },
+  {
+    "model": "claude-sonnet-5",
+    "label": "Sonnet 5",
+    "lang": "en",
+    "clues": [
+      {
+        "answer": "ago",
+        "clue1": "In the past",
+        "clue2": "Time before now"
+      },
+      {
+        "answer": "and",
+        "clue1": "Plus",
+        "clue2": "Word joining two items"
+      },
+      {
+        "answer": "any",
+        "clue1": "Some, no matter which",
+        "clue2": "Whichever one at all"
+      },
+      {
+        "answer": "aye",
+        "clue1": "Affirmative vote",
+        "clue2": "Sailor's yes"
+      },
+      {
+        "answer": "era",
+        "clue1": "Historical period",
+        "clue2": "Age of time"
+      },
+      {
+        "answer": "lot",
+        "clue1": "A large amount",
+        "clue2": "Parcel of land"
+      },
+      {
+        "answer": "old",
+        "clue1": "Not young",
+        "clue2": "Aged"
+      },
+      {
+        "answer": "ten",
+        "clue1": "Number after nine",
+        "clue2": "Perfect score, some say"
+      },
+      {
+        "answer": "bland",
+        "clue1": "Lacking flavor",
+        "clue2": "Dull and uninteresting"
+      },
+      {
+        "answer": "cared",
+        "clue1": "Showed concern",
+        "clue2": "Felt affection"
+      },
+      {
+        "answer": "coats",
+        "clue1": "Outer garments",
+        "clue2": "Layers of paint applied"
+      },
+      {
+        "answer": "craps",
+        "clue1": "Dice game",
+        "clue2": "Casino gamble with dice"
+      },
+      {
+        "answer": "dated",
+        "clue1": "Went out romantically",
+        "clue2": "Marked with a day and year"
+      },
+      {
+        "answer": "dents",
+        "clue1": "Small dings in metal",
+        "clue2": "Marks from impact"
+      },
+      {
+        "answer": "hacks",
+        "clue1": "Cuts roughly",
+        "clue2": "Cheap writers"
+      },
+      {
+        "answer": "hated",
+        "clue1": "Despised",
+        "clue2": "Felt strong dislike for"
+      },
+      {
+        "answer": "lakes",
+        "clue1": "Bodies of fresh water",
+        "clue2": "Ponds, but bigger"
+      },
+      {
+        "answer": "lunch",
+        "clue1": "Midday meal",
+        "clue2": "Break between morning and afternoon work"
+      },
+      {
+        "answer": "paste",
+        "clue1": "Sticky adhesive",
+        "clue2": "Toothpaste's category"
+      },
+      {
+        "answer": "pests",
+        "clue1": "Annoying insects",
+        "clue2": "Unwanted garden invaders"
+      },
+      {
+        "answer": "rites",
+        "clue1": "Ceremonial acts",
+        "clue2": "Religious rituals"
+      },
+      {
+        "answer": "roles",
+        "clue1": "Parts in a play",
+        "clue2": "Jobs one takes on"
+      },
+      {
+        "answer": "seeds",
+        "clue1": "Plant beginnings",
+        "clue2": "What you sow in a garden"
+      },
+      {
+        "answer": "slaps",
+        "clue1": "Open-handed hits",
+        "clue2": "Quick strikes to the face"
+      },
+      {
+        "answer": "spare",
+        "clue1": "Extra, not in use",
+        "clue2": "Bowling term for two-ball clear"
+      },
+      {
+        "answer": "store",
+        "clue1": "Retail shop",
+        "clue2": "To keep for later"
+      },
+      {
+        "answer": "abed",
+        "clue1": "Lying in bed",
+        "clue2": "Resting under covers"
+      },
+      {
+        "answer": "acids",
+        "clue1": "Sour compounds",
+        "clue2": "Chemicals with low pH"
+      },
+      {
+        "answer": "arrow",
+        "clue1": "Pointed projectile",
+        "clue2": "Symbol showing direction"
+      },
+      {
+        "answer": "brad",
+        "clue1": "Small thin nail",
+        "clue2": "Tiny fastener for wood"
+      },
+      {
+        "answer": "bravo",
+        "clue1": "Cheer of approval",
+        "clue2": "Shout at a performance"
+      },
+      {
+        "answer": "claw",
+        "clue1": "Animal's sharp nail",
+        "clue2": "Crab's pincer"
+      },
+      {
+        "answer": "dash",
+        "clue1": "Quick sprint",
+        "clue2": "Punctuation mark"
+      },
+      {
+        "answer": "erase",
+        "clue1": "Remove pencil marks",
+        "clue2": "Wipe clean"
+      },
+      {
+        "answer": "hence",
+        "clue1": "Therefore",
+        "clue2": "For this reason"
+      },
+      {
+        "answer": "shin",
+        "clue1": "Front of the lower leg",
+        "clue2": "Part hit on a low table"
+      },
+      {
+        "answer": "beige",
+        "clue1": "Pale sandy color",
+        "clue2": "Neutral tan shade"
+      },
+      {
+        "answer": "bills",
+        "clue1": "Money owed statements",
+        "clue2": "Proposed laws"
+      },
+      {
+        "answer": "chefs",
+        "clue1": "Kitchen leaders",
+        "clue2": "Restaurant cooks in charge"
+      },
+      {
+        "answer": "deeds",
+        "clue1": "Acts performed",
+        "clue2": "Legal property documents"
+      },
+      {
+        "answer": "ended",
+        "clue1": "Came to a close",
+        "clue2": "Finished"
+      },
+      {
+        "answer": "frame",
+        "clue1": "Border for a picture",
+        "clue2": "Structure supporting something"
+      },
+      {
+        "answer": "holed",
+        "clue1": "Made a puncture in",
+        "clue2": "Sank a golf shot"
+      },
+      {
+        "answer": "labor",
+        "clue1": "Hard work",
+        "clue2": "Childbirth process"
+      },
+      {
+        "answer": "liver",
+        "clue1": "Organ that filters blood",
+        "clue2": "Pate ingredient"
+      },
+      {
+        "answer": "mare",
+        "clue1": "Female horse",
+        "clue2": "Dark plain on the moon"
+      },
+      {
+        "answer": "mash",
+        "clue1": "Mush of potatoes",
+        "clue2": "Crush into a pulp"
+      },
+      {
+        "answer": "new",
+        "clue1": "Recently made",
+        "clue2": "Not used before"
+      },
+      {
+        "answer": "swami",
+        "clue1": "Spiritual teacher",
+        "clue2": "Guru figure"
+      },
+      {
+        "answer": "thine",
+        "clue1": "Belonging to you, old style",
+        "clue2": "Archaic possessive word"
+      }
+    ],
+    "usage": {
+      "input": 1224,
+      "output": 1776
+    },
+    "costUsd": 0.020208,
+    "ms": 18009
+  },
+  {
+    "model": "claude-opus-5",
+    "label": "Opus 5",
+    "lang": "en",
+    "clues": [
+      {
+        "answer": "ago",
+        "clue1": "In the past, as in years ___",
+        "clue2": "Word after \"long\" in fairy tale openings"
+      },
+      {
+        "answer": "and",
+        "clue1": "Plus, in a list",
+        "clue2": "Word joining two names"
+      },
+      {
+        "answer": "any",
+        "clue1": "Even one bit of",
+        "clue2": "\"Do you have ___ questions?\""
+      },
+      {
+        "answer": "aye",
+        "clue1": "Vote in favor",
+        "clue2": "Sailor's yes"
+      },
+      {
+        "answer": "era",
+        "clue1": "Historical stretch",
+        "clue2": "Age of dinosaurs, for one"
+      },
+      {
+        "answer": "lot",
+        "clue1": "Great deal",
+        "clue2": "Empty parcel of land"
+      },
+      {
+        "answer": "old",
+        "clue1": "Up in years",
+        "clue2": "Not brand-new"
+      },
+      {
+        "answer": "ten",
+        "clue1": "Perfect score, informally",
+        "clue2": "Digits on two hands"
+      },
+      {
+        "answer": "bland",
+        "clue1": "Lacking flavor",
+        "clue2": "Dull and unexciting"
+      },
+      {
+        "answer": "cared",
+        "clue1": "Felt concern",
+        "clue2": "Looked after, with \"for\""
+      },
+      {
+        "answer": "coats",
+        "clue1": "Winter outerwear",
+        "clue2": "Layers of paint"
+      },
+      {
+        "answer": "craps",
+        "clue1": "Casino dice game",
+        "clue2": "Game won with a seven on the come-out"
+      },
+      {
+        "answer": "dated",
+        "clue1": "Out of style",
+        "clue2": "Went out with romantically"
+      },
+      {
+        "answer": "dents",
+        "clue1": "Fender damage",
+        "clue2": "Small hollows from impact"
+      },
+      {
+        "answer": "hacks",
+        "clue1": "Clever shortcuts",
+        "clue2": "Chops roughly"
+      },
+      {
+        "answer": "hated",
+        "clue1": "Couldn't stand",
+        "clue2": "Widely despised"
+      },
+      {
+        "answer": "lakes",
+        "clue1": "Inland waters",
+        "clue2": "Great ones by Michigan"
+      },
+      {
+        "answer": "lunch",
+        "clue1": "Midday meal",
+        "clue2": "Noon break with a sandwich"
+      },
+      {
+        "answer": "paste",
+        "clue1": "School glue",
+        "clue2": "Clipboard command partner of copy"
+      },
+      {
+        "answer": "pests",
+        "clue1": "Roaches and rats, e.g.",
+        "clue2": "Annoying nuisances"
+      },
+      {
+        "answer": "rites",
+        "clue1": "Solemn ceremonies",
+        "clue2": "Passage rituals"
+      },
+      {
+        "answer": "roles",
+        "clue1": "Parts in a play",
+        "clue2": "Functions one fills"
+      },
+      {
+        "answer": "seeds",
+        "clue1": "Garden starters",
+        "clue2": "Tournament rankings"
+      },
+      {
+        "answer": "slaps",
+        "clue1": "Open-handed smacks",
+        "clue2": "Puts down hard on a table"
+      },
+      {
+        "answer": "spare",
+        "clue1": "Extra tire in the trunk",
+        "clue2": "Show mercy to"
+      },
+      {
+        "answer": "store",
+        "clue1": "Shop for goods",
+        "clue2": "Put away for later"
+      },
+      {
+        "answer": "abed",
+        "clue1": "Still under the covers",
+        "clue2": "Not yet up, poetically"
+      },
+      {
+        "answer": "acids",
+        "clue1": "Low-pH substances",
+        "clue2": "Vinegar and lemon juice, chemically"
+      },
+      {
+        "answer": "arrow",
+        "clue1": "Bow's companion",
+        "clue2": "Cursor shape pointing the way"
+      },
+      {
+        "answer": "brad",
+        "clue1": "Thin nail with a small head",
+        "clue2": "Fastener for trim work"
+      },
+      {
+        "answer": "bravo",
+        "clue1": "Shout after a great aria",
+        "clue2": "Cry of approval at the opera"
+      },
+      {
+        "answer": "claw",
+        "clue1": "Cat's sharp nail",
+        "clue2": "Lobster's pincer"
+      },
+      {
+        "answer": "dash",
+        "clue1": "Short sprint",
+        "clue2": "Pinch of salt"
+      },
+      {
+        "answer": "erase",
+        "clue1": "Rub out pencil marks",
+        "clue2": "Wipe from memory"
+      },
+      {
+        "answer": "hence",
+        "clue1": "Therefore",
+        "clue2": "From now, as in years ___"
+      },
+      {
+        "answer": "shin",
+        "clue1": "Front of the lower leg",
+        "clue2": "Part bruised on a coffee table"
+      },
+      {
+        "answer": "beige",
+        "clue1": "Pale sandy shade",
+        "clue2": "Color of many office walls"
+      },
+      {
+        "answer": "bills",
+        "clue1": "Paper money",
+        "clue2": "Monthly payment demands"
+      },
+      {
+        "answer": "chefs",
+        "clue1": "Kitchen bosses",
+        "clue2": "Ones in tall white hats"
+      },
+      {
+        "answer": "deeds",
+        "clue1": "Property ownership papers",
+        "clue2": "Actions, not words"
+      },
+      {
+        "answer": "ended",
+        "clue1": "Came to a close",
+        "clue2": "Wrapped up at last"
+      },
+      {
+        "answer": "frame",
+        "clue1": "Border for a painting",
+        "clue2": "Set up to take the blame"
+      },
+      {
+        "answer": "holed",
+        "clue1": "Sank the golf ball",
+        "clue2": "Punctured through"
+      },
+      {
+        "answer": "labor",
+        "clue1": "Hard work",
+        "clue2": "Stage before childbirth"
+      },
+      {
+        "answer": "liver",
+        "clue1": "Organ that filters toxins",
+        "clue2": "Meat often paired with onions"
+      },
+      {
+        "answer": "mare",
+        "clue1": "Female horse",
+        "clue2": "Foal's mother"
+      },
+      {
+        "answer": "mash",
+        "clue1": "Crush into pulp",
+        "clue2": "What you do to boiled potatoes"
+      },
+      {
+        "answer": "new",
+        "clue1": "Fresh off the shelf",
+        "clue2": "Never used before"
+      },
+      {
+        "answer": "swami",
+        "clue1": "Hindu religious teacher",
+        "clue2": "Turbaned mystic of fiction"
+      },
+      {
+        "answer": "thine",
+        "clue1": "Yours, in old verse",
+        "clue2": "Belonging to thee"
+      }
+    ],
+    "usage": {
+      "input": 1224,
+      "output": 1874
+    },
+    "costUsd": 0.05297,
+    "ms": 22310
+  }
+]
