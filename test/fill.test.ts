@@ -147,9 +147,12 @@ describe("difficulty band mapping", () => {
   it("gives every Mini difficulty adjacent bands, hardest last", () => {
     expect(MINI_FILL_BANDS.easy).toEqual(["easy", "medium"]);
     expect(MINI_FILL_BANDS.hard).toEqual(["medium", "hard"]);
-    // Extrem takes a third band because a fully checked 5x5 needs the width;
-    // see the measurement in lib/fill.ts.
-    expect(MINI_FILL_BANDS.extreme).toEqual(["medium", "hard", "extreme"]);
+    // Extrem takes every band, including easy, because a fully checked 5x5
+    // needs the width: with three bands, the rank cap and the ambiguity check
+    // left it at 128 puzzles in Swedish and 36 in English. All four takes it to
+    // 473 and 354. Its difficulty is the geometry and the pinning, not word
+    // rarity, so the gentle band costs it nothing. See lib/fill.ts.
+    expect(MINI_FILL_BANDS.extreme).toEqual(["easy", "medium", "hard", "extreme"]);
   });
 
   it.each(LANGS)("%s: every difficulty can draw at all three lengths", (lang) => {
