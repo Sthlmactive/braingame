@@ -48,6 +48,31 @@ export function isFillLength(n: number): n is FillLength {
 export const THREE_LETTER_RANK_CAP = 250;
 
 /**
+ * No fill word may be rarer than this corpus rank, at any length or band.
+ *
+ * Measured, not guessed: the first banks drew Svår and Extrem from the bottom
+ * 0.2% of the answer pool — rank 25,106 of 25,149 in Swedish, 24,437 of 24,487
+ * in English — which is ISTER, AKTRE, GOLAR, BULOR on one side and CROUP,
+ * YENS, LOUTS, TULLE on the other. Every one of those is checked twice in a
+ * grid, so a single one of them takes two entries with it.
+ *
+ * Applied **after banding, to every band**, and the order is the whole point.
+ *
+ * Capping the pool first and banding the survivors looks equivalent and is not:
+ * the shares are proportional, so removing the rarest 15% shrinks all four
+ * bands by 15%, including the two that never held a word this rare. Measured,
+ * that cost Swedish Medel 500 puzzles down to 266 — a bank ruined by a rule
+ * aimed at a different bank. Banding first leaves easy and medium exactly as
+ * they were and takes the tail out of hard and extreme, where it lives.
+ *
+ * Every band is filtered, not just hard and extreme, because bands are cut by
+ * difficulty score rather than by rank: a rare word with gentle structure can
+ * land mid-table, and Svår and Extrem both draw the `medium` band. Filtering
+ * all four is what makes "no fill word is rarer than this" actually true.
+ */
+export const FILL_RANK_CAP = 20_000;
+
+/**
  * Three letter fill drops interjections and abbreviations as a category, not a
  * frequency band. `hmm`, `shh`, `aha`, `pst`, `dvd` and `sms` are common enough
  * to survive any rank cut and useless as crossword entries: an interjection has
@@ -245,7 +270,12 @@ export function buildFillPool(
       hard: [],
       extreme: [],
     };
-    for (const [word, band] of bands) byBand[band].push(word);
+    for (const [word, band] of bands) {
+      // The rank cap, applied to the banded result so the boundaries above are
+      // the ones the full pool produced.
+      if (rankOf.get(word)! + 1 > FILL_RANK_CAP) continue;
+      byBand[band].push(word);
+    }
     for (const band of DIFFICULTIES) {
       byBand[band].sort((a, b) => compareWords(a, b, lang));
     }
@@ -273,24 +303,27 @@ export function fillWords(
  * Which bands each Mini difficulty draws from, so the step between
  * difficulties is a shift rather than a jump.
  *
- * Extrem takes three bands rather than two, and that is a measured decision
- * rather than a preference. Its grid is a fully checked 5x5 — a double word
- * square, every one of the ten entries crossing every other — and those are
- * rare. Yield of distinct grids per attempt, English:
+ * Extrem takes every band, and that is a measured decision rather than a
+ * preference. Its grid is a fully checked 5x5 — a double word square, every one
+ * of the ten entries crossing every other — and those are rare. Yield of
+ * distinct grids per attempt, English, before the rank cap existed:
  *
  *   hard + extreme          1,688 words    27%    42s per 120 attempts
  *   medium + hard + extreme 2,701 words    98%     8s
  *   all four bands          3,376 words    99%     4s
  *
- * At two bands English tops out around 30 puzzles, well under the 200 minimum.
- * Swedish manages 500 from two bands, but shipping the two languages on
- * different rules is worse than widening both. Extrem's difficulty comes from
- * every letter being checked twice, not from word rarity, and Svår keeps its
- * black squares to tell the two apart.
+ * It was widened to three bands for that reason. The rank cap and the
+ * ambiguity check then took English Extrem to 36 puzzles at three bands, so it
+ * is widened again, to all four.
+ *
+ * Extrem's difficulty is that every letter is checked twice and every entry has
+ * to be pinned by its crossings, not that its words are rare — so drawing from
+ * the gentle band costs it nothing it was selling. Svår keeps its black squares
+ * to tell the two apart.
  */
 export const MINI_FILL_BANDS: Record<Difficulty, readonly Difficulty[]> = {
   easy: ["easy", "medium"],
   medium: ["easy", "medium"],
   hard: ["medium", "hard"],
-  extreme: ["medium", "hard", "extreme"],
+  extreme: ["easy", "medium", "hard", "extreme"],
 };
