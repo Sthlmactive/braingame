@@ -23,7 +23,7 @@ export function HowToPlay({
           <li key={i} className="flex gap-3">
             <span
               className="grid h-6 w-6 shrink-0 place-items-center rounded-full text-xs font-bold"
-              style={{ background: "var(--accent)", color: "var(--on-state)" }}
+              style={{ background: "var(--ink)", color: "var(--paper)" }}
             >
               {i + 1}
             </span>
@@ -69,7 +69,7 @@ function Example() {
             <span
               key={c}
               className="grid h-6 w-6 place-items-center rounded-[3px] text-[0.7rem] font-bold uppercase"
-              style={{ background: "var(--surface)", color: "var(--text)" }}
+              style={{ background: "var(--raised)", color: "var(--ink)" }}
             >
               {ch}
             </span>

@@ -135,7 +135,6 @@
   /* Per game identity colours, still used by the six unmigrated games for
      their own chrome. Home and Five reference none of these. */
   --accent-five: #5b7cff;
-  --accent-grid: #37b98a;
   --accent-ordoku: #3fbbd1;
   --accent-rush: #f2664b;
   --accent-tiles: #7c8ca0;

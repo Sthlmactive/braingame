@@ -311,10 +311,10 @@ export function Grid({
               {state.rowHints.map((hints, r) => (
                 <div
                   key={r}
-                  className="flex items-center text-[0.6rem] leading-tight font-semibold tracking-wide uppercase"
+                  className="t-caption flex items-center font-semibold tracking-wide uppercase"
                   style={{
                     height: cellPx,
-                    color: "var(--present)",
+                    color: "var(--ink)",
                     wordBreak: "break-all",
                   }}
                   aria-label={t("gridRowHints")}
@@ -344,9 +344,9 @@ export function Grid({
               style={{
                 width: 34,
                 height: 40,
-                background: "var(--surface)",
-                border: `1.5px solid ${active ? "var(--accent)" : "var(--line)"}`,
-                color: "var(--text)",
+                background: "var(--raised)",
+                border: `1.5px solid ${active ? "var(--ink)" : "var(--line)"}`,
+                color: "var(--ink)",
               }}
             >
               {ch ?? (active ? <span className="caret">|</span> : "")}
