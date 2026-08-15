@@ -270,7 +270,7 @@ export function Ordoku({
   const selValue = selected === null ? -1 : cells[selected]!;
 
   const boardSide = cellPx * SIZE;
-  const frame = "rgba(244, 246, 249, 0.4)";
+  const frame = "var(--ink)";
 
   // The diagonal, as it stands, for the hidden word strip.
   const diagonal = Array.from({ length: SIZE }, (_, i) => cells[i * SIZE + i]!);
@@ -336,7 +336,7 @@ export function Ordoku({
       <div className="flex shrink-0 items-center justify-between gap-3 pb-2">
         <div
           className="flex rounded-lg p-0.5"
-          style={{ background: "var(--surface)", border: "1px solid var(--line)" }}
+          style={{ background: "var(--raised)", border: "1px solid var(--line)" }}
           role="group"
         >
           {(["numbers", "letters"] as const).map((mode) => {
@@ -347,8 +347,8 @@ export function Ordoku({
                 type="button"
                 className="rounded-md px-3 py-1.5 text-xs font-semibold"
                 style={{
-                  background: on ? "var(--accent)" : "transparent",
-                  color: on ? "var(--on-state)" : "var(--muted)",
+                  background: on ? "var(--ink)" : "transparent",
+                  color: on ? "var(--paper)" : "var(--muted)",
                 }}
                 aria-pressed={on}
                 onClick={() => {
@@ -375,7 +375,7 @@ export function Ordoku({
                   style={{
                     width: 13,
                     textAlign: "center",
-                    color: reveal ? "var(--accent)" : "var(--muted)",
+                    color: reveal ? "var(--ink)" : "var(--muted)",
                     borderBottom: reveal ? "none" : "1.5px solid var(--line)",
                     lineHeight: 1.2,
                   }}
@@ -414,10 +414,10 @@ export function Ordoku({
             const cellNotes = notes[i]!;
 
             let background = "transparent";
-            if (isBad) background = "rgba(242, 102, 75, 0.30)";
-            else if (isSelected) background = "rgba(63, 187, 209, 0.15)";
-            else if (sameValue) background = "rgba(63, 187, 209, 0.12)";
-            else if (inScope) background = "rgba(255, 255, 255, 0.06)";
+            if (isBad) background = "color-mix(in srgb, var(--danger) 30%, transparent)";
+            else if (isSelected) background = "color-mix(in srgb, var(--ink) 16%, transparent)";
+            else if (sameValue) background = "color-mix(in srgb, var(--ink) 10%, transparent)";
+            else if (inScope) background = "color-mix(in srgb, var(--ink) 5%, transparent)";
 
             return (
               <button
@@ -439,8 +439,8 @@ export function Ordoku({
                         ? `2px solid ${frame}`
                         : "1px solid var(--line)",
                   background,
-                  color: isGiven ? "var(--text)" : "var(--accent)",
-                  fontWeight: isGiven ? 600 : 500,
+                  color: "var(--ink)",
+                  fontWeight: isGiven ? 700 : 400,
                   fontSize: Math.round(cellPx * 0.52),
                   lineHeight: 1,
                 }}
@@ -490,10 +490,10 @@ export function Ordoku({
                   width: 44,
                   height: 44,
                   fontSize: "1.15rem",
-                  background: "var(--surface)",
+                  background: "var(--raised)",
                   border: "1px solid var(--line)",
-                  color: dim ? "var(--line)" : "var(--text)",
-                  opacity: dim ? 0.5 : 1,
+                  color: "var(--ink)",
+                  opacity: dim ? 0.35 : 1,
                 }}
                 onClick={() => place(symbol)}
                 disabled={selected === null}
@@ -562,8 +562,8 @@ function PadButton({
       className="tap flex-1 rounded-lg px-2 text-xs font-semibold disabled:opacity-40"
       style={{
         height: 44,
-        background: active ? "var(--accent)" : "transparent",
-        color: active ? "var(--on-state)" : "var(--text)",
+        background: active ? "var(--ink)" : "transparent",
+        color: active ? "var(--paper)" : "var(--ink)",
         border: active ? "none" : "1px solid var(--line)",
       }}
       onClick={onPress}
