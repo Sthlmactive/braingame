@@ -2,6 +2,7 @@
 
 import { useApp } from "@/components/AppProvider";
 import { LANGS, type Lang } from "@/lib/i18n";
+import { CARD_GAP_PX, CARD_PAD_PX } from "@/lib/picker";
 
 /**
  * The language picker, shared by Five and Mini.
@@ -15,9 +16,6 @@ import { LANGS, type Lang } from "@/lib/i18n";
  * country; this says what changes.
  */
 
-/** A comfortable target, for a screen too short for the cards to fill it. */
-const MIN_CARD_PX = 88;
-
 const ALPHABET: Record<Lang, string> = {
   sv: "A – Ö",
   en: "A – Z",
@@ -30,15 +28,18 @@ export function LanguagePicker({ onSelect }: { onSelect: (lang: Lang) => void })
   const { t } = useApp();
 
   return (
-    <div className="safe-bottom flex min-h-0 min-w-0 flex-1 flex-col gap-2.5 pt-1 pb-2">
+    <div
+      className="safe-bottom flex min-h-0 min-w-0 flex-1 flex-col pt-1 pb-2"
+      style={{ gap: CARD_GAP_PX }}
+    >
       {LANGS.map((code) => (
         <button
           key={code}
           type="button"
           onClick={() => onSelect(code)}
-          className="press flex min-h-0 min-w-0 flex-1 flex-col items-center justify-center gap-2 overflow-hidden px-4 py-3"
+          className="press flex min-w-0 flex-1 flex-col items-center justify-center gap-2 overflow-hidden"
           style={{
-            minHeight: MIN_CARD_PX,
+            padding: CARD_PAD_PX,
             background: "var(--raised)",
             borderRadius: "var(--radius-panel)",
           }}

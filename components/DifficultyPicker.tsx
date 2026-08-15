@@ -2,6 +2,12 @@
 
 import type { ReactNode } from "react";
 import type { Difficulty } from "@/lib/difficulty";
+import {
+  CARD_GAP_PX,
+  CARD_PAD_PX,
+  NAME_GAP_PX,
+  PREVIEW_GAP_PX,
+} from "@/lib/picker";
 
 /**
  * The difficulty picker, shared by Five and Mini.
@@ -27,8 +33,16 @@ import type { Difficulty } from "@/lib/difficulty";
  * streak is absent rather than shown: nothing to report is not a report.
  */
 
-/** A comfortable target, for a screen too short for the cards to fill it. */
-const MIN_CARD_PX = 88;
+/**
+ * The gaps are set for Swedish. 3px and 12px were measured against "Easy" and
+ * "Hard", which reach no higher than a cap; "Lätt" and "Svår" stack a
+ * diacritic above the cap line and land on the line above. The leading in
+ * globals.css does most of the work — see the note on the type scale — and
+ * these two gaps do the rest.
+ *
+ * All of them live in lib/picker.ts so the layout test measures the same
+ * numbers the component renders.
+ */
 
 export interface DifficultyOption {
   difficulty: Difficulty;
@@ -50,22 +64,42 @@ export function DifficultyPicker({
   return (
     // min-w-0 the whole way down: a flex item defaults to min-width:auto, which
     // refuses to shrink below its content and pushes the card past the viewport.
-    <div className="safe-bottom flex min-h-0 min-w-0 flex-1 flex-col gap-2.5 pt-1 pb-2">
+    <div
+      className="safe-bottom flex min-h-0 min-w-0 flex-1 flex-col pt-1 pb-2"
+      style={{ gap: CARD_GAP_PX }}
+    >
       {options.map((option) => (
         <button
           key={option.difficulty}
           type="button"
           onClick={() => onSelect(option.difficulty)}
-          className="press relative flex min-h-0 min-w-0 flex-1 flex-col justify-center overflow-hidden px-4 py-3 text-left"
+          // No `min-h-0` and no explicit `min-height`, on purpose. Both
+          // replace the flex item's automatic minimum, which is its content —
+          // and with `overflow-hidden` on the card, a screen too short to hold
+          // four of them would then silently crop the preview off the bottom
+          // instead of letting the page scroll. Cropping is the worse failure.
+          // MIN_CARD_PX is a design floor the content already clears; the
+          // layout test asserts that rather than the CSS enforcing it.
+          className="press relative flex min-w-0 flex-1 flex-col justify-center overflow-hidden text-left"
           style={{
-            minHeight: MIN_CARD_PX,
+            padding: CARD_PAD_PX,
             background: "var(--raised)",
             borderRadius: "var(--radius-panel)",
           }}
         >
+          {/* Stacked, not inline. Half the width of "1 Svit" on one line, so
+              it is not the thing that runs off the edge if anything upstream
+              regresses. Absolute, so a card with a record and a card without
+              centre their content identically. */}
           {option.stat ? (
-            <span className="t-caption absolute top-3 right-4 text-[var(--muted)]">
-              <span className="tnum">{option.stat.value}</span> {option.stat.label}
+            <span
+              className="absolute flex flex-col items-end text-right"
+              style={{ top: CARD_PAD_PX, right: CARD_PAD_PX }}
+            >
+              <span className="t-row tnum">{option.stat.value}</span>
+              <span className="t-caption text-[var(--muted)]">
+                {option.stat.label}
+              </span>
             </span>
           ) : null}
 
@@ -73,11 +107,11 @@ export function DifficultyPicker({
             <span className="t-option block">{option.name}</span>
             <span
               className="t-body block text-[var(--muted)]"
-              style={{ marginTop: 3 }}
+              style={{ marginTop: NAME_GAP_PX }}
             >
               {option.description}
             </span>
-            <span className="flex" style={{ marginTop: 12 }} aria-hidden>
+            <span className="flex" style={{ marginTop: PREVIEW_GAP_PX }} aria-hidden>
               {option.preview}
             </span>
           </span>
