@@ -121,7 +121,7 @@ export function Rush({ lang, level, onFinish, setStatus, onGiveUp }: GameProps) 
         {cfg.seconds > 0 ? (
           <span
             className="font-display font-bold"
-            style={{ color: remaining <= 30 ? "var(--present)" : undefined }}
+            style={{ color: remaining <= 30 ? "var(--danger)" : undefined }}
           >
             {formatTime(remaining * 1000)}
           </span>
@@ -258,15 +258,17 @@ export function Rush({ lang, level, onFinish, setStatus, onGiveUp }: GameProps) 
                   height: cellPx,
                   fontSize: Math.round(cellPx * 0.5),
                   borderRadius: 4,
-                  border: letter
-                    ? `1px solid ${bad ? "#F2664B" : "var(--accent)"}`
-                    : "1px solid var(--line)",
+                  border: `1px solid ${
+                    letter ? (bad ? "var(--danger)" : "var(--ink)") : "var(--line)"
+                  }`,
                   background: letter
                     ? bad
-                      ? "rgba(242,102,75,0.2)"
-                      : "var(--surface)"
+                      ? "color-mix(in srgb, var(--danger) 22%, transparent)"
+                      : "var(--raised)"
                     : "transparent",
-                  color: "var(--text)",
+                  color: bad ? "var(--danger)" : "var(--ink)",
+                  textDecoration: bad ? "line-through" : undefined,
+                  textDecorationThickness: bad ? 2 : undefined,
                   opacity: letter ? 1 : selected !== null ? 0.9 : 0.35,
                 }}
                 onClick={() => tapCell(x, y)}
@@ -322,7 +324,7 @@ export function Rush({ lang, level, onFinish, setStatus, onGiveUp }: GameProps) 
           <button
             type="button"
             className="tap flex-1 rounded-xl py-3 text-sm font-semibold disabled:opacity-40"
-            style={{ background: "var(--accent)", color: "var(--on-state)" }}
+            style={{ background: "var(--ink)", color: "var(--paper)" }}
             onClick={() => finish("notCleared")}
             disabled={cells.size === 0}
           >

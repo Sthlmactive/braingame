@@ -95,7 +95,9 @@ const PALETTES: Record<TileState, Palette> = {
   correct: HIT,
   present: NEAR,
   absent: MISS,
-  accent: { bg: "var(--accent)", fg: "var(--on-state)", border: "var(--accent)" },
+  // A selected rack tile. Was the per game accent; ink now, like every
+  // other "this one is picked" in the app.
+  accent: { bg: "var(--ink)", fg: "var(--paper)", border: "var(--ink)" },
   locked: { bg: "var(--raised)", fg: "var(--muted)", border: "var(--line)" },
   muted: { bg: "transparent", fg: "var(--muted)", border: "var(--line)" },
 };
