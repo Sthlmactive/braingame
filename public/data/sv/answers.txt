@@ -247,8 +247,7 @@
 1nabola
 3de
 3gram
-3l
-4fabet
+3lfabet
 4sex
 4ys
 6en
@@ -531,7 +530,6 @@
 4tt
 3ågande
 3ända
-2us
 2vänd
 6a
 7re
@@ -665,13 +663,9 @@
 3ogans
 7t
 8a
-2sel
-4nal
+2senal
 7en
 5ik
-3len
-6a
-5t
 2t
 3efakt
 4n
@@ -1165,8 +1159,7 @@
 6et
 3uette
 2h
-2ja
-3onett
+2jonett
 2k
 3a
 4d
@@ -1239,11 +1232,8 @@
 3l
 4a
 5d
-5r
-6na
-4e
-5n
-5rina
+5rna
+4erina
 4istik
 4ong
 7en
@@ -2065,7 +2055,6 @@
 4juv
 4ur
 4vätt
-2mbo
 2na
 3d
 4a
@@ -2113,10 +2102,6 @@
 4r
 5na
 4s
-3ch
-5ar
-5en
-5ig
 3en
 4r
 3it
@@ -3600,8 +3585,7 @@
 7de
 7r
 6na
-2ldo
-3emma
+2lemma
 7t
 3igens
 3l
@@ -4947,8 +4931,6 @@
 3ma
 3t
 4et
-4o
-5t
 2z
 1iasko
 6t
@@ -5094,9 +5076,6 @@
 5n
 4or
 2s
-3a
-4r
-3er
 3k
 4a
 5de
@@ -5147,8 +5126,6 @@
 6ar
 6en
 4ren
-4t
-5ar
 3ska
 6r
 3ttrad
@@ -5340,10 +5317,7 @@
 6t
 5ig
 3t
-1nask
-5en
-6t
-3tt
+1natt
 2issar
 3ttra
 7r
@@ -7619,8 +7593,6 @@
 2ge
 4l
 4n
-3ga
-5n
 3lar
 2ha
 2j
@@ -8157,8 +8129,7 @@
 2lländsk
 3ogram
 3t
-2mo
-4fob
+2mofob
 7i
 2n
 3a
@@ -8848,7 +8819,6 @@
 4er
 2väll
 1la
-3nd
 3r
 2la
 3dåd
@@ -9428,7 +9398,6 @@
 3la
 5de
 5r
-2cka
 2dar
 5na
 3e
@@ -9565,9 +9534,7 @@
 5stor
 6öt
 2v
-3el
-5n
-5skap
+3elskap
 1össe
 5s
 0kabel
@@ -9681,7 +9648,6 @@
 4l
 5er
 7na
-4n
 3di
 5dat
 6era
@@ -9959,12 +9925,7 @@
 6i
 7sk
 2sar
-3s
-4a
-5de
-5r
-5t
-4e
+3se
 5katt
 5miss
 5n
@@ -10484,7 +10445,6 @@
 4en
 2m
 3a
-4n
 3bi
 5nera
 3edi
@@ -11242,9 +11202,7 @@
 3ar
 3e
 4n
-2t
-3a
-3bock
+2tbock
 1äbbel
 4la
 2ck
@@ -12064,9 +12022,7 @@
 4ig
 6a
 6t
-3er
 3low
-3ret
 2ffare
 7n
 3t
@@ -13024,7 +12980,6 @@
 5n
 3natt
 3sommar
-2ffo
 2g
 3rän
 2ko
@@ -13267,8 +13222,7 @@
 3ark
 6en
 6in
-3go
-5ler
+3goler
 3itor
 7er
 7n
@@ -14679,11 +14633,7 @@
 7a
 7en
 7t
-1nanera
-7de
-7r
-4i
-3turlig
+1naturlig
 2d
 3a
 4re
@@ -14798,8 +14748,6 @@
 8t
 7m
 3el
-3ie
-5r
 2ientera
 3gami
 4inal
@@ -14949,8 +14897,7 @@
 3änad
 7e
 2tan
-2ukt
-3r
+2ur
 4en
 4ligt
 2ydlig
@@ -15395,10 +15342,6 @@
 7en
 8r
 3k
-4a
-5de
-5r
-5t
 3nar
 6na
 4e
@@ -16028,8 +15971,7 @@
 4are
 7n
 4huvud
-3g
-4råtta
+3gråtta
 3k
 4a
 5re
@@ -17479,10 +17421,7 @@
 4ofag
 2s
 2taniska
-4r
-3e
-4llit
-4n
+3ellit
 3ir
 3mara
 7n
@@ -17636,7 +17575,6 @@
 7n
 3il
 4or
-3na
 3or
 3sation
 4or
@@ -18595,9 +18533,7 @@
 6n
 5or
 7na
-2öka
-5n
-3ldar
+2öldar
 7na
 5en
 4j

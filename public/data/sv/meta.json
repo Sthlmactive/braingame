@@ -3,7 +3,7 @@
   "dictWords": 226052,
   "dictNodes": 32635,
   "dictEdges": 89745,
-  "answerWords": 25149,
+  "answerWords": 25085,
   "minAnswerLength": 3,
   "maxAnswerLength": 9,
   "maxWordLength": 9,
@@ -19,74 +19,74 @@
   ],
   "counts": {
     "3": {
-      "top1k": 135,
+      "top1k": 136,
       "top2k": 191,
       "top3k": 227,
-      "top5k": 289,
-      "top10k": 424,
+      "top5k": 288,
+      "top10k": 423,
       "top20k": 610,
-      "top40k": 670,
-      "full": 670
+      "top40k": 669,
+      "full": 669
     },
     "4": {
       "top1k": 214,
       "top2k": 359,
-      "top3k": 496,
+      "top3k": 497,
       "top5k": 699,
-      "top10k": 1098,
-      "top20k": 1636,
-      "top40k": 1858,
-      "full": 1858
+      "top10k": 1095,
+      "top20k": 1629,
+      "top40k": 1849,
+      "full": 1849
     },
     "5": {
-      "top1k": 230,
-      "top2k": 461,
-      "top3k": 673,
-      "top5k": 1040,
-      "top10k": 1799,
-      "top20k": 3023,
-      "top40k": 3556,
-      "full": 3556
+      "top1k": 229,
+      "top2k": 460,
+      "top3k": 670,
+      "top5k": 1038,
+      "top10k": 1797,
+      "top20k": 2999,
+      "top40k": 3528,
+      "full": 3528
     },
     "6": {
       "top1k": 224,
-      "top2k": 478,
+      "top2k": 479,
       "top3k": 705,
-      "top5k": 1203,
-      "top10k": 2310,
-      "top20k": 4250,
-      "top40k": 5179,
-      "full": 5179
+      "top5k": 1201,
+      "top10k": 2308,
+      "top20k": 4249,
+      "top40k": 5165,
+      "full": 5165
     },
     "7": {
       "top1k": 112,
       "top2k": 272,
-      "top3k": 470,
-      "top5k": 851,
-      "top10k": 1875,
-      "top20k": 3994,
-      "top40k": 5092,
-      "full": 5092
+      "top3k": 471,
+      "top5k": 854,
+      "top10k": 1877,
+      "top20k": 4002,
+      "top40k": 5082,
+      "full": 5082
     },
     "8": {
       "top1k": 62,
       "top2k": 159,
       "top3k": 268,
       "top5k": 552,
-      "top10k": 1440,
-      "top20k": 3569,
-      "top40k": 4729,
-      "full": 4729
+      "top10k": 1443,
+      "top20k": 3581,
+      "top40k": 4728,
+      "full": 4728
     },
     "9": {
       "top1k": 23,
       "top2k": 80,
-      "top3k": 161,
-      "top5k": 366,
-      "top10k": 1054,
-      "top20k": 2918,
-      "top40k": 4065,
-      "full": 4065
+      "top3k": 162,
+      "top5k": 368,
+      "top10k": 1057,
+      "top20k": 2930,
+      "top40k": 4064,
+      "full": 4064
     }
   },
   "sources": [

@@ -3,7 +3,7 @@
   "dictWords": 113893,
   "dictNodes": 45378,
   "dictEdges": 100270,
-  "answerWords": 24487,
+  "answerWords": 24485,
   "minAnswerLength": 3,
   "maxAnswerLength": 9,
   "maxWordLength": 15,
@@ -34,9 +34,9 @@
       "top3k": 604,
       "top5k": 836,
       "top10k": 1288,
-      "top20k": 1877,
-      "top40k": 2056,
-      "full": 2056
+      "top20k": 1875,
+      "top40k": 2054,
+      "full": 2054
     },
     "5": {
       "top1k": 251,
@@ -54,7 +54,7 @@
       "top3k": 561,
       "top5k": 983,
       "top10k": 1987,
-      "top20k": 3848,
+      "top20k": 3849,
       "top40k": 4647,
       "full": 4647
     },
@@ -74,7 +74,7 @@
       "top3k": 299,
       "top5k": 623,
       "top10k": 1551,
-      "top20k": 3663,
+      "top20k": 3664,
       "top40k": 4734,
       "full": 4734
     },

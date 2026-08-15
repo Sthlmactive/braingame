@@ -12,17 +12,27 @@ the two bucketed lengths, 5 and 6. The full genitive class alone runs to
 
 ## sv
 
+### junk — 3
+
+    iland  kanan  koman
+
 ### ldnoobw — 14
 
     arsle  helvete  kuk  mutta  nigger  pippa  pitt  prutt  runka  rövhål
     rövknulla  satan  skita  subba
 
-### list — 32
+### list — 56
 
-    analt  bajsa  bajset  bolin  brudar  bögen  fitta  fittan  flatan  hora
-    horan  horor  jävlar  knull  knulla  kukar  kuken  kärring  neger  negern
-    orgasm  pervo  pissa  pisset  porren  pungen  röv  röven  samlag  snoppen
-    snorre  squaw
+    anal  analt  anus  arsel  bajsa  bajset  ballar  balle  ballen  bolin
+    brudar  bögen  fitta  fittan  flatan  homo  hora  horan  horor  jävel
+    jäveln  jävlar  kiss  kissa  kissade  kissar  kissat  knull  knulla  kukar
+    kuken  kåt  kåta  kärring  luder  ludret  mongo  neger  negern  onani
+    orgasm  pervo  pissa  pisset  porren  pung  pungen  röv  röven  samlag
+    satar  sate  saten  snoppen  snorre  squaw
+
+### name — 1
+
+    senna
 
 ### saldo:genitive-only — 245
 
@@ -136,21 +146,65 @@ the two bucketed lengths, 5 and 6. The full genitive class alone runs to
     viola  vira  visor  vita  volta  volvo  vågen  väsen  västra  yard
     yards  ystad  öarna  örnen  örnens  öst  östern  övre
 
+### stem:arsl — 3
+
+    arslen  arslena  arslet
+
+### stem:baja — 1
+
+    baja
+
 ### stem:bajs — 6
 
     bajs  bajsade  bajsar  bajsat  bajskorv  hundbajs
+
+### stem:bimbo — 1
+
+    bimbo
+
+### stem:bitch — 4
+
+    bitch  bitchar  bitchen  bitchig
 
 ### stem:bög — 3
 
     bög  bögar  bögarna
 
+### stem:dildo — 1
+
+    dildo
+
+### stem:fetto — 2
+
+    fetto  fettot
+
+### stem:fisa — 2
+
+    fisa  fisar
+
+### stem:fiser — 1
+
+    fiser
+
 ### stem:fitt — 2
 
     fittor  fittorna
 
+### stem:fjärt — 2
+
+    fjärt  fjärtar
+
 ### stem:fjolla — 2
 
     fjolla  fjollan
+
+### stem:fnask — 3
+
+    fnask  fnasken  fnasket
+
+### stem:hagga — 2
+
+    hagga  haggan
 
 ### stem:hora — 2
 
@@ -169,6 +223,10 @@ the two bucketed lengths, 5 and 6. The full genitive class alone runs to
     djävla  djävlar  djävlarna  djävlas  djävligt  jävla  jävlades  jävlarna  jävlars  jävlas
     jävlats  jävlig  jävliga  jävligt
 
+### stem:jucka — 1
+
+    jucka
+
 ### stem:kärring — 2
 
     kärringar  kärringen
@@ -181,13 +239,29 @@ the two bucketed lengths, 5 and 6. The full genitive class alone runs to
 
     kukarna  kukhuvud
 
+### stem:miffo — 1
+
+    miffo
+
 ### stem:nigger — 2
 
     niggern  niggers
 
+### stem:onaner — 3
+
+    onanera  onanerade  onanerar
+
 ### stem:orgas — 2
 
     orgasmen  orgasmer
+
+### stem:orgie — 2
+
+    orgie  orgier
+
+### stem:otukt — 1
+
+    otukt
 
 ### stem:patta — 2
 
@@ -196,6 +270,10 @@ the two bucketed lengths, 5 and 6. The full genitive class alone runs to
 ### stem:penis — 3
 
     penis  penisar  penisen
+
+### stem:pinka — 4
+
+    pinka  pinkade  pinkar  pinkat
 
 ### stem:piss — 4
 
@@ -218,6 +296,10 @@ the two bucketed lengths, 5 and 6. The full genitive class alone runs to
     hundskit  koskit  skit  skitar  skitarna  skitbra  skitdålig  skiten  skiter  skitet
     skitig  skitiga  skitigt  skitit  skitkass  skitkul  skitont  skitprat  skiträdd  skitsak
     skitsamma  skitsnack  skitsnygg
+
+### stem:sköka — 2
+
+    sköka  skökan
 
 ### stem:slid — 2
 
@@ -269,15 +351,15 @@ the two bucketed lengths, 5 and 6. The full genitive class alone runs to
     retard  scrotum  semen  shits  spics  squaw  titty  turds  twats  vagina
     wetback  whitey  whore  wop
 
-### name — 61
+### name — 63
 
     aspen  aurora  bailey  baker  benny  berlin  billy  bobby  butch  carol
     carter  cooper  daisy  deacon  donna  fisher  graham  harper  hector  henry
     hooper  hunter  japan  jasper  jenny  jerry  kelly  lewis  logan  louis
     marcel  maria  martin  mercer  miller  molly  morris  murphy  nancy  nappy
-    nelson  peter  phoebe  plaza  porter  pygmy  randy  sally  sandy  sawyer
-    sierra  sonny  terry  tom  victor  villa  violet  wales  walker  wally
-    warren
+    nelson  peter  phoebe  plaza  porter  pygmy  randy  rhea  saki  sally
+    sandy  sawyer  sierra  sonny  terry  tom  victor  villa  violet  wales
+    walker  wally  warren
 
 ### scowl:band-60 — 175
 

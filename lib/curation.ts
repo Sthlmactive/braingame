@@ -20,7 +20,7 @@ import type { Lang } from "./i18n";
  * therefore incomplete by construction. Adding to it is a one line change.
  */
 
-/** Ordinary English words that read as names to anyone playing. */
+/** Ordinary words that read as a name to anyone playing. */
 const EN_NAMES = [
   "tom",
   "peter",
@@ -84,7 +84,35 @@ const EN_NAMES = [
   "sierra",
   "villa",
   "plaza",
+  // Both have an ordinary reading — a rhea is a flightless bird, a saki a South
+  // American monkey — and both read as a name to anyone who has not met the
+  // animal. They surfaced in Mini's gentlest bank, where every letter is
+  // checked twice, which is the worst place for a word nobody can confirm.
+  "rhea",
+  "saki",
 ];
+
+/**
+ * The same, in Swedish.
+ *
+ * SALDO's `pm` tag catches proper nouns at build time, so this list is only
+ * for the case the tag cannot see: a word with a perfectly ordinary lemma that
+ * a player reads as a name anyway. `senna` is a real SALDO noun — the plant,
+ * `nn_0u_radar` — and is still the racing driver to anyone who meets it in a
+ * grid, where every letter is checked twice and a wrong guess is unrecoverable.
+ */
+const SV_NAMES = ["senna"];
+
+/**
+ * Swedish words reviewed against SALDO and **kept**, recorded so the same three
+ * are not re-litigated on the next pass through Mini's fill.
+ *
+ * All three look like names and are not:
+ *
+ *   kåre   lemma, `nn`, paradigm nn_2u_vinge — a gust of wind, cf. vindkåre
+ *   remi   lemma, `nn`, paradigm nn_3u_akademi — the draw, in chess
+ *   yves   not a lemma at all: the present s-form and imperative of `yvas`
+ */
 
 /**
  * Crude words are blocked by stem rather than one form at a time, because a
@@ -133,6 +161,40 @@ const CRUDE_STEMS: Record<Lang, readonly string[]> = {
     "horar",
     "horor",
     "horhus",
+
+    // --- Added after reading Mini's Swedish fill pool, all three lengths ----
+    // The list above was built from LDNOOBW, which is an English-first list
+    // with 43 Swedish entries, and it showed: FNASK, ARSEL and ONANI were in
+    // three of five sampled Extrem grids. A mini clues every word on screen,
+    // so a miss here is not a rare bad answer, it is a clue commissioned for
+    // it. These are the stems that are safe as substrings; everything whose
+    // stem collides with an ordinary word is listed by exact form in CRUDE.
+    "fnask",
+    "sköka",
+    "skökor",
+    "otukt",
+    "orgie",
+    "jucka",
+    "pinka",
+    "fjärt",
+    "dildo",
+    "bimbo",
+    "bitch",
+    "miffo",
+    "fetto",
+    "hagga",
+    // "arsel" as a stem eats "varsel", a notice. The plural stem is safe:
+    // varsel has "arse", not "arsl".
+    "arsl",
+    // "onan" would eat "resonans". The verb is listed on its own.
+    "onaner",
+    // "fis" would eat fisk, fiska, fiskar. "fisa" only catches the verb, and
+    // "fiser" has to be listed separately because it does not contain it.
+    "fisa",
+    "fiser",
+    // "bajs" above misses the verb, which is spelled without the s.
+    // Known collision: "bajadär", a word nobody has used since 1890.
+    "baja",
   ],
   en: [
     "fuck",
@@ -195,6 +257,9 @@ const CRUDE_EXCEPTIONS: Record<Lang, readonly string[]> = {
     "sporra",
     "sporre",
     "sporrar",
+    // kissa
+    "kisse",
+    "kissen",
     // LDNOOBW over-blocks these; every one is an ordinary Swedish word.
     "hård",
     "hårda",
@@ -349,6 +414,39 @@ const CRUDE: Record<Lang, readonly string[]> = {
     "bajset",
     "pissa",
     "pisset",
+
+    // --- Added after reading Mini's Swedish fill pool, all three lengths ----
+    // Exact forms only: each of these sits inside an ordinary word, so a stem
+    // would take good answers with it. The collision is named on each line.
+    "arsel", // varsel
+    "kissa", // skissa; kisse and kissen are the cat
+    "kissar",
+    "kissat",
+    "kissade",
+    "luder", // inkludera
+    "ludret",
+    "ludren",
+    "anal", // analys, analog, banal, kanal
+    "anala",
+    "anus", // anusen has no other reading, but "anus" is inside nothing else
+    "balle", // ballerina, ballad
+    "ballen",
+    "ballar",
+    "kåt", // kåta and kåtor are also the Sami hut
+    "kåta",
+    "kåten",
+    "kåtare",
+    "homo", // homogen, homonym, homonymi
+    "kiss", // kisse and kissen are the cat
+    "mongo", // mongolisk, and the country, which is a proper noun anyway
+    "jävel", // the "jävl" stem misses it: jävel has an e where jävla has none
+    "jäveln",
+    "onani", // resonans contains "onan"
+    "pung", // pungdjur, and pung is an ordinary purse in older use
+    "pungar",
+    "sate", // satellit, satsa, satin
+    "saten",
+    "satar",
   ],
 };
 
@@ -363,13 +461,35 @@ const CRUDE: Record<Lang, readonly string[]> = {
  * `external` is the LDNOOBW list, passed in because it is fetched at build
  * time; at runtime there is nothing to check and it is simply absent.
  */
+/**
+ * Forms the pipeline can defend and a player cannot.
+ *
+ * SALDO generates them from real paradigms, so they pass every automatic gate,
+ * and they still read as a mistake in a grid. `koman` is the definite of the
+ * loanword `koma`, which nobody inflects; `iland` is two words, `i land`, and
+ * only ever appears run together by accident.
+ *
+ * Not crude, so it gets its own reason rather than being filed under one.
+ */
+const JUNK: Record<Lang, readonly string[]> = {
+  // `kanan` is the definite of `kana`, the slide you take on ice. Three
+  // different models were asked to clue it in the pilot and produced a sore on
+  // the foot, a bird in a pot, and the stern of a boat. When three independent
+  // writers all miss the same word, the word is the problem — see the
+  // unclueable rule in docs/mini-spec.md.
+  sv: ["koman", "iland", "kanan"],
+  en: [],
+};
+
 export function answerBlockReason(
   word: string,
   lang: Lang,
   external?: ReadonlySet<string>,
 ): string | null {
   if (CRUDE[lang].includes(word)) return "list";
+  if (JUNK[lang].includes(word)) return "junk";
   if (lang === "en" && EN_NAMES.includes(word)) return "name";
+  if (lang === "sv" && SV_NAMES.includes(word)) return "name";
   // Exceptions override the pattern layers, LDNOOBW included: that list is
   // built for content moderation, where over blocking is cheap, and it holds
   // "hård", "sås" and "escort". It does not override CRUDE above, which is
