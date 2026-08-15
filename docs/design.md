@@ -215,6 +215,77 @@ Wired to both the OS media query and the in-app override
 alone is not enough, because the stagger is a JavaScript delay no media query
 can reach.
 
+## Press
+
+Every control dips under the finger. `.tap` is a 44px hit target that also
+presses; `.press` presses without forcing the size, for things already larger
+than the minimum.
+
+The `data-pressed` attribute is set by **one delegated pointer listener**
+(`lib/press.ts`, installed from `AppProvider`), not by a hook wired into forty
+call sites — it cannot be forgotten on the forty-first. CSS `:active` would be
+the obvious alternative and is unreliable on iOS Safari for anything that is
+not a link, which is most of this app.
+
+| | Scale | Duration |
+|---|---|---|
+| Tiles and keys | 0.96 | 40ms |
+| Everything else | 0.97 | 110ms |
+
+Two numbers because they are two gestures. A tile is being **typed on**, and
+40ms is the difference between a keyboard that feels instant and one that
+feels laggy. A button is being **pushed**, and 40ms there reads as a flicker.
+
+Reduced motion swaps the scale for a dim to 0.55 opacity. Feedback is not
+decoration, so it survives the preference; only the movement goes.
+
+## Springs
+
+Anything a finger can grab is **sprung**, not timed. A duration has nowhere to
+put a velocity: flick a sheet down hard and a 220ms animation still takes
+220ms, which feels like the sheet ignoring you.
+
+`lib/spring.ts` is the whole engine — a damped harmonic oscillator advanced by
+its closed-form solution, configured by `response` and `damping` the way Apple
+configures springs. No animation library; four surfaces do not justify 18kb.
+
+| Spring | Response | Damping | Used by |
+|---|---|---|---|
+| `SPRING_MOVE` | 0.4s | 1.0 | repositioning, no overshoot |
+| `SPRING_SHEET` | 0.3s | 0.8 | sheets; lands 1.5px past and settles |
+
+**Closed form rather than numerical integration, and not for elegance.** The
+first version used semi-implicit Euler, which adds damping proportional to the
+step size: at 60Hz it erased the sheet spring's overshoot completely, and the
+same spring would have bounced on a 120Hz screen. Frame-rate-dependent feel is
+a bug you cannot see on the machine you wrote it on.
+
+Timed CSS keyframes are still right for the reveal cascade, the toast and the
+page fade: nothing can grab those mid-flight, so there is no velocity to
+preserve.
+
+## Material
+
+The sheet is the **only** translucent surface in the app: it is the one place
+where two layers coexist and the lower one has to stay legible as context.
+`--material-sheet` (82% paper) over `--scrim` (55% ink), blurred 20px.
+Everything else is opaque, which is a restraint rather than an omission.
+
+## Accessibility preferences
+
+| Query | Effect |
+|---|---|
+| `prefers-reduced-motion` | reveal cascade flattens; springs jump to their end state; press dims instead of scaling |
+| `prefers-reduced-transparency` | the sheet material goes solid; the scrim stays, so the layering survives |
+| `prefers-contrast: more` | `--muted` and `--line` only — the two tokens that trade contrast for calm |
+| `@supports not (backdrop-filter)` | same solid fallback as reduced transparency |
+
+The state colours are **not** touched by increased contrast. Their ratios are
+the ones this document argues for, and changing them would change what green
+and yellow mean. `test/design.test.ts` asserts the contrast overrides actually
+increase contrast, in both modes — an override block written by hand a long way
+from the tokens it replaces is the easy place to get that backwards.
+
 ## Board glyphs
 
 `<BoardGlyph game={...} />`, 34×34, monochrome in `--line`. Each is a miniature

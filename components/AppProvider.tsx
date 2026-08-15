@@ -35,6 +35,7 @@ import {
 } from "@/lib/storage";
 import type { Difficulty } from "@/lib/difficulty";
 import { primeAudio, setSoundEnabled } from "@/lib/sound";
+import { installPressFeedback } from "@/lib/press";
 
 interface AppContextValue {
   ready: boolean;
@@ -110,6 +111,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
     window.addEventListener("pointerdown", once, { once: true });
     return () => window.removeEventListener("pointerdown", once);
   }, []);
+
+  // Every `.tap` and `.press` control in the app dips under the finger, from
+  // one listener. See lib/press.ts for why it is delegated rather than a hook.
+  useEffect(() => installPressFeedback(), []);
 
   const patchSettings = useCallback((patch: Partial<Settings>) => {
     setState((s) => ({ ...s, settings: { ...s.settings, ...patch } }));

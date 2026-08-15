@@ -44,10 +44,30 @@
   --dur-flip: 220ms;
   --dur-fade: 120ms;
   --dur-settle: 320ms;
+  /* Two press durations, because they are two different gestures. A tile or a
+     key is being *typed on*, and 40ms is the difference between a keyboard
+     that feels instant and one that feels laggy. A button in the chrome is
+     being *pushed*, and the same 40ms there reads as a flicker rather than as
+     a press. */
   --dur-press: 40ms;
+  --dur-tap: 110ms;
+  --press-scale: 0.97;
   --dur-page: 220ms;
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-soft: var(--ease-out);
+
+  /* Anything a finger can grab is sprung rather than timed, and those numbers
+     live in lib/spring.ts: a duration cannot absorb a velocity, so a sheet
+     mid-flick has nowhere to put the momentum. Nothing here duplicates them. */
+
+  /* Material. The sheet is the only translucent surface in the app: it is the
+     one place where two layers coexist and the lower one has to stay legible
+     as context. Everything else is opaque, which is a restraint, not an
+     omission. Both tokens fall back to solid paper under
+     prefers-reduced-transparency and where backdrop-filter is unsupported. */
+  --scrim: color-mix(in srgb, var(--ink) 55%, transparent);
+  --material-sheet: color-mix(in srgb, var(--paper) 82%, transparent);
+  --material-blur: 20px;
 
   /* Cap-height compensation for the tile letter. Derived, not eyeballed:
      Familjen Grotesk 600 has unitsPerEm 1200, typo ascender 1230,
@@ -250,19 +270,46 @@ button {
   touch-action: manipulation;
 }
 
+/* --------------------------------------------------------------------------
+   Press.
+
+   `.tap` is a 44px hit target that also presses; `.press` presses without
+   forcing the size, for controls that are already larger than the minimum.
+   The `data-pressed` attribute is set by the delegated listener in
+   lib/press.ts — CSS `:active` is unreliable on iOS Safari for anything that
+   is not a link, which is most of this app.
+
+   Tiles and keys are not on this path. They dip 0.96 in 40ms through their own
+   handlers, because typing wants a faster, deeper response than pushing does.
+-------------------------------------------------------------------------- */
+
 .tap {
   min-width: 44px;
   min-height: 44px;
+}
+
+.tap,
+.press {
+  transition:
+    transform var(--dur-tap) var(--ease-out),
+    opacity var(--dur-tap) var(--ease-out);
+}
+
+.tap[data-pressed],
+.press[data-pressed] {
+  transform: scale(var(--press-scale));
 }
 
 :focus {
   outline: none;
 }
 
+/* No border-radius here on purpose: the outline follows the element's own
+   corners, so a card at 8px is ringed at 8px and a tile at 3px at 3px.
+   Pinning it to one value put a sharp box around every rounded control. */
 :focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 2px;
-  border-radius: 3px;
 }
 
 /* --------------------------------------------------------------------------
@@ -547,6 +594,71 @@ html[data-reduce-motion="true"] *::after {
 
 html[data-reduce-motion="true"] .tile {
   transition-duration: var(--dur-fade) !important;
+}
+
+/* A press still has to be acknowledged when motion is reduced, so the scale
+   is swapped for a dim rather than dropped. Feedback is not decoration. */
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-reduce-motion="false"]) .tap[data-pressed],
+  html:not([data-reduce-motion="false"]) .press[data-pressed] {
+    transform: none;
+    opacity: 0.55;
+  }
+}
+
+html[data-reduce-motion="true"] .tap[data-pressed],
+html[data-reduce-motion="true"] .press[data-pressed] {
+  transform: none;
+  opacity: 0.55;
+}
+
+/* --------------------------------------------------------------------------
+   Reduced transparency.
+
+   The sheet's blur is the only translucency in the app, and it is there to
+   say "the screen behind is still there". Someone who has asked for less of
+   it gets the same hierarchy from an opaque surface and the scrim, which is
+   the honest substitution: the layering survives, the see-through does not.
+-------------------------------------------------------------------------- */
+
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --material-sheet: var(--paper);
+    --material-blur: 0px;
+  }
+}
+
+/* Same fallback where the browser cannot blur at all: a translucent surface
+   with nothing behind it blurred is just a washed out one. */
+@supports not (backdrop-filter: blur(1px)) {
+  :root {
+    --material-sheet: var(--paper);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Increased contrast.
+
+   Only the two quiet tokens move. `--muted` and `--line` are the two places
+   the palette deliberately gives up contrast for calm, so they are the two
+   places to give it back; the state colours are not touched, because their
+   ratios are already the ones docs/design.md argues for and changing them
+   would change what green and yellow mean.
+-------------------------------------------------------------------------- */
+
+@media (prefers-contrast: more) {
+  :root {
+    --muted: #46443d;
+    --line: #98948a;
+    --material-sheet: var(--paper);
+  }
+}
+
+@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+  :root {
+    --muted: #b6b3ad;
+    --line: #5d626a;
+  }
 }
 
 /* --------------------------------------------------------------------------

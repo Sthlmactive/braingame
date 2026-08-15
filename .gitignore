@@ -48,3 +48,12 @@ next-env.d.ts
 # scripts/repair-clues.ts on every run; the bank itself is committed.
 /data/clues/needs-regeneration.json
 /data/clues/still-failing.json
+
+# Third-party agent skills, installed with `npx skills add`. Tooling, not
+# product code, and they run with full agent permissions — kept out of the
+# repo deliberately.
+/.agents/skills/
+# …and the rest of what `npx skills add` writes: symlinks into the directory
+# above, and its lockfile.
+/.claude/skills/
+/skills-lock.json

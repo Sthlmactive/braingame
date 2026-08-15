@@ -103,6 +103,56 @@ describe("contrast", () => {
       ).toBeGreaterThanOrEqual(4.5);
     }
   });
+
+  /**
+   * prefers-contrast: more must actually mean more.
+   *
+   * An override block is the easy place to get this backwards — the values are
+   * written by hand, a long way from the tokens they replace, and nothing
+   * about `#46443d` announces which side of `#636057` it falls on.
+   */
+  describe("increased contrast", () => {
+    const overrides = (query: string): Map<string, string> => {
+      const at = CSS.indexOf(query);
+      if (at < 0) throw new Error(`no ${query} block`);
+      return tokensIn(blockAt(CSS, CSS.indexOf(":root", at)));
+    };
+
+    const cases: Array<[mode: (typeof MODES)[number], query: string]> = [
+      ["light", "@media (prefers-contrast: more) {"],
+      [
+        "dark",
+        "@media (prefers-contrast: more) and (prefers-color-scheme: dark) {",
+      ],
+    ];
+
+    it.each(cases)("raises the quiet tokens in %s mode", (mode, query) => {
+      const paper = resolve("--paper", mode);
+      const more = overrides(query);
+      for (const token of ["--muted", "--line"]) {
+        const raised = more.get(token);
+        expect(raised, `${token} is not overridden in ${mode}`).toBeDefined();
+        const before = contrast(resolve(token, mode), paper);
+        const after = contrast(raised!, paper);
+        expect(
+          after,
+          `${token} in ${mode}: ${before.toFixed(2)}:1 became ${after.toFixed(2)}:1`,
+        ).toBeGreaterThan(before);
+      }
+    });
+
+    it("keeps muted text above 4.5:1, since it is still text", () => {
+      for (const [mode, query] of cases) {
+        const ratio = contrast(
+          overrides(query).get("--muted")!,
+          resolve("--paper", mode),
+        );
+        expect(ratio, `${mode} is ${ratio.toFixed(2)}:1`).toBeGreaterThanOrEqual(
+          4.5,
+        );
+      }
+    });
+  });
 });
 
 describe("colour only ever means game state", () => {
