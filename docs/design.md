@@ -264,6 +264,26 @@ Timed CSS keyframes are still right for the reveal cascade, the toast and the
 page fade: nothing can grab those mid-flight, so there is no velocity to
 preserve.
 
+## Sheets
+
+`components/Sheet.tsx`. Arrives from the bottom edge on `SPRING_SHEET`, and
+**goes back there** — it used to be `if (!open) return null`, so it arrived
+from somewhere and left from nowhere. A thing that appears from an edge has
+told you where it lives; the second time you open it, you should already know
+where it came from.
+
+Draggable by its header (the grip and the title), deliberately not by the whole
+panel — a sheet whose body drags fights its own buttons. Downward tracking is
+1:1; upward is rubber-banded, because there is nothing above the open position
+to go to. Letting go dismisses past **30% of the sheet's height** or above
+**550px/s**, and the decision uses projected momentum, so a fast short flick
+dismisses where a slow drag of the same distance does not. The gesture is
+interruptible: grabbing a moving sheet takes it from wherever it is with
+whatever speed it had.
+
+The scrim's opacity is tied to the sheet's position rather than faded
+independently, so one gesture moves one thing.
+
 ## Material
 
 The sheet is the **only** translucent surface in the app: it is the one place

@@ -401,18 +401,8 @@ button {
   animation: page-in var(--dur-page) var(--ease-out);
 }
 
-@keyframes sheet-in {
-  from {
-    transform: translate3d(0, 100%, 0);
-  }
-  to {
-    transform: none;
-  }
-}
-
-.sheet-enter {
-  animation: sheet-in var(--dur-page) var(--ease-out);
-}
+/* The sheet used to arrive on a `sheet-in` keyframe. It is sprung now — see
+   components/Sheet.tsx — because a keyframe cannot be grabbed halfway. */
 
 @keyframes fade-in {
   from {
