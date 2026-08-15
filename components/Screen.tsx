@@ -4,8 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 import { useApp } from "./AppProvider";
-import type { GameId } from "@/lib/games";
-import { GAMES } from "@/lib/games";
 
 /**
  * Shared page chrome. Every screen gets a visible back control, and the
@@ -15,7 +13,6 @@ import { GAMES } from "@/lib/games";
 export function Screen({
   title,
   subtitle,
-  game,
   right,
   children,
   onBack,
@@ -24,8 +21,6 @@ export function Screen({
 }: {
   title?: string;
   subtitle?: string;
-  /** Lights this game's accent for the whole subtree, and nothing else. */
-  game?: GameId;
   right?: ReactNode;
   children: ReactNode;
   onBack?: () => void;
@@ -40,16 +35,11 @@ export function Screen({
 }) {
   const { t } = useApp();
 
-  const style = game
-    ? ({ ["--accent" as string]: GAMES[game].accent } as React.CSSProperties)
-    : undefined;
-
   return (
     <main
       className={`page-enter game-surface mx-auto flex min-h-dvh w-full max-w-[560px] flex-col ${
         padded ? "safe-x" : ""
       }`}
-      style={style}
     >
       <header className="safe-top flex shrink-0 items-center gap-2 pt-2 pb-3">
         <BackControl href={backHref} onBack={onBack} label={t("back")}>

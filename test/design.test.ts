@@ -200,6 +200,18 @@ describe("colour only ever means game state", () => {
    * reach for a state colour under its legacy alias either, nor light a per
    * game accent. Chrome on these screens is ink, paper, raised, line, muted.
    */
+  it("has no per game accent left anywhere", () => {
+    // All eight games run on the same tokens now. There is no `--accent`, no
+    // `--accent-*`, and no `accent` field on the game metadata to revive one.
+    const offenders = ["app", "components", "games", "lib"]
+      .flatMap(sources)
+      .filter((rel) =>
+        /var\(--accent[a-z-]*\)/.test(readFileSync(join(process.cwd(), rel), "utf8")),
+      );
+    expect(offenders, `accent survives in: ${offenders.join(", ")}`).toEqual([]);
+    expect(CSS).not.toMatch(/--accent[a-z-]*\s*:/);
+  });
+
   it("keeps home and Five free of every colour token", () => {
     const redesigned = [
       "app/page.tsx",

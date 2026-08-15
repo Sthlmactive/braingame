@@ -39,9 +39,6 @@ export function isLevelledGameId(v: unknown): v is Exclude<GameId, UnlevelledGam
 
 export interface GameMeta {
   id: GameId;
-  /** CSS variable name holding this game's accent. */
-  accentVar: string;
-  accent: string;
   nameKey: StringKey;
   descKey: StringKey;
 }
@@ -49,57 +46,41 @@ export interface GameMeta {
 export const GAMES: Record<GameId, GameMeta> = {
   five: {
     id: "five",
-    accentVar: "--accent-five",
-    accent: "#5B7CFF",
     nameKey: "gameFive",
     descKey: "gameFiveDesc",
   },
   mini: {
     id: "mini",
-    accentVar: "--accent-mini",
-    accent: "#8A8F98",
     nameKey: "miniName",
     descKey: "miniTagline",
   },
   hive: {
     id: "hive",
-    accentVar: "--accent-hive",
-    accent: "#E2A93E",
     nameKey: "gameHive",
     descKey: "gameHiveDesc",
   },
   grid: {
     id: "grid",
-    accentVar: "--accent-grid",
-    accent: "#37B98A",
     nameKey: "gameGrid",
     descKey: "gameGridDesc",
   },
   loop: {
     id: "loop",
-    accentVar: "--accent-loop",
-    accent: "#C05CE0",
     nameKey: "gameLoop",
     descKey: "gameLoopDesc",
   },
   ordoku: {
     id: "ordoku",
-    accentVar: "--accent-ordoku",
-    accent: "#3FBBD1",
     nameKey: "gameOrdoku",
     descKey: "gameOrdokuDesc",
   },
   rush: {
     id: "rush",
-    accentVar: "--accent-rush",
-    accent: "#F2664B",
     nameKey: "gameRush",
     descKey: "gameRushDesc",
   },
   tiles: {
     id: "tiles",
-    accentVar: "--accent-tiles",
-    accent: "#7C8CA0",
     nameKey: "gameTiles",
     descKey: "gameTilesDesc",
   },

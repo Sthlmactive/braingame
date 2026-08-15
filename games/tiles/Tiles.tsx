@@ -35,11 +35,19 @@ import {
   type PlacedTile,
 } from "./engine";
 
+/**
+ * Premium squares, as four strengths of one ink rather than four hues.
+ *
+ * They were rgba tints of other games' accent colours, which composite to
+ * between 1.11:1 and 1.26:1 against light paper — invisible, with a 7px label
+ * as the only fallback. Ranked by ink now, so the order is legible even when
+ * the label is not.
+ */
 const PREMIUM_STYLE: Record<string, { bg: string; label: string }> = {
-  d: { bg: "rgba(91,124,255,0.22)", label: "2L" },
-  t: { bg: "rgba(63,187,209,0.24)", label: "3L" },
-  D: { bg: "rgba(226,169,62,0.22)", label: "2W" },
-  T: { bg: "rgba(242,102,75,0.26)", label: "3W" },
+  d: { bg: "color-mix(in srgb, var(--ink) 10%, transparent)", label: "2L" },
+  t: { bg: "color-mix(in srgb, var(--ink) 20%, transparent)", label: "3L" },
+  D: { bg: "color-mix(in srgb, var(--ink) 30%, transparent)", label: "2W" },
+  T: { bg: "color-mix(in srgb, var(--ink) 42%, transparent)", label: "3W" },
 };
 
 interface RackTile {
@@ -185,13 +193,13 @@ export function Tiles({ lang, level, onFinish, setStatus, onGiveUp }: GameProps)
   useEffect(() => {
     setStatus(
       <span className="flex items-center gap-2 text-xs">
-        <span style={{ color: "var(--text)" }}>{scores.you}</span>
+        <span style={{ color: "var(--ink)" }}>{scores.you}</span>
         <span className="text-[var(--muted)]">·</span>
         <span className="text-[var(--muted)]">{scores.ai}</span>
         {cfg.turnSeconds > 0 && turn === "you" ? (
           <span
             className="font-display font-bold"
-            style={{ color: turnRemaining <= 15 ? "var(--present)" : "var(--muted)" }}
+            style={{ color: turnRemaining <= 15 ? "var(--danger)" : "var(--muted)" }}
           >
             {formatTime(turnRemaining * 1000)}
           </span>
@@ -412,13 +420,13 @@ export function Tiles({ lang, level, onFinish, setStatus, onGiveUp }: GameProps)
                   border: "none",
                   background: letter
                     ? isPending
-                      ? "var(--accent)"
-                      : "var(--surface)"
-                    : (style?.bg ?? "rgba(255,255,255,0.04)"),
+                      ? "var(--ink)"
+                      : "var(--raised)"
+                    : (style?.bg ?? "var(--raised)"),
                   color: letter
                     ? isPending
-                      ? "var(--on-state)"
-                      : "var(--text)"
+                      ? "var(--paper)"
+                      : "var(--ink)"
                     : "var(--muted)",
                 }}
                 onClick={() => tapCell(i)}
@@ -449,7 +457,7 @@ export function Tiles({ lang, level, onFinish, setStatus, onGiveUp }: GameProps)
         <button
           type="button"
           className="tap absolute right-1 bottom-1 rounded-full px-3 py-2 text-[0.7rem] font-semibold"
-          style={{ background: "var(--surface)", border: "1px solid var(--line)" }}
+          style={{ background: "var(--raised)", border: "1px solid var(--line)" }}
           onClick={() => setZoomed((z) => !z)}
         >
           {zoomed ? t("zoomFit") : "1:1"}
@@ -555,8 +563,8 @@ function SmallButton({
       type="button"
       className="tap flex-1 rounded-lg px-1 text-[0.7rem] font-semibold disabled:opacity-35"
       style={{
-        background: loud ? "var(--accent)" : "transparent",
-        color: loud ? "var(--on-state)" : "var(--text)",
+        background: loud ? "var(--ink)" : "transparent",
+        color: loud ? "var(--paper)" : "var(--ink)",
         border: loud ? "none" : "1px solid var(--line)",
       }}
       onClick={onPress}

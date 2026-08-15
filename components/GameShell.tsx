@@ -180,10 +180,7 @@ export function GameShell({
 
   if (ownChrome) {
     return (
-      <div
-        className="game-surface"
-        style={{ ["--accent" as string]: meta.accent }}
-      >
+      <div className="game-surface">
         {phase === "loading" ? (
           <div className="flex min-h-dvh flex-col">
             <Loading />
@@ -202,7 +199,6 @@ export function GameShell({
     <Screen
       title={t(meta.nameKey)}
       subtitle={difficulty ? t(DIFF_NAME[difficulty]) : undefined}
-      game={game}
       right={
         <div className="flex items-center gap-3">
           {status}

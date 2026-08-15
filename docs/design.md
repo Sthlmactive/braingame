@@ -3,8 +3,14 @@
 Source of truth for the visual layer. `docs/five-spec.md` owns Five's
 behaviour; this file owns how anything looks.
 
-Status: home screen and all of Five migrated, 14 August 2026. Hive, Grid, Loop,
-Ordoku, Rush and Tiles still run on the legacy aliases below.
+Status: all eight games migrated, 15 August 2026. There are no per-game accent
+colours left, and levels 1-10 are gone as a user-facing concept — every game
+is picked by language, then by one of four difficulties. See `lib/band.ts` for
+how a difficulty maps onto the underlying levels.
+
+Known gap: Hive draws its seven letters from a finite pool of letter sets
+(a few hundred per language, unmeasured), so its variety has a ceiling the
+other games do not. Not worth measuring yet; noted so it is not a surprise.
 
 State colours are green and yellow as of the same date; the orange and blue
 pair they replaced is recorded under "Green and yellow, by choice".
@@ -386,6 +392,10 @@ id** rather than rendering an empty box, so a new game cannot ship without one.
 
 They still write the old token names, aliased in `globals.css`:
 
+All six have been migrated. The aliases below survive only because the board
+state names (`--correct`, `--present`, `--absent`) are still written in a few
+places, and those are genuine game state.
+
 | Legacy | Now |
 |---|---|
 | `--text` | `--ink` |
@@ -401,7 +411,5 @@ text on a saturated surface"; it now means primary text. Those call sites were
 renamed by hand to `--on-state` (text on a filled surface) and `--raised` /
 `--paper` (the two that meant a ground).
 
-To migrate a game: replace its `--accent-*` chrome with `--ink` and `--muted`,
-swap its legacy tile states for the new names, adopt the `.t-*` type classes,
-and delete its entry from `--accent-*`. The colour-leak test will start
-covering it as soon as it stops using the aliases.
+Done. `test/design.test.ts` now asserts that no `var(--accent*)` survives
+anywhere in the app and that no such token is defined in `globals.css`.

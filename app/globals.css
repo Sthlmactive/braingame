@@ -132,14 +132,6 @@
 
   --radius-sheet: var(--radius-card);
 
-  /* Per game identity colours, still used by the six unmigrated games for
-     their own chrome. Home and Five reference none of these. */
-  --accent-five: #5b7cff;
-  --accent-tiles: #7c8ca0;
-
-  /* Redesigned screens set no accent, so it resolves to ink and stays quiet. */
-  --accent: var(--ink);
-
   /* A destructive confirm is not game state, so it sits outside the colour
      rule rather than inside it. Used only by the settings reset. */
   --danger: #f2664b;
@@ -162,7 +154,6 @@
   --color-correct: var(--hit);
   --color-present: var(--near);
   --color-absent: var(--miss);
-  --color-accent: var(--accent);
 
   --font-display: var(--font-familjen), ui-sans-serif, system-ui, sans-serif;
   --font-ui: var(--font-familjen), ui-sans-serif, system-ui, sans-serif;
