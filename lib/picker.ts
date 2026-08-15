@@ -58,8 +58,16 @@ export const TILE_GAP_PX = 4;
 /** Five's preview tile. A supporting detail, not the headline. */
 export const PICKER_TILE_PX = 15;
 
-/** Mini's preview cell, and the hairline gap between cells. */
-export const PICKER_CELL_PX = 8;
+/**
+ * Mini's preview cell, and the hairline between cells.
+ *
+ * Small, because it is a supporting detail and because four Mini cards plus
+ * 22px of padding leave very little height on a 360x800 phone. It survives
+ * the shrink by being drawn better rather than bigger: the grid lines are a
+ * single 1px hairline showing through from the container behind, instead of
+ * every cell drawing its own outline into a 1px gap and doubling it up.
+ */
+export const PICKER_CELL_PX = 5;
 export const PICKER_CELL_GAP_PX = 1;
 
 /** Line box heights, mirroring the type scale in globals.css. */
@@ -76,9 +84,16 @@ export function fivePreviewWidth(letters: number): number {
   return letters * PICKER_TILE_PX + Math.max(0, letters - 1) * TILE_GAP_PX;
 }
 
-/** How wide (and tall) a `size` x `size` grid preview renders. */
+/**
+ * How wide (and tall) a `size` x `size` grid preview renders, including the
+ * one hairline of container padding that draws its outer border.
+ */
 export function miniPreviewWidth(size: number): number {
-  return size * PICKER_CELL_PX + Math.max(0, size - 1) * PICKER_CELL_GAP_PX;
+  return (
+    size * PICKER_CELL_PX +
+    Math.max(0, size - 1) * PICKER_CELL_GAP_PX +
+    2 * PICKER_CELL_GAP_PX
+  );
 }
 
 /**

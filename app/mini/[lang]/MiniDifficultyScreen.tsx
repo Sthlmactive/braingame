@@ -70,9 +70,17 @@ export function MiniDifficultyScreen({ lang }: { lang: string }) {
 /**
  * A 4x4 or 5x5 of hairline cells, with this difficulty's black squares.
  *
- * Bounded by height rather than width: it is a square sitting under two lines
- * of text, and four of those have to fit a 667pt screen without scrolling.
- * 8px cells put a 5x5 at 44px, which is where that budget runs out.
+ * Bounded by height, not width: it is a square sitting under two lines of
+ * text, and four of those plus 22px of card padding have to fit a phone.
+ *
+ * Drawn as one hairline grid — the container paints `--line` and the cells
+ * paint over it, so every rule is exactly 1px. The previous version gave each
+ * cell its own outline inside a 1px gap, which drew every interior line
+ * twice and turned to mush as the cells got smaller.
+ *
+ * Black squares are `--ink`, matching the board. They were `--line`, which is
+ * 1.35:1 against the card — invisible, in the one element whose whole job is
+ * to show you where the black squares are.
  */
 function GridGlyph({ difficulty }: { difficulty: Difficulty }) {
   const size = MINI_SIZE[difficulty];
@@ -96,6 +104,8 @@ function GridGlyph({ difficulty }: { difficulty: Difficulty }) {
       style={{
         gridTemplateColumns: `repeat(${size}, ${cell}px)`,
         gap,
+        padding: gap,
+        background: "var(--line)",
       }}
       aria-hidden
     >
@@ -105,8 +115,7 @@ function GridGlyph({ difficulty }: { difficulty: Difficulty }) {
           style={{
             width: cell,
             height: cell,
-            background: dark.has(i) ? "var(--line)" : "transparent",
-            outline: "1px solid var(--line)",
+            background: dark.has(i) ? "var(--ink)" : "var(--paper)",
           }}
         />
       ))}
