@@ -106,14 +106,41 @@ Familjen Grotesk, via `next/font/google`, subset `latin` (which carries å, ä a
 ö). Behind one token, `--font-display`, so swapping it is one line in
 `app/layout.tsx` plus that token.
 
-| Class | Size | Weight | Tracking |
-|---|---|---|---|
-| `.t-wordmark` | 30px | 700 | −0.02em |
-| `.t-result` | 38px | 700 | −0.02em |
-| `.t-title` | 19px | 600 | — |
-| `.t-row` | 15px | 600 | — |
-| `.t-body` | 13px | 400 | — |
-| `.t-caption` | 11px | 400 | — |
+| Class | Size | Weight | Tracking | Leading |
+|---|---|---|---|---|
+| `.t-result` | 38px | 700 | −0.02em | 1.15 |
+| `.t-choice` | 34px | 700 | −0.02em | 1.15 |
+| `.t-wordmark` | 30px | 700 | −0.02em | 1.15 |
+| `.t-option` | 24px | 600 | −0.01em | 1.25 |
+| `.t-title` | 19px | 600 | — | 1.3 |
+| `.t-row` | 15px | 600 | — | 1.35 |
+| `.t-body` | 13px | 400 | — | 1.45 |
+| `.t-caption` | 11px | 400 | — | 1.4 |
+
+`.t-option` names a choice that owns a quarter of the screen and `.t-choice`
+one that owns half; both are card names rather than list rows.
+
+### Leading is set for Swedish, and 1.25 is the floor
+
+Familjen Grotesk sets `USE_TYPO_METRICS` with ascender 1230 and descender
+-270 over `unitsPerEm` 1200, so its natural content area is
+
+```
+(1230 + 270) / 1200 = 1.25em
+```
+
+Below that, the line box is **shorter than the font's own ink**: half-leading
+goes negative and glyphs hang out of their box. In English you never see it,
+because nothing reaches higher than a cap or an ascender. In Swedish, Å Ä Ö
+stack a ring or an umlaut *above* the cap line, and that is the part that
+lands on the line above.
+
+Every class that wraps or stacks therefore sits at 1.25 or more. The three
+display classes are tighter on purpose — 1.25 on a 38px result word looks
+slack — but at 1.15 rather than 1.05, because at 1.05 an uppercase Å
+overflowed its box and only the surrounding margin was saving it.
+
+**Tune leading against `LÅSTA`, never against `LOCKED`.**
 
 Tile letters scale with tile size (`px * 0.44`), weight 600, `line-height: 1`.
 Two weights, 400 and 600, plus 700 for the wordmark and the result word.

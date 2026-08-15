@@ -204,20 +204,38 @@ body {
 
 /* --------------------------------------------------------------------------
    Type scale. Every size in the app is one of these.
+
+   LEADING IS SET FOR SWEDISH, NOT ENGLISH, AND 1.25 IS THE FLOOR.
+
+   Familjen Grotesk sets USE_TYPO_METRICS with ascender 1230 and descender
+   -270 over unitsPerEm 1200, so its natural content area is
+
+       (1230 + 270) / 1200 = 1.25em
+
+   Below that the line box is shorter than the font's own ink: half-leading
+   goes negative and the glyphs hang out of their box, top and bottom. In
+   English you never see it, because nothing reaches that high — the tallest
+   thing is a cap or an ascender. In Swedish, Å Ä Ö stack a ring or an umlaut
+   *above* the cap line, and that is the part that lands on the line above.
+
+   So every class that wraps or stacks sits at 1.25 or more. The three display
+   classes are tighter on purpose — 1.25 on a 38px result word looks slack —
+   but they are at 1.15 rather than 1.05, because at 1.05 an uppercase Å
+   overflowed its box and only the surrounding margin was saving it.
 -------------------------------------------------------------------------- */
 
 .t-wordmark {
   font-size: 30px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.05;
+  line-height: 1.15;
 }
 
 .t-result {
   font-size: 38px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.05;
+  line-height: 1.15;
 }
 
 /* A choice that owns a quarter of the screen. The difficulty card's name is
@@ -228,7 +246,7 @@ body {
   font-size: 24px;
   font-weight: 600;
   letter-spacing: -0.01em;
-  line-height: 1.15;
+  line-height: 1.25;
 }
 
 /* A choice that owns half the screen — the language cards, where the name is
@@ -237,31 +255,31 @@ body {
   font-size: 34px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1.05;
+  line-height: 1.15;
 }
 
 .t-title {
   font-size: 19px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.3;
 }
 
 .t-row {
   font-size: 15px;
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.35;
 }
 
 .t-body {
   font-size: 13px;
   font-weight: 400;
-  line-height: 1.35;
+  line-height: 1.45;
 }
 
 .t-caption {
   font-size: 11px;
   font-weight: 400;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
 /* Numerals line up in any column they appear in. */
