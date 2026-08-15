@@ -375,7 +375,7 @@ export function Tiles({ lang, level, onFinish, setStatus, onGiveUp }: GameProps)
         {message ? (
           <div
             className="fade-enter absolute top-1 z-10 max-w-[92%] rounded-lg px-3 py-1.5 text-center text-xs font-semibold"
-            style={{ background: "var(--raised)", color: "var(--paper)" }}
+            style={{ background: "var(--ink)", color: "var(--paper)" }}
             role="status"
           >
             {message}

@@ -254,7 +254,7 @@ export function WheelSvg({
           >
             <circle
               r={radius}
-              fill={on ? "var(--accent)" : "var(--on-state)"}
+              fill={on ? "var(--accent)" : "var(--paper)"}
               stroke={on ? "var(--accent)" : "var(--line)"}
               strokeWidth={2}
             />

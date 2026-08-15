@@ -141,8 +141,8 @@ function Segmented<V extends string>({
             type="button"
             className="tap flex-1 rounded-lg px-3 py-2 text-sm font-semibold"
             style={{
-              background: on ? "var(--accent)" : "transparent",
-              color: on ? "var(--on-state)" : "var(--muted)",
+              background: on ? "var(--ink)" : "transparent",
+              color: on ? "var(--paper)" : "var(--muted)",
             }}
             aria-pressed={on}
             onClick={() => onChange(o.value)}

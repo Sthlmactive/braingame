@@ -270,8 +270,10 @@ export function Hive({
             key={toast.id}
             className="toast-enter rounded-lg px-3 py-1 text-xs font-semibold"
             style={{
-              background: toast.tone === "good" ? "var(--accent)" : "var(--text)",
-              color: "var(--on-state)",
+              background: toast.tone === "good" ? "var(--accent)" : "var(--ink)",
+              // Follows the ground it sits on. `--on-state` is a fixed dark,
+              // so on the ink toast it was dark on dark in light mode.
+              color: toast.tone === "good" ? "var(--on-state)" : "var(--paper)",
             }}
             role="status"
           >
