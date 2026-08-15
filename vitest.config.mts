@@ -14,7 +14,9 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "node",
-    include: ["**/*.test.ts"],
+    // .tsx too: the clock test mounts a component, because a render-phase
+    // update is a React lifecycle bug that no pure test can see.
+    include: ["**/*.test.ts", "**/*.test.tsx"],
     exclude: ["node_modules/**", "out/**", ".next/**"],
   },
 });

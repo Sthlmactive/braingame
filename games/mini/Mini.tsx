@@ -1,12 +1,13 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Keyboard } from "@/components/Keyboard";
 import { Tile } from "@/components/Tile";
 import { clueFor, type ClueBank } from "@/lib/clues";
 import type { Lang, T } from "@/lib/i18n";
 import { entriesOf, isBlack, sizeOf, wordOf, type Entry } from "@/lib/mini";
 import { useBoardFit } from "@/lib/useBoardFit";
+import { useSolveClock } from "./useSolveClock";
 import {
   activeCells,
   applyHint,
@@ -71,60 +72,47 @@ export function Mini({
   const [wrong, setWrong] = useState<Set<number>>(new Set());
   const [done, setDone] = useState(false);
 
-  // --- Timer: starts on the first keystroke, pauses when the tab hides ------
-  const [seconds, setSeconds] = useState(0);
-  const running = useRef(false);
-  useEffect(() => {
-    const id = window.setInterval(() => {
-      // Paused while the tab is hidden, and never double counted on resume:
-      // the clock counts ticks it was present for, it does not diff wall time.
-      if (!running.current || document.hidden) return;
-      setSeconds((s) => {
-        const next = s + 1;
-        onTick(next);
-        return next;
-      });
-    }, 1000);
-    return () => window.clearInterval(id);
-  }, [onTick]);
+  // Starts on the first keystroke, pauses on a hidden tab, and reports the
+  // count from an effect rather than from a state updater. See useSolveClock.
+  const { seconds, start, stop, reset } = useSolveClock(onTick);
 
   useEffect(() => {
     setState(newGame(puzzle));
     setHintsLeft(hints);
     setWrong(new Set());
     setDone(false);
-    setSeconds(0);
-    onTick(0);
-    running.current = false;
-  }, [puzzle, hints, onTick]);
+    reset();
+  }, [puzzle, hints, reset]);
 
-  const check = useCallback(
-    (next: MiniState) => {
-      if (!isComplete(next)) return;
-      if (isSolved(next)) {
-        running.current = false;
-        setDone(true);
-        onSolved(seconds);
-        return;
-      }
-      // Wrong: mark, then hand the grid back. The clock keeps running.
-      setWrong(new Set(wrongCells(next)));
-      window.setTimeout(() => setWrong(new Set()), WRONG_MS);
-    },
-    [onSolved, seconds],
-  );
+  /**
+   * Checking runs in an effect, not inside a state updater.
+   *
+   * It has to: finishing a puzzle calls `onSolved`, which sets state in the
+   * screen above. React runs updaters during the render phase, so doing it
+   * there updates the parent mid-render — the same fault the clock had. An
+   * effect runs after commit, where notifying another component is legal.
+   */
+  useEffect(() => {
+    if (done || !isComplete(state)) return;
+    if (isSolved(state)) {
+      stop();
+      setDone(true);
+      onSolved(seconds);
+      return;
+    }
+    // Wrong: mark, then hand the grid back. The clock keeps running.
+    setWrong(new Set(wrongCells(state)));
+    const id = window.setTimeout(() => setWrong(new Set()), WRONG_MS);
+    return () => window.clearTimeout(id);
+  }, [state, done, onSolved, seconds, stop]);
 
   const onLetter = useCallback(
     (letter: string) => {
       if (done) return;
-      running.current = true;
-      setState((prev) => {
-        const next = typeLetter(prev, entries, letter);
-        check(next);
-        return next;
-      });
+      start();
+      setState((prev) => typeLetter(prev, entries, letter));
     },
-    [done, entries, check],
+    [done, entries, start],
   );
 
   const onBackspace = useCallback(() => {
@@ -134,15 +122,11 @@ export function Mini({
 
   const onHint = useCallback(() => {
     if (done || hintsLeft <= 0) return;
-    setState((prev) => {
-      const cell = hintCell(prev, entries);
-      if (cell === null) return prev;
-      setHintsLeft((n) => n - 1);
-      const next = applyHint(prev, entries, cell);
-      check(next);
-      return next;
-    });
-  }, [done, hintsLeft, entries, check]);
+    const cell = hintCell(state, entries);
+    if (cell === null) return;
+    setHintsLeft((n) => n - 1);
+    setState(applyHint(state, entries, cell));
+  }, [done, hintsLeft, state, entries]);
 
   const active = useMemo(() => new Set(activeCells(state, entries)), [state, entries]);
   const entry = entryAt(entries, state.cursor.cell, state.cursor.direction);
