@@ -23,6 +23,7 @@ export type TileState =
   | "hit" // right letter, right place
   | "near" // in the word, wrong place
   | "miss" // not in the word
+  | "black" // a crossword's black square: not a cell, no letter, no press
   // Legacy, still used by Hive, Grid, Loop, Ordoku, Rush and Tiles.
   | "filled"
   | "correct"
@@ -76,12 +77,20 @@ const MISS: Palette = {
   border: "var(--miss)",
 };
 
+/** A black square is chrome, not state: it is the grid's own ink. */
+const BLACK: Palette = {
+  bg: "var(--ink)",
+  fg: "var(--ink)",
+  border: "var(--ink)",
+};
+
 const PALETTES: Record<TileState, Palette> = {
   empty: EMPTY,
   typed: TYPED,
   hit: HIT,
   near: NEAR,
   miss: MISS,
+  black: BLACK,
   filled: TYPED,
   correct: HIT,
   present: NEAR,
@@ -120,6 +129,16 @@ export interface TileProps {
   selected?: boolean;
   /** Marks a cell the player is currently pointing at during a drag. */
   target?: boolean;
+  /**
+   * Crossword highlighting, in neutrals only. Nothing on a Mini board reports
+   * a result mid solve, so neither of these may use a state colour: `entry`
+   * tints every cell of the entry being typed, `cell` tints the one cell the
+   * cursor is in, more strongly.
+   */
+  activeEntry?: boolean;
+  activeCell?: boolean;
+  /** The small clue number a crossword prints in the corner of a cell. */
+  corner?: ReactNode;
 }
 
 /**
@@ -145,6 +164,9 @@ export const Tile = forwardRef<HTMLDivElement, TileProps>(function Tile(
     sub,
     selected = false,
     target = false,
+    activeEntry = false,
+    activeCell = false,
+    corner,
   },
   ref,
 ) {
@@ -211,11 +233,19 @@ export const Tile = forwardRef<HTMLDivElement, TileProps>(function Tile(
   const side = px ?? SIZE_PX[size];
   const pal = PALETTES[shown];
 
+  // Neutral tints. Mixed from --ink so they track the theme in both modes,
+  // and deliberately not --hit/--near: colour only ever means game state.
+  const highlight = activeCell
+    ? "color-mix(in srgb, var(--ink) 16%, var(--paper))"
+    : activeEntry
+      ? "color-mix(in srgb, var(--ink) 7%, var(--paper))"
+      : null;
+
   const styles: CSSProperties = {
     width: side,
     height: side,
       fontSize: px ? `${Math.round(px * 0.44)}px` : FONT_EM[size],
-    backgroundColor: pal.bg,
+    backgroundColor: highlight ?? pal.bg,
     color: pal.fg,
     borderWidth: 2,
     borderStyle: "solid",
@@ -248,6 +278,14 @@ export const Tile = forwardRef<HTMLDivElement, TileProps>(function Tile(
       aria-label={label ?? letter}
       aria-disabled={disabled || undefined}
     >
+      {corner != null ? (
+        <span
+          className="absolute top-[2px] left-[3px] font-medium leading-none opacity-70"
+          style={{ fontSize: Math.max(8, Math.round(side * 0.26)) }}
+        >
+          {corner}
+        </span>
+      ) : null}
       {letter ? <span className="tile-glyph">{letter}</span> : null}
       {badge != null ? (
         <span
