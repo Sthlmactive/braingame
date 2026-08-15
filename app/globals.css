@@ -32,9 +32,12 @@
      5.2:1 and still reads as spent. See docs/design.md. */
   --on-miss: var(--ink);
 
-  /* Shape. Nothing outside these three is rounded. */
+  /* Shape. Nothing outside these four is rounded. Radius tracks the size of
+     the thing: a 44px button at 8px reads as rounded, a 150px card at 8px
+     reads as a rectangle with the corners knocked off. */
   --radius-tile: 3px;
   --radius-card: 8px;
+  --radius-panel: 14px;
   --radius-page: 22px;
 
   --gap-tile: 4px;
@@ -217,6 +220,26 @@ body {
   line-height: 1.05;
 }
 
+/* A choice that owns a quarter of the screen. The difficulty card's name is
+   the thing being chosen, so it is sized to the card rather than to a list
+   row. Tracking is negative because tracking is size-specific: letters read
+   too far apart as they grow. */
+.t-option {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+/* A choice that owns half the screen — the language cards, where the name is
+   the entire content. */
+.t-choice {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
 .t-title {
   font-size: 19px;
   font-weight: 600;
@@ -289,15 +312,24 @@ button {
 }
 
 .tap,
-.press {
+.press,
+.press-flat {
   transition:
     transform var(--dur-tap) var(--ease-out),
+    background-color var(--dur-tap) var(--ease-out),
     opacity var(--dur-tap) var(--ease-out);
 }
 
 .tap[data-pressed],
 .press[data-pressed] {
   transform: scale(var(--press-scale));
+}
+
+/* Full-bleed rows that share a hairline with the row above and below cannot
+   scale: 3% of a tall row moves its edge a visible pixel or two away from its
+   neighbour's border. They light up instead. */
+.press-flat[data-pressed] {
+  background-color: var(--raised);
 }
 
 :focus {

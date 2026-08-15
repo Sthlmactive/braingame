@@ -3,11 +3,13 @@
 import { useRouter } from "next/navigation";
 import { useApp } from "@/components/AppProvider";
 import { Screen } from "@/components/Screen";
+import { DifficultyPicker } from "@/components/DifficultyPicker";
 import { NotFound } from "@/components/NotFound";
 import { formatTime } from "@/games/mini/MiniResult";
 import { DIFFICULTIES, type Difficulty } from "@/lib/difficulty";
 import { isLang, type StringKey } from "@/lib/i18n";
 import { MINI_BLACKS, MINI_SIZE } from "@/lib/mini";
+import { PICKER_CELL_GAP_PX, PICKER_CELL_PX } from "@/lib/picker";
 import { play } from "@/lib/sound";
 
 const NAME_KEY: Record<Difficulty, StringKey> = {
@@ -25,10 +27,11 @@ const DESC_KEY: Record<Difficulty, StringKey> = {
 };
 
 /**
- * Step two of Mini: four rows, each led by a miniature of that difficulty's
- * actual grid. What is being chosen is a shape — 4x4 open, 5x5 with black
- * squares, 5x5 fully checked — so the row shows the shape rather than naming
- * it, the same way Five's picker shows word length as a row of tiles.
+ * Step two of Mini: four cards filling the screen, each led by a miniature of
+ * that difficulty's actual grid. What is being chosen is a shape — 4x4 open,
+ * 5x5 with black squares, 5x5 fully checked — so the card shows the shape
+ * rather than naming it, the same way Five's picker shows word length as a
+ * row of tiles.
  */
 export function MiniDifficultyScreen({ lang }: { lang: string }) {
   const router = useRouter();
@@ -38,51 +41,44 @@ export function MiniDifficultyScreen({ lang }: { lang: string }) {
 
   return (
     <Screen title={t("miniName")} subtitle={t("miniTagline")} backHref="/">
-      <div className="flex flex-1 flex-col pb-10">
-        <h2 className="t-title pt-1 pb-4">{t("chooseDifficulty")}</h2>
-        {DIFFICULTIES.map((difficulty, i) => {
+      <DifficultyPicker
+        onSelect={(difficulty) => {
+          play("tap");
+          router.push(`/mini/${lang}/${difficulty}`);
+        }}
+        options={DIFFICULTIES.map((difficulty) => {
           const stat = ready ? miniStat(lang, difficulty) : null;
-          return (
-            <button
-              key={difficulty}
-              type="button"
-              onClick={() => {
-                play("tap");
-                router.push(`/mini/${lang}/${difficulty}`);
-              }}
-              className="flex items-center gap-4 py-4 text-left"
-              style={{
-                borderTop: i === 0 ? "1px solid var(--line)" : undefined,
-                borderBottom: "1px solid var(--line)",
-              }}
-            >
-              <GridGlyph difficulty={difficulty} />
-              <div className="min-w-0 flex-1">
-                <div className="t-row">{t(NAME_KEY[difficulty])}</div>
-                <div className="t-body mt-0.5 text-[var(--muted)]">
-                  {t(DESC_KEY[difficulty])}
-                </div>
-              </div>
-              {stat && stat.bestSeconds > 0 ? (
-                <div className="shrink-0 text-right">
-                  <div className="t-row tnum">{formatTime(stat.bestSeconds)}</div>
-                  <div className="t-caption text-[var(--muted)]">{t("miniBestTime")}</div>
-                </div>
-              ) : null}
-            </button>
-          );
+          return {
+            difficulty,
+            name: t(NAME_KEY[difficulty]),
+            description: t(DESC_KEY[difficulty]),
+            preview: <GridGlyph difficulty={difficulty} />,
+            stat:
+              stat && stat.bestSeconds > 0
+                ? {
+                    value: formatTime(stat.bestSeconds),
+                    label: t("miniBestTime"),
+                  }
+                : null,
+          };
         })}
-      </div>
+      />
     </Screen>
   );
 }
 
-/** A 4x4 or 5x5 of hairline cells, with this difficulty's black squares. */
+/**
+ * A 4x4 or 5x5 of hairline cells, with this difficulty's black squares.
+ *
+ * Bounded by height rather than width: it is a square sitting under two lines
+ * of text, and four of those have to fit a 667pt screen without scrolling.
+ * 8px cells put a 5x5 at 44px, which is where that budget runs out.
+ */
 function GridGlyph({ difficulty }: { difficulty: Difficulty }) {
   const size = MINI_SIZE[difficulty];
   const blacks = MINI_BLACKS[difficulty][0] ?? 0;
-  const cell = 6;
-  const gap = 1;
+  const cell = PICKER_CELL_PX;
+  const gap = PICKER_CELL_GAP_PX;
 
   // Which cells are black is illustrative, not the real mask: opposite
   // corners for two, plus the centre for an odd count.
@@ -95,10 +91,9 @@ function GridGlyph({ difficulty }: { difficulty: Difficulty }) {
   if (blacks % 2 === 1) dark.add((total - 1) / 2);
 
   return (
-    <div
-      className="shrink-0"
+    <span
+      className="grid shrink-0"
       style={{
-        display: "grid",
         gridTemplateColumns: `repeat(${size}, ${cell}px)`,
         gap,
       }}
@@ -115,6 +110,6 @@ function GridGlyph({ difficulty }: { difficulty: Difficulty }) {
           }}
         />
       ))}
-    </div>
+    </span>
   );
 }

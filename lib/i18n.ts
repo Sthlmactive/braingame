@@ -182,7 +182,6 @@ const en = {
   previousGuesses: "Previous guesses",
 
   // Five, which has difficulties instead of levels and never ends
-  chooseDifficulty: "Choose difficulty",
   diffEasy: "Easy",
   diffMedium: "Medium",
   diffHard: "Hard",
@@ -224,10 +223,10 @@ const en = {
   timeTaken: "Time",
   solvedCount: "Solved",
   notQuite: "Not quite — the marked letters are wrong",
-  miniDiffEasyDesc: "4x4, no black squares. Two hints.",
-  miniDiffMediumDesc: "5x5 with black squares.",
-  miniDiffHardDesc: "5x5, fewer black squares.",
-  miniDiffExtremeDesc: "5x5, every letter checked twice.",
+  miniDiffEasyDesc: "Common words. Two hints.",
+  miniDiffMediumDesc: "No hints.",
+  miniDiffHardDesc: "Rarer words.",
+  miniDiffExtremeDesc: "The rarest words.",
   miniRule1: "Every across and every down run is a word.",
   miniRule2:
     "Tap a square to select it. Tap it again to switch between across and down.",
@@ -408,7 +407,6 @@ const sv: Record<StringKey, string> = {
   guessesLeft: "{n} gissningar kvar",
   previousGuesses: "Tidigare gissningar",
 
-  chooseDifficulty: "Välj svårighetsgrad",
   diffEasy: "Lätt",
   diffMedium: "Medel",
   diffHard: "Svår",
@@ -449,10 +447,10 @@ const sv: Record<StringKey, string> = {
   timeTaken: "Tid",
   solvedCount: "Lösta",
   notQuite: "Inte riktigt — de markerade bokstäverna är fel",
-  miniDiffEasyDesc: "4x4, inga svarta rutor. Två ledtrådar.",
-  miniDiffMediumDesc: "5x5 med svarta rutor.",
-  miniDiffHardDesc: "5x5, färre svarta rutor.",
-  miniDiffExtremeDesc: "5x5, varje bokstav kontrolleras två gånger.",
+  miniDiffEasyDesc: "Vanliga ord. Två ledtrådar.",
+  miniDiffMediumDesc: "Inga ledtrådar.",
+  miniDiffHardDesc: "Ovanligare ord.",
+  miniDiffExtremeDesc: "De ovanligaste orden.",
   miniRule1: "Varje rad och varje kolumn bildar ett ord.",
   miniRule2: "Tryck på en ruta för att välja den. Tryck igen för att byta led.",
   miniRule3:

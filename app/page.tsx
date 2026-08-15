@@ -6,6 +6,16 @@ import { BoardGlyph } from "@/components/BoardGlyph";
 import { GAME_LIST } from "@/lib/games";
 
 /**
+ * A comfortable row, and a floor rather than a size: seven rows at 88 would
+ * not fit a 667pt screen without scrolling, so they divide the height instead
+ * and this only catches a phone shorter than any we measured.
+ */
+const ROW_MIN_PX = 64;
+
+/** Up from 34. A row is half as tall again, so the glyph grows with it. */
+const GLYPH_PX = 44;
+
+/**
  * Seven rows, hairline between each, and not one coloured pixel.
  *
  * The old grid spent colour on seven decorative badges, which left the board's
@@ -26,7 +36,7 @@ export default function HomePage() {
 
   return (
     <main className="page-enter safe-x mx-auto flex min-h-dvh w-full max-w-[560px] flex-col">
-      <header className="safe-top flex items-start justify-between pt-5 pb-6">
+      <header className="safe-top flex shrink-0 items-start justify-between pt-5 pb-6">
         <div>
           <h1 className="t-wordmark">{t("appName")}</h1>
           <p className="t-body mt-1 text-[var(--muted)]">{t("tagline")}</p>
@@ -48,22 +58,28 @@ export default function HomePage() {
         </Link>
       </header>
 
-      <nav className="flex flex-1 flex-col pb-8">
+      {/* Seven rows dividing all the height there is, the same reasoning as the
+          difficulty picker: the list is the screen, not a block sitting at the
+          top of it. They stay hairline rows rather than becoming cards — seven
+          bordered boxes is a lot of chrome, and this is a directory to scan,
+          not four choices to weigh. */}
+      <nav className="safe-bottom flex min-h-0 flex-1 flex-col">
         {GAME_LIST.map((g, i) => (
           <Link
             key={g.id}
             href={
               g.id === "five" ? fiveHref : g.id === "mini" ? miniHref : `/g/${g.id}`
             }
-            className="flex items-center gap-4 py-4"
+            className="press-flat flex min-h-0 flex-1 items-center gap-4 py-3"
             style={{
+              minHeight: ROW_MIN_PX,
               borderTop: i === 0 ? "1px solid var(--line)" : undefined,
               borderBottom: "1px solid var(--line)",
             }}
           >
-            <BoardGlyph game={g.id} />
+            <BoardGlyph game={g.id} size={GLYPH_PX} />
             <div className="min-w-0 flex-1">
-              <div className="t-row">{t(g.nameKey)}</div>
+              <div className="t-title">{t(g.nameKey)}</div>
               <div className="t-body mt-0.5 text-[var(--muted)]">
                 {t(g.descKey)}
               </div>

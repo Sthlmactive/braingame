@@ -4,10 +4,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useApp } from "@/components/AppProvider";
 import { Screen } from "@/components/Screen";
+import { DifficultyPicker } from "@/components/DifficultyPicker";
 import { Tile } from "@/components/Tile";
 import { NotFound } from "@/components/NotFound";
 import { DIFFICULTIES, DIFFICULTY_LENGTH, type Difficulty } from "@/lib/difficulty";
 import { isLang, type StringKey } from "@/lib/i18n";
+import { PICKER_TILE_PX } from "@/lib/picker";
 import { play } from "@/lib/sound";
 
 const NAME_KEY: Record<Difficulty, StringKey> = {
@@ -24,13 +26,11 @@ const DESC_KEY: Record<Difficulty, StringKey> = {
   extreme: "diffExtremeDesc",
 };
 
-/** Small enough to sit beside two lines of text, large enough to count. */
-const PICKER_TILE_PX = 16;
-
 /**
- * Step two of Five: four rows, each led by a row of empty tiles at its real
- * width. The length is the thing being chosen, so it is shown as a shape
- * rather than described in words.
+ * Step two of Five: four cards filling the screen. Each carries its name, a
+ * line of description, and a row of empty tiles at the real word length —
+ * because the length is part of what is being chosen, and a shape says it
+ * faster than "six letters" does.
  */
 export function FiveDifficultyScreen({ lang }: { lang: string }) {
   const router = useRouter();
@@ -51,56 +51,32 @@ export function FiveDifficultyScreen({ lang }: { lang: string }) {
         </Link>
       }
     >
-      <div className="flex flex-1 flex-col pb-10">
-        <h2 className="t-title pt-1 pb-4">{t("chooseDifficulty")}</h2>
-
-        {DIFFICULTIES.map((d, i) => {
+      <DifficultyPicker
+        onSelect={(d) => {
+          play("tap");
+          router.push(`/five/${lang}/${d}`);
+        }}
+        options={DIFFICULTIES.map((d) => {
           const stat = fiveStat(lang, d);
-          const length = DIFFICULTY_LENGTH[d];
-          return (
-            <button
-              key={d}
-              type="button"
-              onClick={() => {
-                play("tap");
-                router.push(`/five/${lang}/${d}`);
-              }}
-              className="flex items-center gap-4 py-4 text-left"
-              style={{
-                borderTop: i === 0 ? "1px solid var(--line)" : undefined,
-                borderBottom: "1px solid var(--line)",
-              }}
-            >
-              <div
-                className="flex shrink-0"
-                style={{ gap: "var(--gap-tile)" }}
-                aria-hidden
-              >
-                {Array.from({ length }, (_, c) => (
+          return {
+            difficulty: d,
+            name: t(NAME_KEY[d]),
+            description: t(DESC_KEY[d]),
+            preview: (
+              <span className="flex" style={{ gap: "var(--gap-tile)" }}>
+                {Array.from({ length: DIFFICULTY_LENGTH[d] }, (_, c) => (
                   <Tile key={c} px={PICKER_TILE_PX} state="empty" />
                 ))}
-              </div>
-
-              <div className="min-w-0 flex-1">
-                <div className="t-row">{t(NAME_KEY[d])}</div>
-                <div className="t-body mt-0.5 text-[var(--muted)]">
-                  {t(DESC_KEY[d])}
-                </div>
-              </div>
-
-              {/* Held back until storage has hydrated, so no wrong number flashes. */}
-              {ready && stat.played > 0 ? (
-                <div className="shrink-0 text-right">
-                  <div className="t-row tnum">{stat.streak}</div>
-                  <div className="t-caption text-[var(--muted)]">
-                    {t("currentStreak")}
-                  </div>
-                </div>
-              ) : null}
-            </button>
-          );
+              </span>
+            ),
+            // Held back until storage has hydrated, so no wrong number flashes.
+            stat:
+              ready && stat.played > 0
+                ? { value: String(stat.streak), label: t("currentStreak") }
+                : null,
+          };
         })}
-      </div>
+      />
     </Screen>
   );
 }
