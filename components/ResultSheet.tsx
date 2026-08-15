@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { Sheet, SheetButton } from "./Sheet";
 import { useApp } from "./AppProvider";
 import { formatTime, type StringKey } from "@/lib/i18n";
-import type { GameId, Level } from "@/lib/games";
 
 export type FinishReason =
   | "solved"
@@ -35,39 +34,33 @@ const REASON_KEY: Record<FinishReason, StringKey> = {
 export function ResultSheet({
   open,
   result,
-  game,
-  level,
   isBestScore,
   onPlayAgain,
 }: {
   open: boolean;
   result: GameResult | null;
-  game: GameId;
-  level: Level;
   isBestScore: boolean;
   onPlayAgain: () => void;
 }) {
   const router = useRouter();
-  const { t, lang } = useApp();
+  const { t } = useApp();
   if (!result) return null;
-
-  const hasNext = level < 10;
 
   return (
     <Sheet open={open} dismissable={false} title={t(REASON_KEY[result.reason])}>
       <div className="pb-4">
-        <p className="text-sm text-[var(--muted)]">
+        <p className="t-body text-[var(--muted)]">
           {result.cleared ? t("cleared") : t("notCleared")}
         </p>
 
         {result.revealWord ? (
-          <p className="font-display mt-3 text-lg font-bold">
+          <p className="t-title mt-3">
             {t("theWordWas", { w: result.revealWord.toUpperCase() })}
           </p>
         ) : null}
 
         {result.note ? (
-          <p className="mt-2 text-sm text-[var(--muted)]">{result.note}</p>
+          <p className="t-body mt-2 text-[var(--muted)]">{result.note}</p>
         ) : null}
 
         <div className="mt-4 flex gap-6">
@@ -81,19 +74,10 @@ export function ResultSheet({
         </div>
       </div>
 
+      {/* No "next level": levels are not a user facing concept any more. Play
+          again draws the next one from this difficulty's band. */}
       <div className="flex flex-col gap-2 pb-2">
-        {result.cleared && hasNext ? (
-          <SheetButton
-            variant="loud"
-            onClick={() => router.replace(`/g/${game}/${lang}/${level + 1}`)}
-          >
-            {t("nextLevel")}
-          </SheetButton>
-        ) : null}
-        <SheetButton
-          variant={result.cleared && hasNext ? "quiet" : "loud"}
-          onClick={onPlayAgain}
-        >
+        <SheetButton variant="loud" onClick={onPlayAgain}>
           {t("playAgain")}
         </SheetButton>
         <SheetButton onClick={() => router.push("/")}>{t("home")}</SheetButton>
@@ -114,12 +98,12 @@ function Stat({
   return (
     <div>
       <div
-        className="font-display text-2xl font-bold"
-        style={accent ? { color: "var(--accent)" } : undefined}
+        className="t-option"
+        style={accent ? { color: "var(--ink)" } : undefined}
       >
         {value}
       </div>
-      <div className="text-[0.7rem] tracking-wide text-[var(--muted)] uppercase">
+      <div className="t-caption tracking-wide text-[var(--muted)] uppercase">
         {label}
       </div>
     </div>

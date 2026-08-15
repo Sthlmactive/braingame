@@ -7,6 +7,15 @@ import { ResultSheet, type GameResult } from "./ResultSheet";
 import { Sheet, SheetButton } from "./Sheet";
 import { useApp } from "./AppProvider";
 import { GAMES, type GameId, type Level } from "@/lib/games";
+import type { Difficulty } from "@/lib/difficulty";
+import type { StringKey } from "@/lib/i18n";
+
+const DIFF_NAME: Record<Difficulty, StringKey> = {
+  easy: "diffEasy",
+  medium: "diffMedium",
+  hard: "diffHard",
+  extreme: "diffExtreme",
+};
 import type { Lang } from "@/lib/i18n";
 import { loadLanguage } from "@/lib/dictionary";
 import { play } from "@/lib/sound";
@@ -39,12 +48,18 @@ export function GameShell({
   game,
   lang,
   level,
+  difficulty,
+  onNextPuzzle,
   ownChrome = false,
   children,
 }: {
   game: GameId;
   lang: Lang;
   level: Level;
+  /** Which band this round was drawn from. Levels are not user facing. */
+  difficulty?: Difficulty;
+  /** Draws the next level from the band's bag when the player plays again. */
+  onNextPuzzle?: () => void;
   /**
    * The game draws its own header and page frame. The shell still owns
    * loading, giving up, recording the run and the result sheet.
@@ -97,13 +112,14 @@ export function GameShell({
   );
 
   const restart = useCallback(() => {
+    onNextPuzzle?.();
     finished.current = false;
     giveUpFn.current = null;
     setResult(null);
     setIsBest(false);
     setStatus(null);
     setRunId((n) => n + 1);
-  }, []);
+  }, [onNextPuzzle]);
 
   const meta = GAMES[game];
 
@@ -156,8 +172,6 @@ export function GameShell({
       <ResultSheet
         open={result !== null}
         result={result}
-        game={game}
-        level={level}
         isBestScore={isBest}
         onPlayAgain={restart}
       />
@@ -187,7 +201,7 @@ export function GameShell({
   return (
     <Screen
       title={t(meta.nameKey)}
-      subtitle={t("levelN", { n: level })}
+      subtitle={difficulty ? t(DIFF_NAME[difficulty]) : undefined}
       game={game}
       right={
         <div className="flex items-center gap-3">

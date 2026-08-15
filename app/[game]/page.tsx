@@ -1,5 +1,5 @@
 import { LEVELLED_GAME_IDS } from "@/lib/games";
-import { Redirect } from "@/components/Redirect";
+import { GameLanguageScreen } from "./GameLanguageScreen";
 
 export function generateStaticParams() {
   return LEVELLED_GAME_IDS.map((game) => ({ game }));
@@ -11,5 +11,5 @@ export default async function Page({
   params: Promise<{ game: string }>;
 }) {
   const { game } = await params;
-  return <Redirect to={`/${game}`} />;
+  return <GameLanguageScreen game={game} />;
 }

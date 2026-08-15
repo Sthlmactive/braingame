@@ -1,6 +1,6 @@
 import { LEVELLED_GAME_IDS, LEVELS } from "@/lib/games";
 import { LANGS } from "@/lib/i18n";
-import { GameScreen } from "./GameScreen";
+import { Redirect } from "@/components/Redirect";
 
 export function generateStaticParams() {
   return LEVELLED_GAME_IDS.flatMap((game) =>
@@ -15,6 +15,6 @@ export default async function Page({
 }: {
   params: Promise<{ game: string; lang: string; level: string }>;
 }) {
-  const { game, lang, level } = await params;
-  return <GameScreen game={game} lang={lang} level={level} />;
+  const { game, lang } = await params;
+  return <Redirect to={`/${game}/${lang}`} />;
 }

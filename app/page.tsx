@@ -68,7 +68,7 @@ export default function HomePage() {
           <Link
             key={g.id}
             href={
-              g.id === "five" ? fiveHref : g.id === "mini" ? miniHref : `/g/${g.id}`
+              g.id === "five" ? fiveHref : g.id === "mini" ? miniHref : `/${g.id}`
             }
             className="press-flat flex min-h-0 flex-1 items-center gap-4 py-3"
             style={{
