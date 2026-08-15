@@ -17,6 +17,21 @@ export const MINI_SIZE: Record<Difficulty, number> = {
   extreme: 5,
 };
 
+/**
+ * How many hints each difficulty grants, fixed for the whole round.
+ *
+ * Lätt only, matching Five's table. The number is load-bearing beyond the
+ * hint itself: it decides whether the keyboard carries a hint key at all, and
+ * that decision has to hold for the entire round. See hintKey in
+ * games/mini/engine.ts.
+ */
+export const MINI_HINTS: Record<Difficulty, number> = {
+  easy: 2,
+  medium: 0,
+  hard: 0,
+  extreme: 0,
+};
+
 /** How many black squares each difficulty's patterns carry. */
 export const MINI_BLACKS: Record<Difficulty, readonly number[]> = {
   easy: [0],

@@ -239,6 +239,42 @@ feels laggy. A button is being **pushed**, and 40ms there reads as a flicker.
 Reduced motion swaps the scale for a dim to 0.55 opacity. Feedback is not
 decoration, so it survives the preference; only the movement goes.
 
+## A control never disappears mid-game
+
+**Unavailable means disabled. It never means absent.**
+
+A keyboard that changes shape while you are typing is broken whatever the
+reason, because the key you are aiming at moves out from under your thumb.
+The same goes for any control you have already learned the position of.
+
+This shipped. Mini's Enter key was wired to the hint, and `Keyboard` rendered
+it as `{isLast && onEnter ? … : null}` — so its *presence* was inferred from
+whether the callback happened to be defined at that instant. Mini passed
+`onEnter={hintsLeft > 0 ? onHint : undefined}`. Spending the second hint on
+Lätt unmounted the key, and the remaining letters spread out to fill the row.
+
+Two rules came out of it:
+
+1. **Presence is decided once per round, availability continuously.** A
+   control's existence may depend on things fixed at the start (Mini's hint
+   grant is 2 on Lätt and 0 everywhere else, so the key is present all round
+   or absent all round). Whether it *works* may change freely.
+2. **Absent-always beats absent-sometimes.** A control that can never do
+   anything this round is removed from the layout entirely, not shown
+   permanently disabled.
+
+`Keyboard` takes `enterLabel` to pin the key in the layout; without it, the
+old inference still applies, which is what Five and Grid rely on since their
+Enter always has an action. `hintKey` in `games/mini/engine.ts` makes the
+decision, and `test/keyboard-invariants.test.tsx` asserts the bottom row's key
+count and labels are invariant across a whole round, in both languages at
+every difficulty.
+
+The count lives in the label — "Ledtråd 2" — so the key is the same width at
+2, 1 and 0. It says **Ledtråd / Hint**, not Klar: a crossword has nothing to
+submit, the grid checks itself the moment it is full, and the old label
+promised an action the game does not have.
+
 ## Springs
 
 Anything a finger can grab is **sprung**, not timed. A duration has nowhere to

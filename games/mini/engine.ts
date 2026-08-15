@@ -209,3 +209,38 @@ export function newGame(solution: string): MiniState {
     cursor: { cell, direction: entries[0]?.direction ?? "across" },
   };
 }
+
+/**
+ * The hint key's state for a whole round.
+ *
+ * Mini has nothing to submit — the grid checks itself the moment it is full —
+ * so the Enter slot is the hint, and it says so. It used to say "Klar", which
+ * promised an action the game does not have.
+ *
+ * Two rules live in the return value, and both exist because a control that
+ * comes and goes mid-round moves the key underneath the player's thumb:
+ *
+ *   - `null` means this difficulty grants no hints at all, so the key is
+ *     absent for the entire round. Absent always beats absent-sometimes.
+ *   - Otherwise the key is present for the entire round, and only `enabled`
+ *     changes. Spending the last hint disables it; it never unmounts.
+ *
+ * The count is in the label so it is width-invariant as it counts down: the
+ * key is the same size at 2, 1 and 0.
+ */
+export interface HintKey {
+  label: string;
+  enabled: boolean;
+}
+
+export function hintKey(
+  granted: number,
+  remaining: number,
+  word: string,
+): HintKey | null {
+  if (granted <= 0) return null;
+  return {
+    label: `${word} ${Math.max(0, remaining)}`,
+    enabled: remaining > 0,
+  };
+}

@@ -12,16 +12,8 @@ import { advance, currentWord, ensureBag, loadBags, miniBagKey, saveBag } from "
 import { clueFor, loadClues, type ClueBank } from "@/lib/clues";
 import { isDifficulty, type Difficulty } from "@/lib/difficulty";
 import { isLang, type Lang } from "@/lib/i18n";
-import { entriesOf, wordOf } from "@/lib/mini";
+import { MINI_HINTS, entriesOf, wordOf } from "@/lib/mini";
 import { play } from "@/lib/sound";
-
-/** How many hints each difficulty grants. Lätt only, matching Five's table. */
-const HINTS: Record<Difficulty, number> = {
-  easy: 2,
-  medium: 0,
-  hard: 0,
-  extreme: 0,
-};
 
 const SEEN_HELP = "ordlek.mini.helpSeen.v1";
 
@@ -163,7 +155,7 @@ export function MiniGameScreen({
           puzzle={puzzle}
           puzzleIndex={index}
           clues={clues}
-          hints={HINTS[validDifficulty]}
+          hints={MINI_HINTS[validDifficulty]}
           onSolved={onSolved}
           onTick={setElapsed}
           onOpenClueList={setClueList}

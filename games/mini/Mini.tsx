@@ -14,6 +14,7 @@ import {
   backspace,
   entryAt,
   hintCell,
+  hintKey,
   isComplete,
   isSolved,
   newGame,
@@ -135,6 +136,11 @@ export function Mini({
 
   const clueText = entry ? clueFor(clues, wordOf(puzzle, entry), puzzleIndex) : "";
 
+
+  // Presence decided by the grant, which is fixed for the round; availability
+  // by what is left. See hintKey in the engine.
+  const hint = hintKey(hints, hintsLeft, t("hint"));
+
   return (
     <div className="flex min-h-0 flex-1 flex-col">
       {/* Board. flex-1 and optically centred inside whatever is left. */}
@@ -210,9 +216,12 @@ export function Mini({
           t={t}
           onLetter={onLetter}
           onDelete={onBackspace}
-          // Mini has nothing to submit, so Enter spends a hint where there is
-          // one to spend. Colours stay off: nothing is judged mid solve.
-          onEnter={hintsLeft > 0 ? onHint : undefined}
+          // Mini has nothing to submit, so the Enter slot is the hint and is
+          // labelled as one. Present for the whole round on a difficulty that
+          // grants hints, absent for the whole round on one that does not, and
+          // merely disabled once they are spent. See hintKey.
+          onEnter={hint?.enabled ? onHint : undefined}
+          enterLabel={hint?.label}
           disabled={done}
           showStates={false}
           captureHardware

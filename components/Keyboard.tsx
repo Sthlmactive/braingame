@@ -46,6 +46,17 @@ export interface KeyboardProps {
   t: T;
   onLetter: (letter: string) => void;
   onEnter?: () => void;
+  /**
+   * Pins the Enter key into the layout for the whole round, under this label.
+   *
+   * Without it the key's *presence* is inferred from whether `onEnter` happens
+   * to be defined right now, which is how Mini's hint key used to vanish
+   * mid-solve and let the remaining keys spread out to fill the row. A
+   * keyboard that changes shape while you are typing is broken whatever the
+   * reason, because the key you are aiming at moves. With it, unavailable
+   * renders disabled and dimmed in the same slot.
+   */
+  enterLabel?: string;
   onDelete?: () => void;
   /** Per letter feedback. Ignored entirely when `showStates` is false. */
   states?: Record<string, KeyState>;
@@ -63,6 +74,7 @@ export function Keyboard({
   t,
   onLetter,
   onEnter,
+  enterLabel,
   onDelete,
   states,
   showStates = true,
@@ -163,12 +175,12 @@ export function Keyboard({
                 </button>
               );
             })}
-            {isLast && onEnter ? (
+            {isLast && (onEnter || enterLabel) ? (
               <ActionKey
-                label={t("submit")}
-                glyph={t("submit")}
-                onPress={onEnter}
-                disabled={disabled}
+                label={enterLabel ?? t("submit")}
+                glyph={enterLabel ?? t("submit")}
+                onPress={onEnter ?? NO_ACTION}
+                disabled={disabled || !onEnter}
                 wide
               />
             ) : null}
@@ -178,6 +190,9 @@ export function Keyboard({
     </div>
   );
 }
+
+/** A pinned key with nothing to do is disabled, so this is never called. */
+const NO_ACTION = () => {};
 
 function ActionKey({
   label,
@@ -195,7 +210,7 @@ function ActionKey({
   return (
     <button
       type="button"
-      className="tile shrink-0 px-2 font-semibold"
+      className="tile tnum shrink-0 px-2 font-semibold"
       style={{
         height: 48,
         minWidth: wide ? 58 : 46,
